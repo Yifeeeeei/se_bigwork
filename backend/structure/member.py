@@ -8,7 +8,7 @@ class Member:
         self.nickname = nickname
         # self.belongs_to_container   承载各种contaianer,如果要寻找组织的话可以由container继续向上查找
         self.belongs_to_container = []
-        #用于承载各种事件（还没定义好）
+        #用于承载各种事件已经弃用
         # self.errands = []
         
         # 新的类型，ddl

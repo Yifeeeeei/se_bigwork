@@ -10,7 +10,14 @@ class Container:
         self.contains = []
         # 标签
         self.tags = []
-
+        self.lower_containers = []
+        self.upper_container.addLowerContainer(self)
+    #类似于双向链表
+    def addLowerContainer(self, container):
+        self.lower_containers.append(container)
+    # 返回全部人员
+    def getMembers(self):
+        return self.contains
     # 添加Member，如果添加成功返回True，否则返回False +理由
     def addMember(self, member):
         # 如果是社长层，则无法容纳超过一个人
