@@ -1,6 +1,7 @@
-from ddl import DDL
-from notice import Notice
+# from ddl import DDL
+# from notice import Notice
 import functions
+import json
 # 每一个member是一个社员
 # 以学号为唯一标识
 
@@ -23,6 +24,31 @@ class Member:
         self.notices_received_id = []
         self.notices_checked_id = []
         self.notices_sent_id = []
+
+    def toJson(self):
+        member_dic = {}
+        member_dic['id'] = self.id
+        member_dic['name'] = self.name
+        member_dic['belongs_to_container_id'] = self.belongs_to_container_id
+        member_dic['ddls_received_id'] = self.ddls_received_id
+        member_dic['ddls_sent_id'] = self.ddls_sent_id
+        member_dic['ddls_checked_id'] = self.ddls_checked_id
+        member_dic['notices_received_id'] = self.notices_received_id
+        member_dic['notices_checked_id'] = self.notices_checked_id
+        member_dic['notices_sent_id'] = self.notices_sent_id
+        member_json = json.dumps(member_dic)
+        return member_json
+
+    def fromDic(self, member_dic):
+        self.id = member_dic['id']
+        self.name = member_dic['name']
+        self.belongs_to_container_id = member_dic['belongs_to_container_id']
+        self.ddls_received_id = member_dic['ddls_received_id']
+        self.ddls_sent_id = member_dic['ddls_sent_id']
+        self.ddls_checked_id = member_dic['ddls_checked_id']
+        self.notices_received_id = member_dic['notices_received_id']
+        self.notices_checked_id = member_dic['notices_checked_id']
+        self.notices_sent_id = member_dic['notices_sent_id']
 
     # def getName(self):
     #     return self.name
