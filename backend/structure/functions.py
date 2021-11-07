@@ -57,6 +57,7 @@ def DBgetNotice(notice_id):
     notice.post_date = result[3]
     notice.content = result[4]
     notice.from_member_id = result[5]
+    notice.to_member_id = result[6]
     return notice
 
 
@@ -73,3 +74,86 @@ def DBgetDDL(ddl_id):
     ddl.to_members_id = result[7].split(',')
     ddl.not_done_members_id = result[8].split(',')
     return ddl
+
+def DBupdateClub(club:Club):
+    dbop.saveClub(club.id,club.name,club.discription,club.containers_id,club.root_container_id)
+    
+def DBupdateContainer(container:Container):
+    dbop.saveContainer(container.id,container.name,container.belongs_to_club_id,container.upper_container_id,container.contains,container.lower_containers_id)
+
+def DBupdateDDL(ddl:DDL):
+    dbop.saveDDL(ddl.id,ddl.name,ddl.club_id,ddl.post_date,ddl.end_date,ddl.content,ddl.from_member_id,ddl.to_members_id,ddl.not_done_members_id)
+
+def DBupdateMember(member:Member):
+    dbop.saveMember(member.id,member.name,member.belongs_to_container_id,member.ddls_received_id,member.ddls_sent_id,member.ddls_checked_id,member.notices_received_id,member.notices_checked_id,member.notices_sent_id)
+
+def DBupdateNotice(notice:Notice):
+    dbop.saveNotice(notice.id,notice.name,notice.club_id,notice.post_date,notice.content,notice.from_member_id,notice.to_members_id)
+
+
+def DBnewClub(club:Club):
+    dbop.insertClub(club.id,club.name,club.discription,club.containers_id,club.root_container_id)
+    
+def DBnewContainer(container:Container):
+    #会影响上一级，和club
+    upper_container = DBgetContainer(container.upper_container_id)
+    upper_container.lower_containers_id.append(container.id)
+    DBupdateContainer(upper_container)
+    club = DBgetClub(container.belongs_to_club_id)
+    club.containers_id.append(container.id)
+    DBupdateClub(club)
+    dbop.insertContainer(container.id,container.name,container.belongs_to_club_id,container.upper_container_id,container.contains,container.lower_containers_id)
+
+def DBnewDDL(ddl:DDL):
+    #会影响：发送者，接收者
+    dbop.insertDDL(ddl.id,ddl.name,ddl.club_id,ddl.post_date,ddl.end_date,ddl.content,ddl.from_member_id,ddl.to_members_id,ddl.not_done_members_id)
+    sent_member = DBgetMember(ddl.from_member_id)
+    sent_member.ddls_sent_id.append(ddl.id)
+    
+    DBupdateMember(sent_member)
+    for mem_id in ddl.to_members_id:
+        mem = DBgetMember(mem_id)
+        mem.ddls_received_id.append(ddl.id)
+        DBupdateMember(mem)
+
+def DBnewMember(member:Member):
+    dbop.insertMember(member.id,member.name,member.belongs_to_container_id,member.ddls_received_id,member.ddls_sent_id,member.ddls_checked_id,member.notices_received_id,member.notices_checked_id,member.notices_sent_id)
+    
+def DBnewNotice(notice:Notice):
+    #影响发送者接受者
+    dbop.insertNotice(notice.id,notice.name,notice.club_id,notice.post_date,notice.content,notice.from_member_id,notice.to_members_id)
+    sent_member = DBgetMember(notice.from_member_id)
+    sent_member.notices_sent_id.append(notice.id)
+    DBupdateMember(sent_member)
+    for mem_id in notice.to_members_id:
+        mem = DBgetMember(mem_id)
+        mem.notices_received_id.append(notice.id)
+        DBupdateMember(mem)
+    
+def checkDDL(ddl_id,checker_id):
+    #影响 ddl,checker
+    ddl = DBgetDDL(ddl_id)
+    ddl.not_done_members_id.remove(checker_id)
+    DBupdateDDL(ddl)
+    checker = DBgetMember(checker_id)
+    checker.ddls_checked_id.append(ddl.id)
+    DBupdateMember(checker)
+def checkNotice(notice_id,checker_id):
+    #影响    checker
+    checker = DBgetMember(checker_id)
+    checker.notices_checked_id.append(notice_id)
+    DBupdateMember(checker)
+    
+def changeName(id,new_name):
+    member = DBgetMember(id)
+    member.name = new_name
+    DBupdateMember(member)
+    
+def joinContainer(member_id,container_id):
+    member = DBgetMember(member_id)
+    container = DBgetContainer(container_id)
+    member.belongs_to_container_id.append(container_id)
+    container.contains.append(member_id)
+    DBupdateMember(member)
+    DBupdateContainer(container)
+    

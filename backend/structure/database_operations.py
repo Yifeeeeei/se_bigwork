@@ -1,5 +1,5 @@
 # 用来操作数据库
-import MySQLdb
+import PyMySQL
 # 创建数据库
 # from member import Member
 # from club import Club
@@ -8,7 +8,7 @@ import MySQLdb
 # from notice import Notice
 
 def createDataBase():
-    mydb = MySQLdb.connect(host="localhost", user="root", passwd="root",charset="utf8")
+    mydb = PyMySQL.connect(host="localhost", user="root", passwd="root",charset="utf8")
     mycursor = mydb.cursor()
     mycursor.execute("CREATE DATABSE mydatabase")
     mydb.close()
@@ -20,7 +20,7 @@ def joinList(li):
 
 
 def getDataBase():
-    mydb = MySQLdb.connect(host="localhost", user="root",
+    mydb = PyMySQL.connect(host="localhost", user="root",
                            passwd="root", database="mydatabase")
     mycursor = mydb.cursor()
     mycursor.execute("SHOW DATABSES")
@@ -36,7 +36,7 @@ def createDataSheet(name):
     possible_names = ["CLUB", "CONTAINER", "DDL", "MEMBER", "NOTICE"]
     if name not in possible_names:
         return False  # 代表失败
-    db = MySQLdb.connect(host="localhost", user="root",
+    db = PyMySQL.connect(host="localhost", user="root",
                          passwd="root", database="mydatabase",charset="utf8")
     cursor = db.cursor()
     cursor.execute("DROP TABLE IF EXISTS %s" % (name))
@@ -76,7 +76,8 @@ def createDataSheet(name):
             CLUB CHAR(64),
             POST_DATE CHAR(64),
             CONTENT CHAR(1024),
-            FROM_MEMBER CHAR(64)
+            FROM_MEMBER CHAR(64),
+            TO_MEMBERS CHAR(2048)
             )"""
     elif name == "MEMBER":
         sql = """CREATE TABLE MEMBER(
@@ -97,7 +98,7 @@ def createDataSheet(name):
 
 def insertClub(id,name,discription,containerid_list,root_container_id):
     # 打开数据库连接
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -120,7 +121,7 @@ def insertClub(id,name,discription,containerid_list,root_container_id):
     
 def insertMember(id,name,belongs_to_container_id,ddls_received_id_list,ddls_sent_id_list,ddls_checked_id_list,notices_received_id_list,notices_checked_id_list,notices_sent_id_list):
     # 打开数据库连接
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -150,7 +151,7 @@ def insertMember(id,name,belongs_to_container_id,ddls_received_id_list,ddls_sent
 def insertContainer(id,name,belongs_to_club_id,upper_container_id,contains_idlist,lower_containers_idlist):
     
     # 打开数据库连接
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -174,7 +175,7 @@ def insertContainer(id,name,belongs_to_club_id,upper_container_id,contains_idlis
     
 def insertDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_members_id_list,not_done_members_id_list):
     # 打开数据库连接
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -196,16 +197,16 @@ def insertDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_membe
 # 关闭数据库连接
     db.close()
     
-def insertNotice(id,name,club_id,post_date,content,from_member_id):
+def insertNotice(id,name,club_id,post_date,content,from_member_id,to_members_id_list):
     # 打开数据库连接
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
-
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    to_members_id_str = ','.join(to_members_id_list)
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     # SQL 插入语句
-    sql = "INSERT INTO DDL (ID,NAME,CLUB,POST_DATE,CONTENT,FROM_MEMBER) \
-        VALUES (%s, %s, %s, %s, %s,%s)" % \
-        (id,name,club_id,post_date,content,from_member_id)
+    sql = "INSERT INTO DDL (ID,NAME,CLUB,POST_DATE,CONTENT,FROM_MEMBER,TO_MEMBERS) \
+        VALUES (%s, %s, %s, %s, %s,%s,%s)" % \
+        (id,name,club_id,post_date,content,from_member_id,to_members_id_str)
     try:
     # 执行sql语句
         cursor.execute(sql)
@@ -220,7 +221,7 @@ def insertNotice(id,name,club_id,post_date,content,from_member_id):
 def saveContainer(id,name,belongs_to_club_id,upper_container_id,contains_idlist,lower_containers_idlist):
     contain_id_str = joinList(contains_idlist)
     lower_containers_id_str = joinList(lower_containers_idlist)
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -238,7 +239,7 @@ def saveContainer(id,name,belongs_to_club_id,upper_container_id,contains_idlist,
     
 def saveClub(id,name,discription,containers_idlist,root_container_id):
     contain_id_str = joinList(containers_idlist)
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -262,7 +263,7 @@ def saveMember(id,name,belongs_to_container_id_list,ddls_received_id_list,ddls_s
     notices_received_id_str = joinList(notices_received_id_list)
     notices_checked_id_str = joinList(notices_checked_id_list)
     notices_sent_id_str  = joinList(notices_sent_id_list)
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
 
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
@@ -279,7 +280,7 @@ def saveMember(id,name,belongs_to_container_id_list,ddls_received_id_list,ddls_s
     db.close()
 
 def saveDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_members_id_list,not_done_members_id_list):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     to_members_id_str = joinList(to_members_id_list)
     not_done_members_id_str = joinList(not_done_members_id_list)
     # 使用cursor()方法获取操作游标 
@@ -296,11 +297,12 @@ def saveDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_members
 # 关闭数据库连接
     db.close()
     
-def saveNotice(id,name,club_id,post_date,content,from_member_id):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+def saveNotice(id,name,club_id,post_date,content,from_member_id,to_members_id_list):
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
-    sql = "UPDATE NOTICE SET NAME=%s,CLUB=%s,POST_DATE=%s,CONTENT=%s,FROM_MEMBER=%s WHERE ID=%d"%(name,club_id,post_date,content,from_member_id,id)
+    to_members_id_str = joinList(to_members_id_list)
+    sql = "UPDATE NOTICE SET NAME=%s,CLUB=%s,POST_DATE=%s,CONTENT=%s,FROM_MEMBER=%s,TO_MEMBERS=%s WHERE ID=%d"%(name,club_id,post_date,content,from_member_id,to_members_id_str,id)
     try:
     # 执行sql语句
         cursor.execute(sql)
@@ -313,7 +315,7 @@ def saveNotice(id,name,club_id,post_date,content,from_member_id):
     db.close()
     
 def fetchClub(id):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     sql="SELECT * FROM CLUB WHERE ID=%s"%(id)
@@ -329,7 +331,7 @@ def fetchClub(id):
     return result
 
 def fetchMember(id):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     sql="SELECT * FROM Member WHERE ID=%s"%(id)
@@ -345,7 +347,7 @@ def fetchMember(id):
     return result
 
 def fetchContainer(id):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     sql="SELECT * FROM CONTAINER WHERE ID=%s"%(id)
@@ -361,7 +363,7 @@ def fetchContainer(id):
     return result
 
 def fetchDDL(id):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     sql="SELECT * FROM DDL WHERE ID=%s"%(id)
@@ -377,7 +379,7 @@ def fetchDDL(id):
     return result
 
 def fetchNotice(id):
-    db = MySQLdb.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
+    db = PyMySQL.connect("localhost", "root", "root", "mydatabase", charset='utf8' )
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     sql="SELECT * FROM NOTICE WHERE ID=%s"%(id)

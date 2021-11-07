@@ -1,10 +1,11 @@
 import functions
+import json
 
 
 class Container:
     def __init__(self):
         # 名字，上层容器（可以为None,如果为None，则代表是第一层，只能为社长）
-        ##要改
+        # 要改
         self.id = functions.generateRandomId(start="Container")
         self.name = ""
         # 内部类型为club
@@ -17,6 +18,26 @@ class Container:
         # functions.getContainer(upper_container_id)
         # self.upper_container.addLowerContainer(self.id)
     # 类似于双向链表
+    def generateRandomId(self):
+        self.id = functions.generateRandomId(start="Container")
+    def toJson(self):
+        container_dic = {}
+        container_dic['id'] = self.id
+        container_dic['name'] = self.name
+        container_dic['belongs_to_club_id'] = self.belongs_to_club_id
+        container_dic['upper_container_id'] = self.upper_container_id
+        container_dic['contains'] = self.contains
+        container_dic['lower_containers_id'] = self.lower_containers_id
+        container_json = json.dumps(container_dic)
+        return container_json
+
+    def fromDic(self, container_dic):
+        self.id = container_dic['id']
+        self.name = container_dic['name']
+        self.belongs_to_club_id = container_dic['belongs_to_club_id']
+        self.upper_container_id = container_dic['upper_container_id']
+        self.contains = container_dic['contains']
+        self.lower_containers_id = container_dic['lower_containers_id']
 
     # def addLowerContainer(self, container):
     #     self.lower_containers.append(container)
