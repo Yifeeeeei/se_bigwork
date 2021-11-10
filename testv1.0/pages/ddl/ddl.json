@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "card":"../com/card/card"
+  },
+  "navigationBarTitleText": "我的ddl"
+}
