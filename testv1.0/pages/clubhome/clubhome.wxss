@@ -1,0 +1,43 @@
+/* pages/clubhome/clubhome.wxss */
+.clubarea1{
+  margin: 10px;
+  border-radius: 5%;
+  height: 100px;
+  width: 200px;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#8360fa,#cb8dff);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+}
+.clubarea2{
+  margin: 10px;
+  border-radius: 5%;
+  height: 100px;
+  width: 200px;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#4762f3,#5cc3ff);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+}
+.clubarea3{
+  margin: 10px;
+  border-radius: 5%;
+  height: 100px;
+  width: 200px;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#ff6098,#ffa96a);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+}
+.clubInfo{
+  color: blanchedalmond;
+  position: relative;
+  top: 0px;
+  left: 90px;
+}
+.clubName{
+  color: blanchedalmond;
+  position: relative;
+  top: 10px;
+  left: 10px;
+}
