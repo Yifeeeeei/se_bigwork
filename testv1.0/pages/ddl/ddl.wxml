@@ -1,0 +1,15 @@
+<!--pages/ddl.wxml-->
+<block wx:for="{{ddlData}}">
+    <block wx:if="{{item.outdate}}">
+        <button class="outddl">
+        <text>{{item.string}}\n已过期</text>
+        </button>
+    </block>
+    <block wx:else>
+        <button  class="normalddl">{{item.string}}</button>
+    </block>
+</block>
+
+
+
+

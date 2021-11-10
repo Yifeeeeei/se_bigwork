@@ -1,0 +1,14 @@
+/* pages/ddl.wxss */
+.outddl{
+    color: crimson;
+    width:500px;
+    height:fit-content;
+    background-color: forestgreen;
+    margin-top: 25px;
+}
+.normalddl{
+    color: forestgreen;
+    width:500px;
+    height:fit-content;
+    margin-top: 25px;
+}
