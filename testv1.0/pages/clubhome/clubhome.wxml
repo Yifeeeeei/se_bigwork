@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+  <text>{{try}}</text>
   <view class="clublist" wx:for="{{clubIDlist}}">
     <view wx:if="{{index%3==0}}">
       <view bindtap="toClubpage" class="clubarea1" type="primary">
@@ -20,4 +21,5 @@
       </view>
     </view>
   </view>
+  
 </view>

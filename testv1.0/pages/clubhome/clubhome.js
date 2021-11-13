@@ -7,6 +7,7 @@ Page({
   data: {
     clubIDlist:[],
     clubNum:0,
+    try:"string"
   },
   createTap:function(){
     console.log("trying to create a club.")
@@ -30,6 +31,21 @@ Page({
    */
   onLoad: function () {
     this.getclubList()
+    var that=this;
+    wx.request({
+      url: 'http://82.157.127.241:11451',
+      method:"GET",
+      success(res){
+        console.log(res.data),
+        that.data.try=res.data,
+        that.setData({
+          try:that.data.try
+        })
+      },
+      fail(res){
+        console.log(res.data)
+      }
+    })
   },
 
   /**
