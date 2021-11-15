@@ -1,5 +1,5 @@
-from container import Container
-import functions
+from structure.container import Container
+# import structure.functions
 import json
 
 
@@ -13,7 +13,14 @@ class Club:
         self.root_container_id = ""
         # self.root_container.addMember(boss_member)
         # self.containers.append(self.root_container)
-
+    def toDic(self):
+        club_dic = {}
+        club_dic['id'] = self.id
+        club_dic['name'] = self.name
+        club_dic['discription'] = self.discription
+        club_dic['containers_id'] = self.containers_id
+        club_dic['root_container_id'] = self.root_container_id
+        return club_dic
     def toJson(self):
         club_dic = {}
         club_dic['id'] = self.id
