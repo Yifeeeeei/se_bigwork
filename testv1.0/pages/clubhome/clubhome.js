@@ -1,4 +1,5 @@
 // pages/clubhome/clubhome.js
+const app=getApp()
 Page({
 
   /**
@@ -6,18 +7,16 @@ Page({
    */
   data: {
     clubIDlist:[],
-    clubNum:0,
-    try:"string"
+    clubNum:0
   },
-  createTap:function(){
-    console.log("trying to create a club.")
-  },
-  registerTap:function(){
-    console.log("trying to get in a club.")
-  },
-  toClubpage:function(){
+  toClubpage:function(e){
+    let clubname=e.currentTarget.dataset.name
+
     wx.navigateTo({
-      url: '../logs/logs',
+      url: '../clubpage/clubpage',
+      success(res){
+        res.eventChannel.emit('toclubPage',{data:clubname})
+      }
     })
   },
   getclubList:function(){
@@ -26,26 +25,40 @@ Page({
       clubIDlist:this.data.clubIDlist,
     })
   },
+  createmember:function(){
+    let backend=app.globalData.backendip
+    wx.request({
+      url: 'http://'+backend+'/api/create/member',
+      data:{
+        'id':app.globalData.userID,
+        'name':'lyqtest',
+        'belongs_to_container_id' : [],//这个人处于的container id列表
+        'ddls_received_id' : [],//接收到了ddl id列表
+        'ddls_sent_id' : [],//发送过的ddl id列表
+        'ddls_checked_id' : [],//这个人自己check过的ddl id列表
+        'notices_received_id' : [],//接收到的notice id列表
+        'notices_checked_id' : [],//这个人check过的notice id列表
+        'notices_sent_id' : [],//这个人发出的notice id列表
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res)
+      }
+    })
+  },
+  createclub:function(){
+    wx.navigateTo({
+      url: '../createClub/createClub',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
     this.getclubList()
-    var that=this;
-    wx.request({
-      url: 'http://82.157.127.241:11451',
-      method:"GET",
-      success(res){
-        console.log(res.data),
-        that.data.try=res.data,
-        that.setData({
-          try:that.data.try
-        })
-      },
-      fail(res){
-        console.log(res.data)
-      }
-    })
   },
 
   /**
