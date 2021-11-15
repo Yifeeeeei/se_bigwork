@@ -1,5 +1,5 @@
 # from member import Member
-import functions
+# import structure.functions
 import json
 
 
@@ -14,6 +14,16 @@ class Notice:
         self.to_members_id = []
     def generateRandomId(self):
         self.id = functions.generateRandomId(start="notice")
+    def toDic(self):
+        notice_dic = {}
+        notice_dic['id'] = self.id
+        notice_dic['name'] = self.name
+        notice_dic['club_id'] = self.club_id
+        notice_dic['post_date'] = self.post_date
+        notice_dic['content'] = self.content
+        notice_dic['from_member_id'] = self.from_member_id
+        notice_dic['to_members_id'] = self.to_members_id
+        return notice_dic
     def toJson(self):
         notice_dic = {}
         notice_dic['id'] = self.id

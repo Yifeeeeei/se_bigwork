@@ -1,4 +1,4 @@
-import functions
+# import structure.functions
 import json
 
 
@@ -20,6 +20,15 @@ class Container:
     # 类似于双向链表
     def generateRandomId(self):
         self.id = functions.generateRandomId(start="Container")
+    def toDic(self):
+        container_dic = {}
+        container_dic['id'] = self.id
+        container_dic['name'] = self.name
+        container_dic['belongs_to_club_id'] = self.belongs_to_club_id
+        container_dic['upper_container_id'] = self.upper_container_id
+        container_dic['contains'] = self.contains
+        container_dic['lower_containers_id'] = self.lower_containers_id
+        return container_dic
     def toJson(self):
         container_dic = {}
         container_dic['id'] = self.id

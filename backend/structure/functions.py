@@ -1,15 +1,20 @@
 import random
-import database_operations as dbop
+import structure.database_operations as dbop
 
-from container import Container
-from club import Club
-from member import Member
-from notice import Notice
-from ddl import DDL
+from structure.container import Container
+from structure.club import Club
+from structure.member import Member
+from structure.notice import Notice
+from structure.ddl import DDL
 
 def generateRandomId(start="", end=""):
     return str(start) + str(random.randint(0, 99999999))+str(end)
-
+def stringToList(target_str):
+    # [12,3434,3434]
+    inner_string = target_str[1:-1]
+    if len(inner_string) <= 0:
+        return []
+    return inner_string.split(",")
 
 def DBgetContainer(container_id):
     result = dbop.fetchContainer(container_id)
@@ -18,8 +23,8 @@ def DBgetContainer(container_id):
     container.name = result[1]
     container.belongs_to_club_id = result[2]
     container.upper_container_id = result[3]
-    container.contains = result[4].split(",")
-    container.lower_containers_id = result[5].split(",")
+    container.contains = stringToList(result[4])
+    container.lower_containers_id = stringToList(result[5])
     return container
 
 
@@ -29,7 +34,7 @@ def DBgetClub(club_id):
     club.id = result[0]
     club.name = result[1]
     club.discription = result[2]
-    club.containers_id = result[3].split(",")
+    club.containers_id = stringToList(result[3])
     club.root_container_id = result[4]
     return club
 
@@ -39,13 +44,13 @@ def DBgetMember(member_id):
     member = Member()
     member.id = result[0]
     member.name = result[1]
-    member.belongs_to_container_id = result[2].split(",")
-    member.ddls_received_id = result[3].split(",")
-    member.ddls_sent_id = result[4].split(",")
-    member.ddls_checked_id = result[5].split(",")
-    member.notices_received_id = result[6].split(",")
-    member.notices_checked_id = result[7].split(",")
-    member.notices_sent_id = result[8].split(",")
+    member.belongs_to_container_id = stringToList(result[2])
+    member.ddls_received_id = stringToList(result[3])
+    member.ddls_sent_id = stringToList(result[4])
+    member.ddls_checked_id = stringToList(result[5])
+    member.notices_received_id = stringToList(result[6])
+    member.notices_checked_id = stringToList(result[7])
+    member.notices_sent_id = stringToList(result[8])
     return member
 
 def DBgetNotice(notice_id):
@@ -71,8 +76,8 @@ def DBgetDDL(ddl_id):
     ddl.end_date = result[4]
     ddl.content = result[5]
     ddl.from_member_id = result[6]
-    ddl.to_members_id = result[7].split(',')
-    ddl.not_done_members_id = result[8].split(',')
+    ddl.to_members_id = stringToList(result[7])
+    ddl.not_done_members_id = stringToList(result[8])
     return ddl
 
 def DBupdateClub(club:Club):
@@ -157,3 +162,16 @@ def joinContainer(member_id,container_id):
     DBupdateMember(member)
     DBupdateContainer(container)
     
+#search
+def DBsearchClub(keyword):
+    results = dbop.searchClub(keyword)
+    club_list = []
+    for row in results:
+        club = Club()
+        club.id = result[0]
+        club.name = result[1]
+        club.discription = result[2]
+        club.containers_id = stringToList(result[3])
+        club.root_container_id = result[4]
+        club_list.append(club)
+    return club_list

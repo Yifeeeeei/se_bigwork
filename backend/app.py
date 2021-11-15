@@ -2,7 +2,7 @@ from flask import Flask
 from flask import request
 from flask import render_template, redirect, url_for
 import json
-from backend.structure import member
+from structure import member
 import structure.functions as func
 from structure.member import Member
 from structure.club import Club
@@ -72,6 +72,7 @@ def apiUpdateClub():
     club = Club()
     club.fromDic(json_data)
     func.DBupdateClub(club)
+    return "OK"
 
 
 @app.route('/api/update/container', methods=['POST'])
@@ -81,6 +82,7 @@ def apiUodateContainer():
     container = Container()
     container.fromDic(json_data)
     func.DBupdateContainer(container)
+    return "OK"
 
 
 @app.route('/api/update/ddl', methods=['POST'])
@@ -90,6 +92,7 @@ def apiUpdateDDL():
     ddl = DDL()
     ddl.fromDic(json_data)
     func.DBupdateDDL(ddl)
+    return "OK"
 
 
 @app.route('/api/update/member', methods=['POST'])
@@ -99,6 +102,7 @@ def apiUpdateMember():
     member = Member()
     member.fromDic(json_data)
     func.DBupdateMember(member)
+    return "OK"
 
 
 @app.route('/api/update/notice', methods=['POST'])
@@ -108,6 +112,7 @@ def apiUpdateNotice():
     notice = Notice()
     notice.fromDic(json_data)
     func.DBupdateMember(notice)
+    return "OK"
 
 #create
 @app.route('/api/create/club', methods=['POST'])
@@ -118,6 +123,7 @@ def apiCreateClub():
     club.fromDic(json_data)
     club.generateRandomId()
     func.DBnewClub(club)
+    return "OK"
 
 
 @app.route('/api/create/container', methods=['POST'])
@@ -128,6 +134,7 @@ def apiCreateContainer():
     container.fromDic(json_data)
     container.generateRandomId()
     func.DBnewContainer(container)
+    return "OK"
 
 
 @app.route('/api/create/ddl', methods=['POST'])
@@ -138,15 +145,22 @@ def apiCreateDDL():
     ddl.fromDic(json_data)
     ddl.generateRandomId()
     func.DBnewDDL(ddl)
+    return "OK"
 
 
 @app.route('/api/create/member', methods=['POST'])
 def apiCreateMember():
+
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     member = Member()
+    print(json_data)
     member.fromDic(json_data)
     func.DBnewMember(member)
+
+
+
+    return "OK"
 
 
 @app.route('/api/create/notice', methods=['POST'])
@@ -157,6 +171,7 @@ def apiCreateNotice():
     notice.fromDic(json_data)
     notice.generateRandomId()
     func.DBnewNotice(notice)
+    return "OK"
 
 
 #check
@@ -166,6 +181,7 @@ def apiCheckDDL():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     func.checkDDL(json_data["ddl_id"],json_data["checker_id"])
+    return "OK"
     
 @app.route('/api/check/notice',methods=['POST']) 
 def apiCheckNotice():
@@ -173,6 +189,7 @@ def apiCheckNotice():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     func.checkNotice(json_data["notice_id"],json_data["checker_id"])
+    return "OK"
     
 #modify
 @app.route('/api/modify/name',methods=['POST'])
@@ -181,6 +198,7 @@ def apiModifyName():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     func.changeName(json_data['member_id'],json_data['new_name'])
+    return "OK"
     
 #actions
 @app.route('/api/actions/join_container',methods=['POST'])
@@ -189,8 +207,21 @@ def apiActionsJoinContainer():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     func.joinContainer(json_data['member_id'],json_data['container_id'])
+    return "OK"
     
-    
+#search
+@app.route('/api/search/club',methods=['POST'])
+def apiSearchClub():
+    #->{keyword:xxx}
+    #{club_list:[club1,club2,club3..]} 
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    club_list = func.DBsearchClub(json_data['keyword'])
+    return_data = {}
+    return_data['club_list'] = []
+    for club in club_list:
+        return_data['club_list'].append(club.toDic())
+    return json.dumps(return_data)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=11451)
+    app.run(host='0.0.0.0',port=11452)
