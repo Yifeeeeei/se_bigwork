@@ -108,3 +108,9 @@
 ## /api/actions/join_container
 传入{member_id,container_id}
 将一位一个member加入到一个container中
+
+# 搜索
+## /api/search/club
+传入{keyword:xxx}
+返回一个{club_list:[club1,club2...]}
+返回的json中club_list项的列表元素也为json表示的club

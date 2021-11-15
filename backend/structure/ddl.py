@@ -1,5 +1,5 @@
-from member import Member
-import functions
+from structure.member import Member
+# import structure.functions
 import json
 
 
@@ -17,6 +17,18 @@ class DDL:
         # self.setToMember(to_members_id)
     def generateRandomId(self):
         self.id = functions.generateRandomId(start="ddl")
+    def toDic(self):
+        ddl_dic = {}
+        ddl_dic['id'] = self.id
+        ddl_dic['name'] = self.name
+        ddl_dic['club_id'] = self.club_id
+        ddl_dic['post_date'] = self.post_date
+        ddl_dic['end_date'] = self.end_date
+        ddl_dic['content'] = self.content
+        ddl_dic['from_member_id'] = self.from_member_id
+        ddl_dic['to_members_id'] = self.to_members_id
+        ddl_dic['not_done_members_id'] = self.not_done_members_id
+        return ddl_dic
     def toJson(self):
         ddl_dic = {}
         ddl_dic['id'] = self.id
