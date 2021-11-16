@@ -1,14 +1,30 @@
 <!--pages/ddl.wxml-->
+<view class="menu_box">
+ <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">menu1</text>
+ <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">menu2</text>
+</view>
+<view  hidden="{{menuTapCurrent!='0'}}">
 <block wx:for="{{ddlData}}">
-    <block wx:if="{{item.outdate}}">
-        <button class="outddl">
+    <block wx:if="{{item.outdate==0}}">
+        <button class="outddl" bindtap="todetail" data-uid="{{item.uid}}" data-string="{{item.string}}"data-flag="{{item.outdate}}" >
         <text>{{item.string}}\n已过期</text>
         </button>
     </block>
+    <block wx:elif="{{item.outdate==1}}">
+        <button  class="normalddl" bindtap="todetail" data-uid="{{item.uid}}" data-string="{{item.string}}"data-flag="{{item.outdate}}">{{item.string}}</button>
+    </block>
     <block wx:else>
-        <button  class="normalddl">{{item.string}}</button>
+        <button  class="finishddl" bindtap="todetail" data-uid="{{item.uid}}" data-string="{{item.string}}"data-flag="{{item.outdate}}">{{item.string}}</button>
     </block>
 </block>
+</view>
+<view  hidden="{{menuTapCurrent!='1'}}">
+    <block wx:for="{{informData}}">
+        <button class="outddl" bindtap="toinform" data-uid="{{item.uid}}" data-string="{{item.string}}">
+            <text>{{item.string}}</text>
+        </button>
+    </block>
+</view>
 
 
 

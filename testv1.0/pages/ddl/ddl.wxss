@@ -1,14 +1,45 @@
 /* pages/ddl.wxss */
 .outddl{
-    color: crimson;
-    width:500px;
-    height:fit-content;
-    background-color: forestgreen;
-    margin-top: 25px;
+    margin: 10px;
+  border-radius: 5%;
+  height: 70px;
+  width: 90% !important;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#fc6348,#fca9a4);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
 }
 .normalddl{
-    color: forestgreen;
-    width:500px;
-    height:fit-content;
-    margin-top: 25px;
+    margin: 10px;
+  border-radius: 5%;
+  height: 70px;
+  width: 90% !important;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#4df85b,#92ffb3);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
 }
+.finishddl{
+    margin: 10px;
+  border-radius: 5%;
+  height: 70px;
+  width: 90% !important;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#92a097,#d6e6db);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+}
+.menu_box{
+  display: flex;
+  height: 80rpx;
+ }
+ .menu1,.menu2{
+  flex: 1;
+  font-size:30rpx;
+  line-height: 80rpx;
+  text-align: center;
+ }
+ .borders{
+  border-bottom: 4rpx solid #f00;
+  color: #f00;
+ }

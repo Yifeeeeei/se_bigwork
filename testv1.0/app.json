@@ -1,33 +1,35 @@
 {
-  "pages": [
-    "pages/clubhome/clubhome",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/user info/user info",
-    "pages/ddl/ddl"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/ddl/ddl",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/clubhome/clubhome",
-        "text": "社团首页"
-      },
-      {
-        "pagePath": "pages/user info/user info",
-        "text": "用户首页"
-      }
-    ]
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/clubhome/clubhome",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/user info/user info",
+        "pages/ddl/ddl",
+        "pages/notice/notice",
+        "pages/informdetail/informdetail"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/ddl/ddl",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/clubhome/clubhome",
+                "text": "社团首页"
+            },
+            {
+                "pagePath": "pages/user info/user info",
+                "text": "用户首页"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json"
 }
