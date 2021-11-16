@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "我的社团",
   "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#cb8dff",
   "usingComponents": {}
 }

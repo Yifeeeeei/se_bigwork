@@ -41,3 +41,31 @@
   top: 10px;
   left: 10px;
 }
+.container{
+  position: fixed;
+  top: 0px;
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.clubBlock{
+  position: absolute;
+  top: 0px;
+}
+.clubSpace{
+  margin: 10px;
+  height: 100px;
+  width: 200px;
+  position: relative;
+  border-style: dashed;
+}
+.plus{
+  width: 200px;
+  height: 100px;
+}
+.img_text{
+  position: absolute;
+  top: 37px;
+  left: 65px;
+}

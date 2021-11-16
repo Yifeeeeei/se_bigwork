@@ -6,7 +6,9 @@
         "pages/user info/user info",
         "pages/ddl/ddl",
         "pages/notice/notice",
-        "pages/informdetail/informdetail"
+        "pages/informdetail/informdetail",
+        "pages/clubpage/clubpage",
+        "pages/createClub/createClub"
     ],
     "window": {
         "backgroundTextStyle": "light",

@@ -17,11 +17,6 @@ Page({
       url: '../clubhome/clubhome'
     })
   },
-  bindButtonTap(){
-    wx.navigateTo({
-      url: '../ddl/ddl'
-    })
-  },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
