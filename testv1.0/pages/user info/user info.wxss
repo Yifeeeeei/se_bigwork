@@ -1,1 +1,17 @@
 /* pages/user info/user info.wxss */
+
+
+.info-box {
+    width: 100%;
+  }
+.user-img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid gray;
+  }
+.info-box > text {
+    display: block;
+    margin-left: 10%;
+    margin-bottom: 5%;
+  }
+

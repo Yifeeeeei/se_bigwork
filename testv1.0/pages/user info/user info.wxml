@@ -1,2 +1,20 @@
 <!--pages/user info/user info.wxml-->
-<text>pages/user info/user info.wxml</text>
+
+<view class="container">
+ 
+ <view class="info-box">
+
+   <view style="text-align:center; margin-bottom:5%">
+     <image class="user-img" src="{{imgUrl}}" />
+   </view>
+ 
+   <text>昵称： {{nickname}}</text>
+   <text>加入的社团与职位： {{clublist}}</text>
+
+ </view>
+
+ <view style="margin-top:20%"> 
+    <button open-type="primary" bindtap="change-nickname">修改昵称</button>
+  </view>
+
+</view>
