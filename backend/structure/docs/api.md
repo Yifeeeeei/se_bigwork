@@ -81,16 +81,16 @@
 
 # 创建新数据
 ## /api/create/club
-传入Club json(id瞎填，会自动生成)，后台创建
+传入Club json(id瞎填，会自动生成)，后台创建,返回id
 ## /api/create/container
-传入container json(id瞎填，会自动生成)，后台创建
+传入container json(id瞎填，会自动生成)，后台创建,返回id
 会自动调整所在club和上级container
 ## /api/create/ddl
 类似上面
-会自动为调整发出者和接受者相关项
+会自动为调整发出者和接受者相关项返回id
 ## /api/create/notice
 类似上面
-会自动调整发出则和接受着相关项
+会自动调整发出则和接受着相关项返回id
 ## /api/create/member
 传入Member json，id填微信id（吧）
 

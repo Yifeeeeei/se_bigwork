@@ -123,7 +123,7 @@ def apiCreateClub():
     club.fromDic(json_data)
     club.generateRandomId()
     func.DBnewClub(club)
-    return "OK"
+    return club.id
 
 
 @app.route('/api/create/container', methods=['POST'])
@@ -134,7 +134,7 @@ def apiCreateContainer():
     container.fromDic(json_data)
     container.generateRandomId()
     func.DBnewContainer(container)
-    return "OK"
+    return container.id
 
 
 @app.route('/api/create/ddl', methods=['POST'])
@@ -145,7 +145,8 @@ def apiCreateDDL():
     ddl.fromDic(json_data)
     ddl.generateRandomId()
     func.DBnewDDL(ddl)
-    return "OK"
+    print("ddl_id:",ddl.id)
+    return ddl.id
 
 
 @app.route('/api/create/member', methods=['POST'])
@@ -160,7 +161,7 @@ def apiCreateMember():
 
 
 
-    return "OK"
+    return member.id
 
 
 @app.route('/api/create/notice', methods=['POST'])
@@ -171,7 +172,7 @@ def apiCreateNotice():
     notice.fromDic(json_data)
     notice.generateRandomId()
     func.DBnewNotice(notice)
-    return "OK"
+    return notice.id
 
 
 #check
@@ -222,6 +223,9 @@ def apiSearchClub():
     for club in club_list:
         return_data['club_list'].append(club.toDic())
     return json.dumps(return_data)
-
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=11452)
