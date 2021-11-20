@@ -119,11 +119,21 @@ def apiUpdateNotice():
 def apiCreateClub():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
+
+    container = Container()
+    container.generateRandomId()
     club = Club()
     club.fromDic(json_data)
     club.generateRandomId()
+    container.belongs_to_club_id = club.id
+    club.root_container_id = container.id
+    container.upper_container_id = ""
+    func.DBnewContainer(container)
     func.DBnewClub(club)
-    return "OK"
+    dic = {}
+    dic["club_id"] = club.id
+    dic["root_container_id"] = container.id
+    return json.dumps(dic)
 
 
 @app.route('/api/create/container', methods=['POST'])
@@ -134,7 +144,9 @@ def apiCreateContainer():
     container.fromDic(json_data)
     container.generateRandomId()
     func.DBnewContainer(container)
-    return "OK"
+    dic = {}
+    dic["container_id"] = container_id
+    return json.dumps(dic)
 
 
 @app.route('/api/create/ddl', methods=['POST'])
@@ -145,7 +157,9 @@ def apiCreateDDL():
     ddl.fromDic(json_data)
     ddl.generateRandomId()
     func.DBnewDDL(ddl)
-    return "OK"
+    dic = {}
+    dic["ddl_id"] = ddl.id
+    return json.dumps(dic)
 
 
 @app.route('/api/create/member', methods=['POST'])
@@ -157,10 +171,9 @@ def apiCreateMember():
     print(json_data)
     member.fromDic(json_data)
     func.DBnewMember(member)
-
-
-
-    return "OK"
+    dic = {}
+    dic["member_id"] = member.id
+    return json.dumps(dic)
 
 
 @app.route('/api/create/notice', methods=['POST'])
@@ -171,7 +184,9 @@ def apiCreateNotice():
     notice.fromDic(json_data)
     notice.generateRandomId()
     func.DBnewNotice(notice)
-    return "OK"
+    dic = {}
+    dic["notice_id"] = notice.id
+    return json.dumps(dic)
 
 
 #check
@@ -222,6 +237,9 @@ def apiSearchClub():
     for club in club_list:
         return_data['club_list'].append(club.toDic())
     return json.dumps(return_data)
-
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=11452)
