@@ -5,8 +5,12 @@ Page({
      * 页面的初始数据
      */
     data: {
-        nickname:"",
-        clublist:"",
+        
+    menuitems: [
+        {text:'昵称', url:'#', icon:'/images/user/1.png', info:'F.S.'},
+        {text:'性别', url:'#', icon:'/images/user/2.png', info:'男'},
+        {text:'所在社团', url:'#', icon:'/images/user/3.png', info:'无'}
+      ]
     },
 
     /**

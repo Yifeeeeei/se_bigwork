@@ -1,17 +1,42 @@
 /* pages/user info/user info.wxss */
 
-
-.info-box {
-    width: 100%;
-  }
-.user-img {
-    width: 100px;
-    height: 100px;
-    border: 1px solid gray;
-  }
-.info-box > text {
-    display: block;
-    margin-left: 10%;
-    margin-bottom: 5%;
-  }
-
+.avatar-wrapper {
+  background: #1b82d1;
+  padding: 25px 0;
+}
+ 
+.avatar-wrapper .avatar {
+  margin: 0 auto;
+  text-align: center;
+}
+ 
+.avatar-wrapper .avatar image {
+  width: 100px;
+  height: 100px;
+}
+ 
+.avatar-wrapper .text {
+  text-align: center;
+  color: #fff;
+}
+ 
+.listimg image {
+  margin-left: 5px;
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+ 
+.content{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+ 
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+}
