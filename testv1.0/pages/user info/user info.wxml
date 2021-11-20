@@ -2,22 +2,36 @@
 
 <view class="mine-wrapper">
   <view class="avatar-wrapper">
-      <view class="avatar">
-        <image style="border-radius:50%;" src="{{userinfo.avatarUrl ? userinfo.avatarUrl:'/images/user/user.png'}}"></image>
-      </view>
+    <view class="avatar">
+      <block wx:if="{{canIUseOpenData}}">
+        <view class="userinfo-avatar" bindtap="bindViewTap">
+          <open-data type="userAvatarUrl"></open-data>
+        </view>
+      </block>
+      <block wx:elif="{{!hasUserInfo}}">
+        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+        <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+        <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+      </block>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
   </view>
   <view class="list-wrapper">
     <view class="alllists">
       <block wx:for="{{menuitems}}" wx:key="menu_for">
         <navigator url="{{item.url}}" class="lists">
-        <view class='content'>
-          <view class="listimg">
-            <image src="{{item.icon}}"></image>
+          <view class='content'>
+            <view class="listimg">
+              <image src="{{item.icon}}"></image>
+            </view>
+            <view class="listtext">{{item.text}}</view>
+            <view class="listicon">{{item.tips}}</view>
+            <view> ： </view>
+            <view class="listinfo">{{item.info}}</view>
           </view>
-          <view class="listtext">{{item.text}}</view>
-          <view class="listicon">{{item.tips}}</view>
-          <view class="listinfo"> ：   {{item.info}}</view>
-        </view>
         </navigator>
         <!-- 分割线 -->
         <view class="divLine"></view>
