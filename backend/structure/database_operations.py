@@ -120,7 +120,7 @@ def insertClub(id,name,discription,containerid_list,root_container_id):
     containerid_str = listToString(containerid_list)
     # SQL 插入语句
     sql = "INSERT INTO CLUB ( ID,NAME,DISCRIPTION,CONTAINERS,ROOT_CONTAINER) \
-        VALUES ('%s', '%s', '%s', '%s', '%s','%s' )" % \
+        VALUES ('%s', '%s', '%s', '%s', '%s' )" % \
         (id, name, discription, containerid_str, root_container_id)
     try:
     # 执行sql语句
@@ -154,7 +154,7 @@ def insertMember(id,name,belongs_to_container_id,ddls_received_id_list,ddls_sent
     sql = "INSERT INTO MEMBER ( ID,NAME,BELONGS_TO_CONTAINER,DDLS_RECEIVED,DDLS_SENT,DDLS_CHECKED,NOTICES_RECEIVED,NOTICES_CHECKED,NOTICES_SENT) \
         VALUES ('%s', '%s', '%s', '%s', '%s','%s' ,'%s','%s','%s')" % \
         (id, name, belongs_to_container_id,ddls_received_id_str, ddls_sent_id_str,ddls_checked_id_str,notice_received_id_str,notices_checked_id_str,notice_sent_id_str)
-    print(sql)
+    # print(sql)
 #     try:
 #     # 执行sql语句
 #         cursor.execute(sql)
