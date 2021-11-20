@@ -7,7 +7,8 @@
  
 .avatar-wrapper .avatar {
   margin: 0 auto;
-  text-align: center;
+  text-align: lefts;
+  margin-left: 10%;
 }
  
 .avatar-wrapper .avatar image {
