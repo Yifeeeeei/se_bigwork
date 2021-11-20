@@ -11,7 +11,7 @@
   margin-left: 10%;
 }
  
-.avatar-wrapper .avatar image {
+.avatar .userinfo-avatar {
   width: 100px;
   height: 100px;
 }
