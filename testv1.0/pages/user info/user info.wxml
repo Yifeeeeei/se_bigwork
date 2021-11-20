@@ -3,7 +3,7 @@
 <view class="mine-wrapper">
   <view class="avatar-wrapper">
       <view class="avatar">
-        <image style="border-radius:50%;" src="{{userinfo.avatarUrl ? userinfo.avatarUrl:'/images/user/user1.png'}}"></image>
+        <image style="border-radius:50%;" src="{{userinfo.avatarUrl ? userinfo.avatarUrl:'/images/user/user.png'}}"></image>
       </view>
   </view>
   <view class="list-wrapper">
