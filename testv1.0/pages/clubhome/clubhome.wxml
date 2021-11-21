@@ -11,7 +11,7 @@
       <view wx:if="{{index%3==1}}">
         <view bindtap="jumptocreate" class="clubarea2" type="primary">
           <text class="clubName">通信尝试</text>
-          <text class="clubInfo">\n{{item}}\n创建新人</text>
+          <text class="clubInfo">\n{{item}}\n查看容器</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">

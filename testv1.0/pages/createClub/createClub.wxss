@@ -1,1 +1,18 @@
-/* pages/createClub/createClub.wxss */
+.menu_box{
+  display: flex;
+  height: 40px;
+  border: black;
+ }
+ .menu1,.menu2{
+  flex: 1;
+  font-size:30rpx;
+  line-height: 80rpx;
+  text-align: center;
+ }
+ .borders{
+  border-bottom: 4rpx solid #f00;
+  color: #f00;
+ }
+ .tab1,.tab2{
+  height: 100%;
+ }
