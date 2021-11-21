@@ -21,6 +21,9 @@ App({
               let sessionkey=res2.data.session_key
               self.globalData.userID=res2.data.openid
               wx.setStorageSync('sessionKey', sessionkey)
+              if (this.getSysInfoCallback) {
+                this.getSysInfoCallback(res2.data.openid)
+              }
             }
           })
         }else{
@@ -32,6 +35,6 @@ App({
   globalData: {
     userInfo: null,
     userID: null,
-    backendip:'82.157.127.241:11452'
+    backendip:'82.157.127.241:11452',
   }
 })

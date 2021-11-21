@@ -1,0 +1,4 @@
+/* pages/createinform/createinform.wxss */
+.sendinform{
+    margin-top: 50px;
+}

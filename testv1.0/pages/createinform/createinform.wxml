@@ -1,0 +1,4 @@
+<!--pages/createinform/createinform.wxml-->
+<input bindinput="nameinput"></input>
+<input bindinput="contentinput"></input>
+<button bindtap="sendinform" type="primary"class="sendinform">发送</button>

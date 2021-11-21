@@ -1,0 +1,4 @@
+/* pages/createddl/createddl.wxss */
+.sendddl{
+    margin-top: 50px;
+}

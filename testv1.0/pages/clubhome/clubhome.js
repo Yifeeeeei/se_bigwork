@@ -25,6 +25,17 @@ Page({
       clubIDlist:this.data.clubIDlist,
     })
   },
+  tocreateddl:function(){
+    wx.navigateTo({
+      url: '../createddl/createddl',
+    })
+  },
+  tocreateinform:function(){
+    console.log(1)
+    wx.navigateTo({
+      url: '../createinform/createinform',
+    })
+  },
   createmember:function(){
     let backend=app.globalData.backendip
     wx.request({
@@ -65,14 +76,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
+   
   },
 
   /**

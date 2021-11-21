@@ -8,7 +8,9 @@
         "pages/notice/notice",
         "pages/informdetail/informdetail",
         "pages/clubpage/clubpage",
-        "pages/createClub/createClub"
+        "pages/createClub/createClub",
+        "pages/createddl/createddl",
+        "pages/createinform/createinform"
     ],
     "window": {
         "backgroundTextStyle": "light",
