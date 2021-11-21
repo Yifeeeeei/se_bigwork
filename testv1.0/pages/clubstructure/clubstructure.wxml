@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <text></text>
+  <path-view unnormalizedValue="{{value}}"
+             btnTxt='创建子结构'
+             btnshowTxt='查看成员'
+             catchtapBtn="createchild"
+             class="tree">
+  </path-view>
+</view>

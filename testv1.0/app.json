@@ -1,11 +1,13 @@
 {
   "pages": [
+    "pages/createClub/createClub",
     "pages/clubhome/clubhome",
+    
+    "pages/clubstructure/clubstructure",
     "pages/index/index",
     "pages/logs/logs",
     "pages/user info/user info",
-    "pages/clubpage/clubpage",
-    "pages/createClub/createClub"
+    "pages/clubpage/clubpage"
   ],
   "window": {
     "backgroundTextStyle": "light",

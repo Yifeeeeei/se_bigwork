@@ -9,15 +9,15 @@
         </view>
       </view>
       <view wx:if="{{index%3==1}}">
-        <view bindtap="createmember" class="clubarea2" type="primary">
+        <view bindtap="getcontainer" class="clubarea2" type="primary">
           <text class="clubName">通信尝试</text>
-          <text class="clubInfo">\n{{item}}\n创建新人</text>
+          <text class="clubInfo">\n{{item}}\n查看容器</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">
-        <view bindtap="toClubpage" class="clubarea3" type="primary">
-          <text class="clubName">llllllllllll</text>
-          <text class="clubInfo">\n{{item}}\n啦啦啦</text>
+        <view bindtap="createclub" class="clubarea3" type="primary">
+          <text class="clubName">通信尝试</text>
+          <text class="clubInfo">\n{{item}}\n创建社团</text>
         </view>
       </view>
     </view>

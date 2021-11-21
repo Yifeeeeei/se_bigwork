@@ -50,8 +50,96 @@ Page({
     })
   },
   createclub:function(){
-    wx.navigateTo({
-      url: '../createClub/createClub',
+    let backend=app.globalData.backendip
+    wx.request({
+      url: 'http://'+backend+'/api/create/club',
+      data:{
+        'id':'1',
+        'name':'啦啦啦',
+        'discription':'',
+        'containers_id':[],
+        'root_container_id':'lyqtest1'
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res)
+      }
+    })
+  },
+  getclub(){
+    let backend=app.globalData.backendip
+    wx.request({
+      url: 'http://'+backend+'/api/get/club',
+      data:{
+        'id':'club37983104'
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res)
+      }
+    })
+  },
+  updateclub(){
+    let backend=app.globalData.backendip
+    wx.request({
+      url: 'http://'+backend+'/api/update/club',
+      data:{
+        'id':'club37983104',
+        'name':'lyqclub',
+        'discription':'lalala',
+        'containers_id':[],
+        'root_container_id':'lyqtest1'
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res)
+      }
+    })
+  },
+  createcontainer(){
+    let backend=app.globalData.backendip
+    wx.request({
+      url: 'http://'+backend+'/api/create/container',
+      data:{
+        'id':'1',
+        'name':'部长',
+        'belongs_to_club_id':'club37983104',
+        'upper_container_id':'Container18922408',
+        'contains':[],
+        'lower_containers_id':[],
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res)
+      }
+    })
+  },
+  getcontainer(){
+    let backend=app.globalData.backendip
+    wx.request({
+      url: 'http://'+backend+'/api/get/container',
+      data:{
+        'id':'Container55428184',
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success(res){
+        console.log(res)
+      }
     })
   },
   /**
@@ -72,7 +160,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getclubList()
   },
 
   /**
