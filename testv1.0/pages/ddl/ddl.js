@@ -77,6 +77,7 @@ Page({
         '\n'+'截止日期:'+e.currentTarget.dataset.end_date,
         confirmText: '已完成',
         success: res=> {
+          let _that=that
           if (res.confirm) {
             console.log('确')
             wx.request({
@@ -91,6 +92,7 @@ Page({
               },
               success(res1){
                 console.log(res1.data)
+                _that.onShow()
               }
             })
           } else {
