@@ -76,7 +76,7 @@ def apiUpdateClub():
 
 
 @app.route('/api/update/container', methods=['POST'])
-def apiUodateContainer():
+def apiUpdateContainer():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     container = Container()
@@ -145,7 +145,7 @@ def apiCreateContainer():
     container.generateRandomId()
     func.DBnewContainer(container)
     dic = {}
-    dic["container_id"] = container_id
+    dic["container_id"] = container.id
     return json.dumps(dic)
 
 
@@ -186,6 +186,7 @@ def apiCreateNotice():
     func.DBnewNotice(notice)
     dic = {}
     dic["notice_id"] = notice.id
+    print("returning:",notice.id)
     return json.dumps(dic)
 
 

@@ -15,6 +15,9 @@ def stringToList(target_str):
     return inner_string.split(",")
 
 def DBgetContainer(container_id):
+    print("container id:",container_id)
+    if container_id == "":
+        return
     result = dbop.fetchContainer(container_id)
     container = Container()
     container.id = result[0]
@@ -27,6 +30,8 @@ def DBgetContainer(container_id):
 
 
 def DBgetClub(club_id):
+    if club_id == "":
+        return
     result = dbop.fetchClub(club_id)
     club = Club()
     club.id = result[0]
@@ -38,6 +43,8 @@ def DBgetClub(club_id):
 
 
 def DBgetMember(member_id):
+    if member_id == "":
+        return
     result = dbop.fetchMember(member_id)
     member = Member()
     member.id = result[0]
@@ -52,6 +59,8 @@ def DBgetMember(member_id):
     return member
 
 def DBgetNotice(notice_id):
+    if notice_id == "":
+        return
     result = dbop.fetchNotice(notice_id)
     notice = Notice()
     notice.id = result[0]
@@ -65,7 +74,9 @@ def DBgetNotice(notice_id):
 
 
 def DBgetDDL(ddl_id):
-    print("try to get:",ddl_id)
+    if ddl_id == "":
+        return
+    # print("try to get:",ddl_id)
     result = dbop.fetchDDL(ddl_id)
     ddl = DDL()
     ddl.id = result[0]
@@ -100,12 +111,13 @@ def DBnewClub(club:Club):
     
 def DBnewContainer(container:Container):
     #会影响上一级，和club
-    upper_container = DBgetContainer(container.upper_container_id)
-    upper_container.lower_containers_id.append(container.id)
-    DBupdateContainer(upper_container)
-    club = DBgetClub(container.belongs_to_club_id)
-    club.containers_id.append(container.id)
-    DBupdateClub(club)
+    if container.upper_container_id != "":
+        upper_container = DBgetContainer(container.upper_container_id)
+        upper_container.lower_containers_id.append(container.id)
+        DBupdateContainer(upper_container)
+        club = DBgetClub(container.belongs_to_club_id)
+        club.containers_id.append(container.id)
+        DBupdateClub(club)
     dbop.insertContainer(container.id,container.name,container.belongs_to_club_id,container.upper_container_id,container.contains,container.lower_containers_id)
 
 def DBnewDDL(ddl:DDL):
