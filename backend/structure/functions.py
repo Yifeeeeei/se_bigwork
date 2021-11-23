@@ -7,6 +7,8 @@ from structure.member import Member
 from structure.notice import Notice
 from structure.ddl import DDL
 
+def generateRandomId(start="", end=""):
+    return str(start) + str(random.randint(0, 99999999))+str(end)
 def stringToList(target_str):
     # [12,3434,3434]
     inner_string = target_str[1:-1]
