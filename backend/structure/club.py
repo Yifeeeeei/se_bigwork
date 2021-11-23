@@ -1,12 +1,12 @@
 from structure.container import Container
-# import structure.functions
+import structure.genID as gi
 import json
 
 
 class Club:
     def __init__(self):
 
-        self.id = functions.generateRandomId(start="club")
+        self.id = gi.generateRandomId(start="club")
         self.name = ""
         self.discription = ""
         self.containers_id = []
@@ -31,7 +31,7 @@ class Club:
         club_json = json.dumps(club_dic)
         return club_json
     def generateRandomId(self):
-        self.id = functions.generateRandomId(start="club")
+        self.id = gi.generateRandomId(start="club")
     def fromDic(self, club_dic):
         self.id = club_dic['id']
         self.name = club_dic['name']
