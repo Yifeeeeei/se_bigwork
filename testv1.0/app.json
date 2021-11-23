@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/user info/user info",
     "pages/clubhome/clubhome",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user info/user info",
     "pages/clubpage/clubpage",
     "pages/createClub/createClub"
   ],

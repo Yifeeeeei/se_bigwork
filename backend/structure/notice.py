@@ -1,11 +1,11 @@
 # from member import Member
 # import structure.functions
 import json
-import structure.genID as gi
+
 
 class Notice:
     def __init__(self):
-        self.id = gi.generateRandomId(start="notice")
+        self.id = functions.generateRandomId(start="notice")
         self.name = ""
         self.club_id = ""
         self.post_date = ""
@@ -13,7 +13,7 @@ class Notice:
         self.from_member_id = ""
         self.to_members_id = []
     def generateRandomId(self):
-        self.id = gi.generateRandomId(start="notice")
+        self.id = functions.generateRandomId(start="notice")
     def toDic(self):
         notice_dic = {}
         notice_dic['id'] = self.id
