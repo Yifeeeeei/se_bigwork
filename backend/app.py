@@ -72,7 +72,9 @@ def apiUpdateClub():
     club = Club()
     club.fromDic(json_data)
     func.DBupdateClub(club)
-    return "OK"
+    dic = {}
+    dic["result"] = "OK"
+    return json.dumps(dic)
 
 
 @app.route('/api/update/container', methods=['POST'])
@@ -82,7 +84,9 @@ def apiUpdateContainer():
     container = Container()
     container.fromDic(json_data)
     func.DBupdateContainer(container)
-    return "OK"
+    dic = {}
+    dic["result"] = "OK"
+    return json.dumps(dic)
 
 
 @app.route('/api/update/ddl', methods=['POST'])
@@ -92,7 +96,9 @@ def apiUpdateDDL():
     ddl = DDL()
     ddl.fromDic(json_data)
     func.DBupdateDDL(ddl)
-    return "OK"
+    dic = {}
+    dic["result"] = "OK"
+    return json.dumps(dic)
 
 
 @app.route('/api/update/member', methods=['POST'])
@@ -102,7 +108,9 @@ def apiUpdateMember():
     member = Member()
     member.fromDic(json_data)
     func.DBupdateMember(member)
-    return "OK"
+    dic = {}
+    dic["result"] = "OK"
+    return json.dumps(dic)
 
 
 @app.route('/api/update/notice', methods=['POST'])
@@ -112,7 +120,9 @@ def apiUpdateNotice():
     notice = Notice()
     notice.fromDic(json_data)
     func.DBupdateMember(notice)
-    return "OK"
+    dic = {}
+    dic["result"] = "OK"
+    return json.dumps(dic)
 
 #create
 @app.route('/api/create/club', methods=['POST'])
@@ -234,7 +244,7 @@ def apiActionsJoinContainer():
     return json.dumps(dic)
 
 @app.route('/api/actions/login',methods=['POST'])
-def apiActionsJoinContainer():
+def apiLogin():
     #{member_id,container_id}
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
