@@ -1,0 +1,43 @@
+/* pages/user info/user info.wxss */
+
+.avatar-wrapper {
+  background: #1b82d1;
+  padding: 25px 0;
+}
+ 
+.avatar-wrapper .avatar {
+  margin: 0 auto;
+  text-align: lefts;
+  margin-left: 10%;
+}
+ 
+.avatar .clubinfo-avatar {
+  width: 100px;
+  height: 100px;
+}
+ 
+.avatar-wrapper .text {
+  text-align: center;
+  color: #fff;
+}
+ 
+.listimg image {
+  margin-left: 5px;
+  margin-right: 5px;
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+ 
+.content{
+  display: flex;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+ 
+/*分割线样式*/
+.divLine{
+ background: #E0E3DA;
+ width: 100%;
+ height: 5rpx;
+}
