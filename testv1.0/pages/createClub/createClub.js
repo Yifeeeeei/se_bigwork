@@ -105,9 +105,9 @@ Page({
         }
       })
     },
-  },
+  
   onLoad: function (options) {
-
+    
   },
 
   /**

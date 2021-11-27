@@ -1,8 +1,8 @@
 {
   "pages": [
-    "pages/createClub/createClub",
-    "pages/clubhome/clubhome",
     
+    "pages/clubhome/clubhome",
+    "pages/createClub/createClub",
     "pages/clubstructure/clubstructure",
     "pages/index/index",
     "pages/logs/logs",
