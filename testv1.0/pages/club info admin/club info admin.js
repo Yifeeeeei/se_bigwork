@@ -13,6 +13,12 @@ Page({
         info: ''
       },
       {
+        text: '修改名称',
+        url: '#',
+        icon: '/images/club/4.png',
+        info: ''
+      },
+      {
         text: '社团结构',
         url: '#',
         icon: '/images/club/2.png',
@@ -25,6 +31,10 @@ Page({
         info: ''
       }
     ],
+  },
+
+  buttonclick(){
+
   },
 
   /**
