@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/club info admin/club info admin",
     "pages/club info/club info",
     "pages/user info/user info",
     "pages/clubhome/clubhome",
@@ -30,6 +31,5 @@
       }
     ]
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }
