@@ -347,3 +347,48 @@ comment: 注意，在创建club时，相应的root_container会自动创建，�
 comment:如果返回的result值为existed，则代表该已经将该用户在后台记录过了
 
 如果返回result值为new，则代表刚刚在后台为用户新建了member
+
+### /api/delete/club 删除club
+
+接收
+
+| key     | value_type | a_must? | comment |
+| ------- | ---------- | ------- | ------- |
+| club_id | string     | y       | club id |
+
+返回
+
+| key    | value_type | a_must? | comment                     |
+| ------ | ---------- | ------- | --------------------------- |
+| result | string     | y       | "OK" or "id does not exist" |
+
+### /api/delete/container 删除container
+
+接收
+
+| key          | value_type | a_must? | comment      |
+| ------------ | ---------- | ------- | ------------ |
+| container_id | string     | y       | container id |
+
+返回
+
+| key    | value_type | a_must? | comment                     |
+| ------ | ---------- | ------- | --------------------------- |
+| result | string     | y       | "OK" or "id does not exist" |
+
+### /api/delete/member删除member
+
+接收
+
+| key       | value_type | a_must? | comment   |
+| --------- | ---------- | ------- | --------- |
+| member_id | string     | y       | member id |
+
+返回
+
+| key    | value_type | a_must? | comment                     |
+| ------ | ---------- | ------- | --------------------------- |
+| result | string     | y       | "OK" or "id does not exist" |
+
+
+
