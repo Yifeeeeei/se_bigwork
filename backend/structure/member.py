@@ -4,7 +4,7 @@
 import json
 # 每一个member是一个社员
 # 以学号为唯一标识
-import structure.genID as gi
+
 
 class Member:
     def __init__(self):
