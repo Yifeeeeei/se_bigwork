@@ -30,6 +30,8 @@
             <view class="listtext">{{item.text}}</view>
             <view class="listicon">{{item.tips}}</view>
             <view> ： </view>
+            <open-data type="userNickName" wx:if="{{item.text == '昵称'}}"></open-data>
+            <open-data type="userGender" lang="zh_CN" wx:if="{{item.text == '性别'}}"></open-data>
             <view class="listinfo">{{item.info}}</view>
           </view>
         </navigator>
