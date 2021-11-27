@@ -1,4 +1,4 @@
-// pages/user info/user info.js
+
 Page({
 
   /**
