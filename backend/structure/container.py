@@ -1,12 +1,12 @@
 # import structure.functions
 import json
-
+import structure.genID as gi
 
 class Container:
     def __init__(self):
         # 名字，上层容器（可以为None,如果为None，则代表是第一层，只能为社长）
         # 要改
-        self.id = functions.generateRandomId(start="Container")
+        self.id = gi.generateRandomId(start="Container")
         self.name = ""
         # 内部类型为club
         self.belongs_to_club_id = ""
@@ -19,7 +19,7 @@ class Container:
         # self.upper_container.addLowerContainer(self.id)
     # 类似于双向链表
     def generateRandomId(self):
-        self.id = functions.generateRandomId(start="Container")
+        self.id = gi.generateRandomId(start="Container")
     def toDic(self):
         container_dic = {}
         container_dic['id'] = self.id
