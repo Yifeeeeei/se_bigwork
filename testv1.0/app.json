@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/club info/club info",
     "pages/user info/user info",
     "pages/clubhome/clubhome",
     "pages/index/index",
