@@ -1,11 +1,11 @@
 from structure.member import Member
 # import structure.functions
 import json
-import structure.genID as gi
+
 
 class DDL:
     def __init__(self):
-        self.id = gi.generateRandomId(start="ddl")
+        self.id = functions.generateRandomId(start="ddl")
         self.name = ""
         self.club_id = ""
         self.post_date = ""
@@ -16,7 +16,7 @@ class DDL:
         self.not_done_members_id = []
         # self.setToMember(to_members_id)
     def generateRandomId(self):
-        self.id = gi.generateRandomId(start="ddl")
+        self.id = functions.generateRandomId(start="ddl")
     def toDic(self):
         ddl_dic = {}
         ddl_dic['id'] = self.id
