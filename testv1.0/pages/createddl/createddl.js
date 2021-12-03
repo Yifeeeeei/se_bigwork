@@ -12,6 +12,7 @@ Page({
         content:"",
         name:"",
         ddlid:"",
+        members:[{"name":"1"},{"name":"2"}]
     },
     dateinput:function(e){
         this.setData({

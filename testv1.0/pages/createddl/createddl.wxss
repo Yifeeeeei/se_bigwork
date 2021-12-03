@@ -1,4 +1,9 @@
 /* pages/createddl/createddl.wxss */
+@import "../../lib/weui.wxss";
 .sendddl{
     margin-top: 50px;
+}
+.textinput{
+    color:black;
+    text-align: left;
 }

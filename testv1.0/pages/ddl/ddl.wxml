@@ -8,7 +8,29 @@
     <button  class="checkddl" bindtap="todetail" data-id="{{item.id}}" data-flag="2" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">{{item.content}}</button>
 </block>
 <block wx:for="{{notcheckedddl}}">
-<button  class="notcheckddl" bindtap="todetail" data-id="{{item.id}}" data-flag="1" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">{{item.content}}</button>
+<button  class="notcheckddl" bindtap="todetail" data-id="{{item.id}}" data-flag="1" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+<block wx:if="item.content.length>15">
+<wxs module="util">
+
+var sub = function(val) {
+
+return val.substring(0, 14)
+
+}
+
+module.exports={
+
+sub:sub
+
+};
+
+</wxs>
+<text>标题:{{item.name}}\n内容:{{util.sub(item.content)}}...</text>
+</block>
+<block wx:else>
+    <text>标题:{{item.name}}\n内容:{{item.content}}</text>
+</block>
+</button>
 </block>
 <block wx:for="{{outddl}}">
     <button  class="outddl" bindtap="todetail" data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">{{item.content}}</button>
