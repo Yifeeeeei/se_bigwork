@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    containerlist:[],
     clubIDlist:[],
+    clubNamelist:[],
     clubNum:0
   },
   toClubpage:function(e){
@@ -20,126 +22,62 @@ Page({
     })
   },
   getclubList:function(){
-    this.data.clubIDlist=['0','1','2','3'],
-    this.setData({
-      clubIDlist:this.data.clubIDlist,
-    })
-  },
-  createmember:function(){
+    let userid=app.globalData.userID
     let backend=app.globalData.backendip
+    let that=this
+    console.log(userid)
     wx.request({
-      url: 'http://'+backend+'/api/create/member',
+      url: 'http://'+backend+'/api/get/member',
       data:{
-        'id':app.globalData.userID,
-        'name':'lyqtest',
-        'belongs_to_container_id' : [],//这个人处于的container id列表
-        'ddls_received_id' : [],//接收到了ddl id列表
-        'ddls_sent_id' : [],//发送过的ddl id列表
-        'ddls_checked_id' : [],//这个人自己check过的ddl id列表
-        'notices_received_id' : [],//接收到的notice id列表
-        'notices_checked_id' : [],//这个人check过的notice id列表
-        'notices_sent_id' : [],//这个人发出的notice id列表
+        'id':userid
       },
       method:"POST",
       header :{
         'content-type': 'application/json'
       },
-      success(res){
+      success:res=>{
         console.log(res)
+        that.setData({
+          containerlist:res.data['belongs_to_container_id']
+        })
+        that.data.containerlist.forEach(tmp_container=>{
+          wx.request({
+            url: 'http://'+backend+'/api/get/container',
+            data:{
+              'id':tmp_container
+            },
+            method:"POST",
+            header :{
+              'content-type': 'application/json'
+            },
+            success:res2=>{
+              console.log(res2)
+              let clubid=res2.data['belongs_to_club_id']
+              wx.request({
+                url: 'http://'+backend+'/api/get/club',
+                data:{
+                  'id':clubid
+                },
+                method:"POST",
+                header :{
+                  'content-type': 'application/json'
+                },
+                success:res3=>{
+                  that.setData({
+                    clubNamelist:clubNamelist.append(res3['name']),
+                    clubIDlist:clubIDlist.append(res3['id'])
+                  })
+                }
+              })
+            }
+          })
+        })
       }
     })
   },
-  createclub:function(){
-    let backend=app.globalData.backendip
-    wx.request({
-      url: 'http://'+backend+'/api/create/club',
-      data:{
-        'id':'1',
-        'name':'啦啦啦',
-        'discription':'',
-        'containers_id':[],
-        'root_container_id':'lyqtest1'
-      },
-      method:"POST",
-      header :{
-        'content-type': 'application/json'
-      },
-      success(res){
-        console.log(res)
-      }
-    })
-  },
-  getclub(){
-    let backend=app.globalData.backendip
-    wx.request({
-      url: 'http://'+backend+'/api/get/club',
-      data:{
-        'id':'club37983104'
-      },
-      method:"POST",
-      header :{
-        'content-type': 'application/json'
-      },
-      success(res){
-        console.log(res)
-      }
-    })
-  },
-  updateclub(){
-    let backend=app.globalData.backendip
-    wx.request({
-      url: 'http://'+backend+'/api/update/club',
-      data:{
-        'id':'club37983104',
-        'name':'lyqclub',
-        'discription':'lalala',
-        'containers_id':[],
-        'root_container_id':'lyqtest1'
-      },
-      method:"POST",
-      header :{
-        'content-type': 'application/json'
-      },
-      success(res){
-        console.log(res)
-      }
-    })
-  },
-  createcontainer(){
-    let backend=app.globalData.backendip
-    wx.request({
-      url: 'http://'+backend+'/api/create/container',
-      data:{
-        'id':'1',
-        'name':'部长',
-        'belongs_to_club_id':'club37983104',
-        'upper_container_id':'Container18922408',
-        'contains':[],
-        'lower_containers_id':[],
-      },
-      method:"POST",
-      header :{
-        'content-type': 'application/json'
-      },
-      success(res){
-        console.log(res)
-      }
-    })
-  },
-  getcontainer(){
-    let backend=app.globalData.backendip
-    wx.request({
-      url: 'http://'+backend+'/api/get/container',
-      data:{
-        'id':'Container55428184',
-      },
-      method:"POST",
-      header :{
-        'content-type': 'application/json'
-      },
-      success(res){
-        console.log(res)
-      }
+  jumptocreate:function(){
+    wx.navigateTo({
+      url: '../createClub/createClub',
     })
   },
   /**

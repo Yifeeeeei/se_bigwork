@@ -10,7 +10,7 @@ App({
     wx.login({
       success: res => {
         self.globalData.code=res.code
-       
+        console.log(res.code)
       }
     })
   },

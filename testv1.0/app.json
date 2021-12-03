@@ -2,6 +2,7 @@
     "pages": [
         "pages/login/login",
         "pages/club info admin/club info admin",
+        "pages/clubstructure/clubstructure",
         "pages/club info/club info",
         "pages/user info/user info",
         "pages/clubhome/clubhome",

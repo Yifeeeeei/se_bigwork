@@ -43,6 +43,9 @@
       <view class="showbtn"
             catchtap="tapshowBtn"
             data-item="{{item}}">{{btnshowTxt}}</view>
+      <view class="renamebtn"
+            catchtap="taprenameBtn"
+            data-item="{{item}}">{{btnrenameTxt}}</view>
     </view>
   </view>
 </view>

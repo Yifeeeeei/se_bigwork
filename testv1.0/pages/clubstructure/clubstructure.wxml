@@ -4,7 +4,9 @@
   <path-view unnormalizedValue="{{value}}"
              btnTxt='创建子结构'
              btnshowTxt='查看成员'
+             btnrenameTxt='更改名称'
              catchtapBtn="createchild"
+             catchtaprenameBtn="rename"
              class="tree">
   </path-view>
 </view>

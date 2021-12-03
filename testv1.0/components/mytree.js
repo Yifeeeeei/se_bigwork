@@ -37,6 +37,10 @@ Component({
       type:String,
       value:'查看成员'
     },
+    btnrenameTxt:{
+      type:String,
+      value:'更改名称'
+    },
     contentKey: {
       type: String,
       value: 'title'
@@ -165,6 +169,9 @@ Component({
     },
     tapshowBtn(){
 
+    },
+    taprenameBtn(e){
+      this.triggerEvent('taprenameBtn', e.currentTarget.dataset.item);
     },
     // 将非标准值标准化
     normalizeValue() {
