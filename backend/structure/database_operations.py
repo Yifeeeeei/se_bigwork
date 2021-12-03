@@ -473,6 +473,37 @@ def searchClub(keyword):
     results = cursor.fetchall()
     return results
 
+    
+def deleteClub(id):
+    db = PyMySQL.connect(host="localhost", user="root",
+                         passwd="root", database="mydatabase",charset="utf8")
+    # 使用cursor()方法获取操作游标 
+    cursor = db.cursor()
+    sql="DELETE FROM CLUB WHERE ID = '%s'"%(id)
+    cursor.execute(sql)
+    # 获取所有记录列表
+    return "OK"
+
+def deleteContainer(id):
+    db = PyMySQL.connect(host="localhost", user="root",
+                         passwd="root", database="mydatabase",charset="utf8")
+    # 使用cursor()方法获取操作游标 
+    cursor = db.cursor()
+    sql="DELETE FROM CONTAINER WHERE ID = '%s'"%(id)
+    cursor.execute(sql)
+    # 获取所有记录列表
+    return "OK"
+    
+def deleteClub(id):
+    db = PyMySQL.connect(host="localhost", user="root",
+                         passwd="root", database="mydatabase",charset="utf8")
+    # 使用cursor()方法获取操作游标 
+    cursor = db.cursor()
+    sql="DELETE FROM MEMBER WHERE ID = '%s'"%(id)
+    cursor.execute(sql)
+    # 获取所有记录列表
+    return "OK"
+    
 
 ###############
 def dropMemberSheet():

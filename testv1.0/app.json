@@ -4,12 +4,15 @@
     "pages/club info/club info",
     "pages/user info/user info",
     "pages/clubhome/clubhome",
-    "pages/createClub/createClub",
-    "pages/clubstructure/clubstructure",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/user info/user info",
-    "pages/clubpage/clubpage"
+    "pages/ddl/ddl",
+    "pages/informdetail/informdetail",
+    "pages/notice/notice",
+    "pages/clubpage/clubpage",
+    "pages/createClub/createClub",
+    "pages/createddl/createddl",
+    "pages/createinform/createinform"
   ],
   "window": {
     "backgroundTextStyle": "light",
