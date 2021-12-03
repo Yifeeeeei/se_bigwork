@@ -6,7 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    containerlist:[],
     clubIDlist:[],
+    clubNamelist:[],
     clubNum:0
   },
   toClubpage:function(e){
@@ -20,36 +22,60 @@ Page({
     })
   },
   getclubList:function(){
-    this.data.clubIDlist=['0','1','2','3'],
-    this.setData({
-      clubIDlist:this.data.clubIDlist,
-    })
-  },
-  createmember:function(){
+    let userid=app.globalData.userID
     let backend=app.globalData.backendip
+    let that=this
+    console.log(userid)
     wx.request({
-      url: 'http://'+backend+'/api/create/member',
+      url: 'http://'+backend+'/api/get/member',
       data:{
-        'id':app.globalData.userID,
-        'name':'lyqtest',
-        'belongs_to_container_id' : [],//这个人处于的container id列表
-        'ddls_received_id' : [],//接收到了ddl id列表
-        'ddls_sent_id' : [],//发送过的ddl id列表
-        'ddls_checked_id' : [],//这个人自己check过的ddl id列表
-        'notices_received_id' : [],//接收到的notice id列表
-        'notices_checked_id' : [],//这个人check过的notice id列表
-        'notices_sent_id' : [],//这个人发出的notice id列表
+        'id':userid
       },
       method:"POST",
       header :{
         'content-type': 'application/json'
       },
-      success(res){
+      success:res=>{
         console.log(res)
+        that.setData({
+          containerlist:res.data['belongs_to_container_id']
+        })
+        that.data.containerlist.forEach(tmp_container=>{
+          wx.request({
+            url: 'http://'+backend+'/api/get/container',
+            data:{
+              'id':tmp_container
+            },
+            method:"POST",
+            header :{
+              'content-type': 'application/json'
+            },
+            success:res2=>{
+              console.log(res2)
+              let clubid=res2.data['belongs_to_club_id']
+              wx.request({
+                url: 'http://'+backend+'/api/get/club',
+                data:{
+                  'id':clubid
+                },
+                method:"POST",
+                header :{
+                  'content-type': 'application/json'
+                },
+                success:res3=>{
+                  that.setData({
+                    clubNamelist:clubNamelist.append(res3['name']),
+                    clubIDlist:clubIDlist.append(res3['id'])
+                  })
+                }
+              })
+            }
+          })
+        })
       }
     })
   },
-  createclub:function(){
+  jumptocreate:function(){
     wx.navigateTo({
       url: '../createClub/createClub',
     })
