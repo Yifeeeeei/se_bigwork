@@ -222,6 +222,47 @@ def apiSearchClub():
     for club in club_list:
         return_data['club_list'].append(club.toDic())
     return json.dumps(return_data)
+#delete
+@app.route('/api/delete/club', methods=['POST'])
+def apiDeleteClub():
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    id = json_data['club_id']
+    res = func.DBcheckAndDeleteClub(id)
+    dic = {}
+    dic ["result"]="OK"
+    if (res == 1):
+        dic["result"] = "id does not exist"
+    return json.dumps(dic)
+        
+@app.route('/api/delete/container', methods=['POST'])
+def apiDeleteClub():
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    id = json_data['container_id']
+    res = func.DBcheckAndDeleteContainer(id)
+    dic = {}
+    dic ["result"]="OK"
+    if (res == 1):
+        dic["result"] = "id does not exist"
+    return json.dumps(dic)
 
+@app.route('/api/delete/member', methods=['POST'])
+def apiDeleteClub():
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    id = json_data['member_id']
+    res = func.DBcheckAndDeleteMember(id)
+    dic = {}
+    dic ["result"]="OK"
+    if (res == 1):
+        dic["result"] = "id does not exist"
+    return json.dumps(dic)
+
+
+@app.route('/shutdown', methods=['POST'])
+def shutdown():
+    shutdown_server()
+    return 'Server shutting down...'
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=11452)

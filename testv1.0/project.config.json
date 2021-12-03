@@ -3,8 +3,8 @@
     "packOptions": {
         "ignore": [
             {
-                "value": ".eslintrc.js",
-                "type": "file"
+                "type": "file",
+                "value": ".eslintrc.js"
             }
         ]
     },
@@ -27,9 +27,9 @@
         "uploadWithSourceMap": true,
         "compileHotReLoad": false,
         "lazyloadPlaceholderEnable": false,
-        "useMultiFrameRuntime": false,
-        "useApiHook": false,
-        "useApiHostProcess": false,
+        "useMultiFrameRuntime": true,
+        "useApiHook": true,
+        "useApiHostProcess": true,
         "babelSetting": {
             "ignore": [],
             "disablePlugins": [],
@@ -48,21 +48,28 @@
     },
     "compileType": "miniprogram",
     "libVersion": "2.19.4",
-    "appid": "wx8f6433359ab40480",
+    "appid": "wx3b9a040f9030636e",
     "projectname": "%E5%8F%A3%E8%A2%8B%E7%A4%BE%E5%B7%A5v1.0",
-    "cloudfunctionTemplateRoot": "",
-    "watchOptions": {
-        "ignore": []
-    },
     "debugOptions": {
         "hidedInDevtools": []
     },
     "scripts": {},
+    "staticServerOptions": {
+        "baseURL": "",
+        "servePath": ""
+    },
+    "isGameTourist": false,
     "condition": {
-        "plugin": {
+        "search": {
+            "list": []
+        },
+        "conversation": {
             "list": []
         },
         "game": {
+            "list": []
+        },
+        "plugin": {
             "list": []
         },
         "gamePlugin": {

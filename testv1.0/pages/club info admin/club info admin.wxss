@@ -1,4 +1,4 @@
-/* pages/user info/user info.wxss */
+
 
 .avatar-wrapper {
   background: #1b82d1;
@@ -11,7 +11,7 @@
   margin-left: 10%;
 }
  
-.avatar .userinfo-avatar {
+.avatar .clubinfo-avatar {
   width: 100px;
   height: 100px;
 }
@@ -28,10 +28,18 @@
   width: 20px;
   height: 20px;
 }
- 
+
 .content{
   display: flex;
   margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.editname-button {
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
   margin-bottom: 10px;
 }
  

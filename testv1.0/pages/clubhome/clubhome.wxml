@@ -25,7 +25,5 @@
       <image src="/images/greyplus.png" alt="plus_img" class="plus"></image>
       <view class="img_text">创建或加入</view>
     </view>
-    <button bindtap="tocreateddl" class="ddl">ddl</button>
-    <button bindtap="tocreateinform" class="ddl">通知</button>
   </view>
 </view>

@@ -1,21 +1,12 @@
-<!--user info.wxml-->
+<!--club info admin.wxml-->
 
 <view class="mine-wrapper">
   <view class="avatar-wrapper">
     <view class="avatar">
-      <block wx:if="{{canIUseOpenData}}">
-        <view class="userinfo-avatar" bindtap="bindViewTap">
-          <open-data type="userAvatarUrl"></open-data>
+      <block>
+        <view class="clubinfo-avatar" bindtap="bindViewTap">
+          <image src="" alt="社团头像"></image>
         </view>
-      </block>
-      <block wx:elif="{{!hasUserInfo}}">
-        <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-        <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-        <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-      </block>
-      <block wx:else>
-        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </block>
     </view>
   </view>
@@ -31,7 +22,13 @@
             <view class="listicon">{{item.tips}}</view>
             <view> ： </view>
             <view class="listinfo">{{item.info}}</view>
+            <view class="editname" wx:if="{{item.text == '修改名称'}}">
+                <input class="editname-input"></input>
+            </view>
           </view>
+          <button class="editname-button" bindtap="buttonclick" wx:if="{{item.text == '修改名称'}}">
+            确定
+          </button>
         </navigator>
         <!-- 分割线 -->
         <view class="divLine"></view>
