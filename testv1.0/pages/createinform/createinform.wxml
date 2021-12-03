@@ -1,4 +1,18 @@
 <!--pages/createinform/createinform.wxml-->
-<input bindinput="nameinput"></input>
-<input bindinput="contentinput"></input>
-<button bindtap="sendinform" type="primary"class="sendinform">发送</button>
+  <view class="page-section">
+    <view class="weui-cells__title">通知标题:</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <input class="weui-input"bindinput="nameinput"placeholder="请输入标题"></input>
+      </view>
+    </view>
+  </view>
+  <view class="page-section">
+    <view class="weui-cells__title">通知内容:</view>
+    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_input">
+        <textarea class="textinput"bindinput="contentinput"placeholder="请输入内容"></textarea>
+      </view>
+      </view>
+  </view>
+  <button bindtap="sendddl" type="primary"class="sendinform">发送</button>

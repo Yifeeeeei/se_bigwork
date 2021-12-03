@@ -62,6 +62,16 @@ Page({
       url: '../informdetail/informdetail?uid='+a,
     })
   },
+  tocreateddl: function (e) {
+    wx.navigateTo({
+      url: '../createddl/createddl'
+    })
+  },
+  tocreateinform: function (e) {
+    wx.navigateTo({
+      url: '../createinform/createinform'
+    })
+  },
   todetail: function (e) {
     let a = e.currentTarget.dataset.id;
     console.log(a)

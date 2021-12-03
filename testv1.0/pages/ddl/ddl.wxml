@@ -1,4 +1,6 @@
 <!--pages/ddl.wxml-->
+<button  class="notcheckddl" bindtap="tocreateddl">创建ddl</button>
+<button  class="notcheckddl" bindtap="tocreateinform">创建通知</button>
 <view class="menu_box">
  <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">menu1</text>
  <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">menu2</text>
