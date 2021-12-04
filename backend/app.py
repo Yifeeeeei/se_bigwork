@@ -129,15 +129,19 @@ def apiUpdateNotice():
 def apiCreateClub():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
-
     container = Container()
     container.generateRandomId()
     club = Club()
     club.fromDic(json_data)
+    creater_id = json_data["member_id"]
     club.generateRandomId()
     container.belongs_to_club_id = club.id
     club.root_container_id = container.id
     container.upper_container_id = ""
+    container.contains.append(creater_id)
+    creater = func.DBgetMember(creater_id)
+    creater.belongs_to_container_id.append(container.id)
+    func.DBupdateMember(creater)
     func.DBnewContainer(container)
     func.DBnewClub(club)
     dic = {}
@@ -179,7 +183,8 @@ def apiCreateMember():
     json_data = json.loads(data.decode("utf-8"))
     member = Member()
     # print(json_data)
-    member.fromDic(json_data)
+    # member.fromDic(json_data)
+    member.id = json_data["member_id"]
     func.DBnewMember(member)
     dic = {}
     dic["member_id"] = member.id
@@ -245,7 +250,6 @@ def apiActionsJoinContainer():
 
 @app.route('/api/actions/login',methods=['POST'])
 def apiLogin():
-    #{member_id,container_id}
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     member_id = json_data["id"]
@@ -254,7 +258,8 @@ def apiLogin():
     if member == None:
         member = Member()
         # print(json_data)
-        member.fromDic(json_data)
+        # member.fromDic(json_data)
+        member.id = member_id
         func.DBnewMember(member)
 
         dic["result"] = "new"
@@ -262,6 +267,24 @@ def apiLogin():
         dic["result"] = "existed"
             
     return json.dumps(dic)
+
+@app.route('/api/actions/inclub',methods=['POST'])
+def apiInclub():
+    #{member_id}->{[club_id]}
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    member_id = json_data["member_id"]
+    member = func.DBgetMember(member_id)
+    dic = {}
+    dic["club_id"] = []
+    container_id = member.belongs_to_container_id
+    for ci in container_id:
+        club_id = func.DBgetContainer(ci).belongs_to_club_id
+        dic["club_id"].append(club_id)
+    return json.dumps(dic)
+    
+    
+
 
 
 #search
@@ -277,47 +300,12 @@ def apiSearchClub():
     for club in club_list:
         return_data['club_list'].append(club.toDic())
     return json.dumps(return_data)
-#delete
-@app.route('/api/delete/club', methods=['POST'])
-def apiDeleteClub():
-    data = request.get_data()
-    json_data = json.loads(data.decode("utf-8"))
-    id = json_data['club_id']
-    res = func.DBcheckAndDeleteClub(id)
-    dic = {}
-    dic ["result"]="OK"
-    if (res == 1):
-        dic["result"] = "id does not exist"
-    return json.dumps(dic)
-        
-@app.route('/api/delete/container', methods=['POST'])
-def apiDeleteClub():
-    data = request.get_data()
-    json_data = json.loads(data.decode("utf-8"))
-    id = json_data['container_id']
-    res = func.DBcheckAndDeleteContainer(id)
-    dic = {}
-    dic ["result"]="OK"
-    if (res == 1):
-        dic["result"] = "id does not exist"
-    return json.dumps(dic)
-
-@app.route('/api/delete/member', methods=['POST'])
-def apiDeleteClub():
-    data = request.get_data()
-    json_data = json.loads(data.decode("utf-8"))
-    id = json_data['member_id']
-    res = func.DBcheckAndDeleteMember(id)
-    dic = {}
-    dic ["result"]="OK"
-    if (res == 1):
-        dic["result"] = "id does not exist"
-    return json.dumps(dic)
-
-
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
     shutdown_server()
     return 'Server shutting down...'
+
+
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=11452)
