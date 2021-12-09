@@ -1,2 +1,2 @@
 <!--pages/informdetail/informdetail.wxml-->
-<text>pages/informdetail/informdetail.wxml</text>
+<text>{{informdata.content}}</text>
