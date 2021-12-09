@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/clubpage admin/clubpage admin",
+    "pages/clubpage/clubpage",
     "pages/club info admin/club info admin",
     "pages/club info/club info",
     "pages/user info/user info",
     "pages/clubhome/clubhome",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/clubpage/clubpage",
     "pages/createClub/createClub"
   ],
   "window": {
