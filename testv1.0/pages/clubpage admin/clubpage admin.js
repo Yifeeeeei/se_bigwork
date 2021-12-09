@@ -1,43 +1,20 @@
-// pages/clubpage/clubpage.js
-var app=getApp()
+// pages/clubpage admin/clubpage admin.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    current_club_name:"",
-    current_club_discription:"",
-    current_club_structure:[],
-    current_club_rootid:""
+    currentTab: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let backend=app.globalData.backendip
-    let that=this
     const eventChannel = this.getOpenerEventChannel();
     eventChannel.on('toclubPage',(res)=>{
       console.log(res.data)
-      wx.request({
-        url: 'http://'+backend+'/api/get/club',
-        data:{
-          id:res.data
-        },
-        method:"POST",
-        header :{
-          'content-type': 'application/json'
-        },
-        success:res2=>{
-          that.setData({
-            current_club_name:res2.data['name'],
-            current_club_discription:res2.data['discription'],
-            current_club_rootid:res2.data['root_container_id']
-          })
-        }
-      })
     })
   },
 
