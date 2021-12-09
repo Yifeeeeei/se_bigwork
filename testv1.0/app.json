@@ -1,36 +1,42 @@
 {
-  "pages": [
-    "pages/clubpage admin/clubpage admin",
-    "pages/clubpage/clubpage",
-    "pages/club info admin/club info admin",
-    "pages/club info/club info",
-    "pages/user info/user info",
-    "pages/clubhome/clubhome",
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/createClub/createClub"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/clubhome/clubhome",
-        "text": "社团首页"
-      },
-      {
-        "pagePath": "pages/user info/user info",
-        "text": "用户首页"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/login/login",
+        "pages/club info admin/club info admin",
+        "pages/clubstructure/clubstructure",
+        "pages/club info/club info",
+        "pages/user info/user info",
+        "pages/clubhome/clubhome",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/ddl/ddl",
+        "pages/informdetail/informdetail",
+        "pages/notice/notice",
+        "pages/clubpage/clubpage",
+        "pages/createClub/createClub",
+        "pages/createddl/createddl",
+        "pages/createinform/createinform"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/ddl/ddl",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/clubhome/clubhome",
+                "text": "社团首页"
+            },
+            {
+                "pagePath": "pages/user info/user info",
+                "text": "用户首页"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
 }

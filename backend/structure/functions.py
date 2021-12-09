@@ -162,11 +162,33 @@ def joinContainer(member_id,container_id):
     DBupdateMember(member)
     DBupdateContainer(container)
     
+    
+#check and delete
+def DBcheckAndDeleteClub(id):
+    res = DBgetClub(id)
+    if res != None:
+        dbop.deleteClub(id)
+        return 0
+    return 1 #error dont exist
+
+def DBcheckAndDeleteContainer(id):
+    res = DBgetContainer(id)
+    if res != None:
+        dbop.deleteContainer(id)
+        return 0
+    return 1 #error dont exist
+def DBcheckAndDeleteMember(id):
+    res = DBgetMember(id)
+    if res != None:
+        dbop.deleteMember(id)
+        return 0
+    return 1 #error dont exist
+    
 #search
 def DBsearchClub(keyword):
     results = dbop.searchClub(keyword)
     club_list = []
-    for row in results:
+    for result in results:
         club = Club()
         club.id = result[0]
         club.name = result[1]

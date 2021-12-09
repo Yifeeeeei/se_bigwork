@@ -1,0 +1,2 @@
+<!--pages/informdetail/informdetail.wxml-->
+<text>{{uid}}</text>

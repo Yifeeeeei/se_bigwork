@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view class="container">
   <view class="clubBlock">
-    <view class="clublist" wx:for="{{clubIDlist}}">
+    <view class="clublist" wx:for="{{clubNamelist}}">
       <view wx:if="{{index%3==0}}">
         <view bindtap="toClubpage" class="clubarea1" type="primary" data-name="{{item}}">
           <text class="clubName">llllllllllll</text>
@@ -9,19 +9,19 @@
         </view>
       </view>
       <view wx:if="{{index%3==1}}">
-        <view bindtap="createmember" class="clubarea2" type="primary">
+        <view bindtap="jumptocreate" class="clubarea2" type="primary">
           <text class="clubName">通信尝试</text>
           <text class="clubInfo">\n{{item}}\n创建新人</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">
-        <view bindtap="toClubpage" class="clubarea3" type="primary">
-          <text class="clubName">llllllllllll</text>
-          <text class="clubInfo">\n{{item}}\n啦啦啦</text>
+        <view bindtap="jumptocreate" class="clubarea3" type="primary">
+          <text class="clubName">通信尝试</text>
+          <text class="clubInfo">\n{{item}}\n创建社团</text>
         </view>
       </view>
     </view>
-    <view class="clubSpace" bindtap="createclub">
+    <view class="clubSpace" bindtap="jumptocreate">
       <image src="/images/greyplus.png" alt="plus_img" class="plus"></image>
       <view class="img_text">创建或加入</view>
     </view>
