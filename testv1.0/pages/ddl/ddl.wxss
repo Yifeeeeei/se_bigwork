@@ -1,33 +1,47 @@
 /* pages/ddl.wxss */
 .outddl{
     margin: 10px;
-  border-radius: 5%;
-  height: 70px;
+  border-radius: 3%;
+  height: 100px;
   width: 90% !important;
   position: relative;
   background-image: linear-gradient(to bottom right,#fc6348,#fca9a4);
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.1) !important;
   border: 0 !important;
+  text-align: left;
+  line-height: 50px;
+}
+.title{
+  font-size: 30px;
+  font-weight:bold;
+  height: min-content;
+}
+.time{
+  position: relative;
 }
 .notcheckddl{
     margin: 10px;
-  border-radius: 5%;
-  height: 70px;
+  border-radius: 3%;
+  height: 100px;
   width: 90% !important;
   position: relative;
   background-image: linear-gradient(to bottom right,#4df85b,#92ffb3);
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.1) !important;
   border: 0 !important;
+  text-align: left;
+  line-height: 50px;
 }
 .checkddl{
     margin: 10px;
-  border-radius: 5%;
-  height: 70px;
+  border-radius: 3%;
+  height: 100px;
   width: 90% !important;
   position: relative;
   background-image: linear-gradient(to bottom right,#92a097,#d6e6db);
-  box-shadow: 0 1px 4px 0 rgba(0,0,0,.1) !important;
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.1) !important;
   border: 0 !important;
+  text-align: left;
+  line-height: 50px;
 }
 .menu_box{
   display: flex;

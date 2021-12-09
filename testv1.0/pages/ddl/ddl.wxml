@@ -4,42 +4,27 @@
  <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">menu2</text>
 </view>
 <view  hidden="{{menuTapCurrent!='0'}}">
-<block wx:for="{{checkedddl}}">
-    <button  class="checkddl" bindtap="todetail" data-id="{{item.id}}" data-flag="2" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">{{item.content}}</button>
-</block>
+
 <block wx:for="{{notcheckedddl}}">
-<button  class="notcheckddl" bindtap="todetail" data-id="{{item.id}}" data-flag="1" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
-<block wx:if="item.content.length>15">
-<wxs module="util">
-
-var sub = function(val) {
-
-return val.substring(0, 14)
-
-}
-
-module.exports={
-
-sub:sub
-
-};
-
-</wxs>
-<text>标题:{{item.name}}\n内容:{{util.sub(item.content)}}...</text>
-</block>
-<block wx:else>
-    <text>标题:{{item.name}}\n内容:{{item.content}}</text>
-</block>
-</button>
+    <button  class="notcheckddl" bindtap="todetail" data-id="{{item.id}}" data-flag="1" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+    <view class="title">{{item.name}}</view>
+<view class="time">截止日期:{{item.end_date}}</view></button>
 </block>
 <block wx:for="{{outddl}}">
-    <button  class="outddl" bindtap="todetail" data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">{{item.content}}</button>
+    <button  class="outddl" bindtap="todetail" data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+    <view class="title">{{item.name}}</view>
+<view class="time">截止日期:{{item.end_date}}</view></button>
+</block>
+<block wx:for="{{checkedddl}}">
+    <button  class="checkddl" bindtap="todetail" data-id="{{item.id}}" data-flag="2" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+        <view class="title">{{item.name}}</view>
+<view class="time">截止日期:{{item.end_date}}</view></button>
 </block>
 </view>
 <view  hidden="{{menuTapCurrent!='1'}}">
     <block wx:for="{{inform}}">
-        <button class="outddl" bindtap="toinform" data-id="{{item.id}}" data-content="{{item.content}}">
-            <text>{{item.content}}</text>
+        <button class="outddl" bindtap="toinform" data-clubid="{{item.club_id}}"data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-content="{{item.content}}">
+            <view class="title">{{item.name}}</view>
         </button>
     </block>
 </view>

@@ -57,10 +57,64 @@ Page({
 
   },
   toinform: function (e) {
-    let a=e.currentTarget.dataset.uid;
+    /*
+    let a=e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '../informdetail/informdetail?uid='+a,
-    })
+      url: '../informdetail/informdetail?id='+a,
+    })*/
+      if(e.currentTarget.dataset.clubid=="")
+      {
+        wx.showModal({
+          title: e.currentTarget.dataset.name,
+          content: '内容:' + e.currentTarget.dataset.content +
+          '\n'+'发布日期:'+e.currentTarget.dataset.post_date,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('确')
+              let backend=app.globalData.backendip
+              let that=this
+              wx.request({
+                url: 'http://'+backend+'/api/create/notice',
+                data:{
+                  'id':53252,
+                  'name':"加入申请",
+                  'club_id':"",
+                  'post_date':util.formatTime(new Date()),
+                  'content':"加入申请",
+                  'from_member_id':app.globalData.userID,
+                  'to_members_id':[app.globalData.userID],
+                },
+                method:"POST",
+                header :{
+                  'content-type': 'application/json'
+                },
+                success(res){
+                  console.log(res.data)
+                }
+              })
+            } else {
+              console.log('取消')
+            }
+          }
+        })
+      }
+      else
+      {
+        wx.showModal({
+          title: e.currentTarget.dataset.name,
+          content: '内容:' + e.currentTarget.dataset.content +
+          '\n'+'发布日期:'+e.currentTarget.dataset.post_date,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('确')
+            } else {
+              console.log('取消')
+            }
+          }
+        })
+      }
+      
+    
   },
   todetail: function (e) {
     let a = e.currentTarget.dataset.id;
@@ -163,7 +217,7 @@ Page({
         success:res=> {
           let inform=[]
           
-          /*for(let i=0;i<res.data.notices_received_id.length;i++)
+          for(let i=0;i<res.data.notices_received_id.length;i++)
           {
             let backend = app.globalData.backendip
             let _that = that
@@ -185,7 +239,7 @@ Page({
             }
           })
             
-          }*/
+          }
           let checkedddl = []
           let notcheckedddl = []
           for (let i=0;i<res.data.ddls_received_id.length;i++) {

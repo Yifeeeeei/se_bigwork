@@ -1,0 +1,10 @@
+<!--component/treenode/treenode.wxml-->
+<text bindtap="setflag">name:{{name}}</text>
+<view wx:if="{{showflag}}">
+<view wx:for="{{membersdata}}">
+<radio/>{{item.name}}
+</view>
+<view wx:for="{{childdata}}">
+<childnode name="{{item.name}}" members="{{item.members}}" child="{{item.child}}"></childnode>
+</view>
+</view>
