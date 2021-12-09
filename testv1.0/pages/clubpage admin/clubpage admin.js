@@ -1,4 +1,4 @@
-// pages/clubpage/clubpage.js
+// pages/clubpage admin/clubpage admin.js
 Page({
 
   /**
