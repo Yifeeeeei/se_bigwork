@@ -1,20 +1,38 @@
 // pages/informdetail/informdetail.js
+const app=getApp()
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        uid:0
+        id:0,
+        informdata:{}
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-        this.setData({
-            uid:options.uid
-        })
+        this.id=options.id
+        let backend = app.globalData.backendip
+            let that = this
+          wx.request({
+            url: 'http://' + backend + '/api/get/notice',
+            data: {
+              'id': options.id,
+            },
+            method: "POST",
+            header: {
+              'content-type': 'application/json'
+            },
+            success:res1=> {
+              console.log(res1.data)
+              that.setData({
+                informdata:res1.data
+              })
+            }
+          })
     },
 
     /**

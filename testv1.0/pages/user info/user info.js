@@ -1,4 +1,5 @@
 // pages/user info/user info.js
+const app = getApp()
 Page({
 
   /**
@@ -43,6 +44,37 @@ Page({
     }
     wx.getUserProfile({
       desc: 'desc',
+    })
+  },
+  tmp:function(){
+    let backend = app.globalData.backendip
+    wx.request({
+      url: 'http://' + backend + '/api/get/member',
+      data: {
+        'id': app.globalData.userID,
+      },
+      method: "POST",
+      header: {
+        'content-type': 'application/json'
+      },
+      success:res1=> {
+        console.log(res1.data)
+        res1.data.notices_received_id=[]
+        res1.data.notices_checked_id=[]
+        res1.data.notices_sent_id=[]
+        wx.request({
+          url: 'http://' + backend + '/api/update/member',
+          data: res1.data,
+          method: "POST",
+          header: {
+            'content-type': 'application/json'
+          },
+          success:res1=> {
+            console.log(res1.data)
+           
+          }
+        })
+      }
     })
   },
   getUserProfile(e) {

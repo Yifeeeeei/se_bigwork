@@ -1,5 +1,5 @@
 <!--user info.wxml-->
-
+<button type="primary"bindtap="tmp">测试</button>
 <view class="mine-wrapper">
   <view class="avatar-wrapper">
     <view class="avatar">
