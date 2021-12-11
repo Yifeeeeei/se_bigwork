@@ -1,23 +1,23 @@
 <!--index.wxml-->
 <view class="container">
   <view class="clubBlock">
-    <view class="clublist" wx:for="{{clubNamelist}}">
+    <view class="clublist" wx:for="{{clublist}}">
       <view wx:if="{{index%3==0}}">
-        <view bindtap="toClubpage" class="clubarea1" type="primary" data-name="{{item}}">
-          <text class="clubName">{{item}}</text>
-          <text class="clubInfo">{{item}}</text>
+        <view bindtap="toClubpage" class="clubarea1" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==1}}">
-        <view bindtap="jumptocreate" class="clubarea2" type="primary" data-name="{{item}}">
-          <text class="clubName">{{item}}</text>
-          <text class="clubInfo">{{item}}</text>
+        <view bindtap="toClubpage" class="clubarea2" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">
-        <view bindtap="jumptocreate" class="clubarea3" type="primary">
-          <text class="clubName">通信尝试</text>
-          <text class="clubInfo">\n{{item}}\n创建社团</text>
+        <view bindtap="toClubpage" class="clubarea3" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
     </view>
@@ -25,7 +25,5 @@
       <image src="/images/greyplus.png" alt="plus_img" class="plus"></image>
       <view class="img_text">创建或加入</view>
     </view>
-    <button bindtap="tocreateddl" class="ddl"></button>
-    <button bindtap="tocreateinform" class="ddl">通知</button>
   </view>
 </view>

@@ -8,7 +8,7 @@ Page({
   data: {
     clubIDlist:[],
     clubNamelist:[],
-    clubNum:0
+    clublist:[]
   },
   toClubpage:function(e){
     let clubname=e.currentTarget.dataset.name
@@ -22,11 +22,11 @@ Page({
   getclubList:function(){
     var tmplist1 = this.data.clubIDlist
     tmplist1.splice(0)
-    var tmplist2 = this.data.clubNamelist
+    var tmplist2 = this.data.clublist
     tmplist2.splice(0)
     this.setData({
       clubIDlist:tmplist1,
-      clubNamelist:tmplist2,
+      clublist:tmplist2,
     })
     let userid=app.globalData.userID
     let backend=app.globalData.backendip
@@ -60,10 +60,10 @@ Page({
               },
               success:res2=>{
                 console.log(res2)
-                var tmpnamelist=that.data.clubNamelist
-                tmpnamelist.push(res2.data['name'])
+                var tmpnamelist=that.data.clublist
+                tmpnamelist.push(res2.data)
                 that.setData({
-                  clubNamelist:tmpnamelist
+                  clublist:tmpnamelist
                   
                 })
               }

@@ -14,7 +14,8 @@
         "pages/clubpage/clubpage",
         "pages/createClub/createClub",
         "pages/createddl/createddl",
-        "pages/createinform/createinform"
+        "pages/createinform/createinform",
+        "pages/joinclub/joinclub"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -38,6 +39,5 @@
             }
         ]
     },
-    "style": "v2",
     "sitemapLocation": "sitemap.json"
 }
