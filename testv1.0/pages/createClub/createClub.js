@@ -146,12 +146,12 @@ Page({
         }
       })
     },
-    toClubpage:function(e){
+    toClubjoin:function(e){
       let clubid=e.currentTarget.dataset.name
       wx.navigateTo({
-        url: '../clubpage/clubpage',
+        url: '../joinclub/joinclub',
         success(res){
-          res.eventChannel.emit('toclubPage',{data:clubid})
+          res.eventChannel.emit('toclubjoin',{data:clubid})
         }
       })
     },

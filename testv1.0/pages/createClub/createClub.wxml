@@ -13,19 +13,19 @@
   <view class="listarea" wx:if="{{listshow}}">
     <view class="clublist" wx:for="{{foundlist}}">
       <view wx:if="{{index%3==0}}">
-        <view bindtap="toClubpage" class="clubarea1" type="primary" data-name="{{item.id}}">
+        <view bindtap="toClubjoin" class="clubarea1" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
           <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==1}}">
-        <view bindtap="toClubpage" class="clubarea2" type="primary" data-name="{{item.id}}">
+        <view bindtap="toClubjoin" class="clubarea2" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
           <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">
-        <view bindtap="toClubpage" class="clubarea3" type="primary" data-name="{{item.id}}">
+        <view bindtap="toClubjoin" class="clubarea3" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
           <text class="clubInfo">{{item.discription}}</text>
         </view>

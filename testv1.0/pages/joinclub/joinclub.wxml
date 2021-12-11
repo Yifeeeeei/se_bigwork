@@ -1,0 +1,7 @@
+<!--pages/clubpage/clubpage.wxml-->
+<view class="container">
+  <view class="club_info">
+    <text>{{current_club_name}}\n</text>
+    <text>{{current_club_discription}}</text>
+  </view>
+</view>

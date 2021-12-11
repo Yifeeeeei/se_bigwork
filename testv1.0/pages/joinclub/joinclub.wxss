@@ -1,4 +1,4 @@
-/* pages/clubpage admin/clubpage admin.wxss */
+/* pages/clubpage/clubpage.wxss */
 
 .swiper-tab {
     width:
@@ -17,7 +17,7 @@
     display:
         inline-block;
     width:
-        33%;
+        50%;
     color:
         #777;
 }
@@ -44,8 +44,4 @@
         10px;
     box-sizing:
         border-box;
-}
-.borders{
-    border-bottom: 4rpx solid #f00;
-    color: #f00;
 }
