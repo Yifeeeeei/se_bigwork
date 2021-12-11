@@ -4,7 +4,37 @@
   <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">创建社团</text>
 </view>
 <view class="tab1" hidden="{{menuTapCurrent!='0'}}">
-  
+  <view class="inputarea">请输入要查找的社团关键字：
+    <input type="text" class="input" name="clubname" placeholder="请输入关键字" bindinput="searchinput" value="{{searchinput}}"/>
+  </view>
+  <view class="buttonarea" style="background-color:#fbf9fe">
+    <button class="searchBtn" bindtap="searchBtnClick">搜索</button>
+  </view>
+  <view class="listarea" wx:if="{{listshow}}">
+    <view class="clublist" wx:for="{{foundlist}}">
+      <view wx:if="{{index%3==0}}">
+        <view bindtap="toClubpage" class="clubarea1" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
+        </view>
+      </view>
+      <view wx:if="{{index%3==1}}">
+        <view bindtap="toClubpage" class="clubarea2" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
+        </view>
+      </view>
+      <view wx:if="{{index%3==2}}">
+        <view bindtap="toClubpage" class="clubarea3" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="radioarea">
+
+  </view>
 </view>
 <view class="tab2" hidden="{{menuTapCurrent!='1'}}">
   <view class="inputarea">社团名称：

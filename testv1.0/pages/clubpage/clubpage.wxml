@@ -1,23 +1,7 @@
 <!--pages/clubpage/clubpage.wxml-->
-
-<view class="swiper-tab">
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">
-        DDL
-    </view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">
-        公告
-    </view>
+<view class="container">
+  <view class="club_info">
+    <text>{{current_club_name}}\n</text>
+    <text>{{current_club_discription}}</text>
+  </view>
 </view>
-
-<view wx:if="{{currentTab==0}}" class="swiper-box">
-    <view class="swiper-box_items">
-        <text>DDL</text>
-    </view>
-</view>
-
-<view wx:if="{{currentTab==1}}" class="swiper-box">
-    <view class="swiper-box_items">
-        <text>公告</text>
-    </view>
-</view>
-

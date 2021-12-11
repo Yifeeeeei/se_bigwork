@@ -9,4 +9,5 @@
              catchtaprenameBtn="rename"
              class="tree">
   </path-view>
+  <button class="confirm button" bindtap="getconfirm">确定创建</button>
 </view>
