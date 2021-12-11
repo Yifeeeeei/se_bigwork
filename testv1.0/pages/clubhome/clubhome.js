@@ -6,14 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    containerlist:[],
     clubIDlist:[],
     clubNamelist:[],
     clubNum:0
   },
   toClubpage:function(e){
     let clubname=e.currentTarget.dataset.name
-
     wx.navigateTo({
       url: '../clubpage/clubpage',
       success(res){
@@ -22,56 +20,56 @@ Page({
     })
   },
   getclubList:function(){
+    var tmplist1 = this.data.clubIDlist
+    tmplist1.splice(0)
+    var tmplist2 = this.data.clubNamelist
+    tmplist2.splice(0)
+    this.setData({
+      clubIDlist:tmplist1,
+      clubNamelist:tmplist2,
+    })
     let userid=app.globalData.userID
     let backend=app.globalData.backendip
     let that=this
     console.log(userid)
     wx.request({
-      url: 'http://'+backend+'/api/get/member',
+      url: 'http://'+backend+'/api/actions/inclub',
       data:{
-        'id':userid
+        'member_id':userid
       },
       method:"POST",
       header :{
         'content-type': 'application/json'
       },
+    
       success:res=>{
         console.log(res)
         that.setData({
-          containerlist:res.data['belongs_to_container_id']
+          clubIDlist:res.data['club_id']
         })
-        that.data.containerlist.forEach(tmp_container=>{
-          wx.request({
-            url: 'http://'+backend+'/api/get/container',
-            data:{
-              'id':tmp_container
-            },
-            method:"POST",
-            header :{
-              'content-type': 'application/json'
-            },
-            success:res2=>{
-              console.log(res2)
-              let clubid=res2.data['belongs_to_club_id']
-              wx.request({
-                url: 'http://'+backend+'/api/get/club',
-                data:{
-                  'id':clubid
-                },
-                method:"POST",
-                header :{
-                  'content-type': 'application/json'
-                },
-                success:res3=>{
-                  that.setData({
-                    clubNamelist:clubNamelist.append(res3['name']),
-                    clubIDlist:clubIDlist.append(res3['id'])
-                  })
-                }
-              })
-            }
+        if(res.data['club_id'].length!=0){
+          res.data['club_id'].forEach(tmp_club=>{
+            wx.request({
+              url: 'http://'+backend+'/api/get/club',
+              data:{
+                'id':tmp_club
+              },
+              method:"POST",
+              header :{
+                'content-type': 'application/json'
+              },
+              success:res2=>{
+                console.log(res2)
+                var tmpnamelist=that.data.clubNamelist
+                tmpnamelist.push(res2.data['name'])
+                that.setData({
+                  clubNamelist:tmpnamelist
+                  
+                })
+              }
+            })
           })
-        })
+        }
       }
     })
   },
@@ -84,7 +82,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    this.getclubList()
   },
 
   /**
@@ -97,13 +94,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getclubList()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    var tmpidlist = this.data.clubIDlist
+    tmpidlist.splice(0)
+    var tmpnamelist = this.data.clubNamelist
+    tmpnamelist.splice(0)
+    this.setData({
+      clubIDlist:tmpidlist,
+      clubNamelist:tmpnamelist,
+    })
   },
 
   /**

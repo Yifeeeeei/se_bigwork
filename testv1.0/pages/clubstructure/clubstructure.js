@@ -131,7 +131,23 @@ Page({
   selThis(e) {
     console.log(e.detail);
   },
-
+  getconfirm:function(e){
+    wx.showModal({
+      title:"创建完成！",
+      confirmText:"确定",
+      showCancel:false,
+      success:res=>{
+        wx.switchTab({
+          url: '../clubhome/clubhome',
+          success: function (e) {  
+            var page = getCurrentPages().pop();  
+            if (page == undefined || page == null) return;  
+            //page.onShow();  
+          } 
+        })
+      }
+    })
+  },
   onLoad() {
     let that=this
     const eventChannel = this.getOpenerEventChannel();

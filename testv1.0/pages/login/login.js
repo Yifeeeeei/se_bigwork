@@ -28,14 +28,28 @@ Page({
                 let sessionkey=res2.data.session_key
                 app.globalData.userID=res2.data.openid
                 wx.setStorageSync('sessionKey', sessionkey)
-                wx.switchTab({  
-                    url: '../user info/user info',  
-                    success: function (e) {  
-                      var page = getCurrentPages().pop();  
-                      if (page == undefined || page == null) return;  
-                      page.onShow();  
-                    }  
-                  })
+                let backend=app.globalData.backendip
+                wx.request({
+                  url: 'http://'+backend+'/api/actions/login',
+                  data:{
+                    id:res2.data.openid
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success:res3=>{
+                    console.log(res3)
+                    wx.switchTab({  
+                      url: '../user info/user info',  
+                      success: function (e) {  
+                        var page = getCurrentPages().pop();  
+                        if (page == undefined || page == null) return;  
+                        page.onShow();  
+                      }  
+                    })
+                  }
+                })
               }
             })
           }else{

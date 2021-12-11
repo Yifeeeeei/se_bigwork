@@ -8,12 +8,16 @@ Page({
   data: {
     menuTapCurrent:0,
     clubname:"",
+    tmpsearchname:"",
     clubdescription:"暂无简介~",
     tmpdes:"",
     newclubid:"",
     newrootid:"",
     clubinput:null,
-    disinput:null
+    disinput:null,
+    searchinput:null,
+    foundlist:[],
+    listshow:false
   },
   menuTap:function(e){
     var current=e.currentTarget.dataset.current;//获取到绑定的数据
@@ -21,6 +25,41 @@ Page({
     this.setData({
     menuTapCurrent:current
     });
+    },
+    searchinput:function(e){
+      this.setData({
+        tmpsearchname:e.detail.value
+      })
+    },
+    searchBtnClick:function(){
+      let that=this
+      let backend=app.globalData.backendip
+      console.log(that.data.tmpsearchname)
+      if(this.data.tmpsearchname.length==0){
+        wx.showModal({
+          title:'提示',
+          content:'搜索关键字不能为空！',
+          showCancel:false
+        })
+      }else{
+        wx.request({
+          url: 'http://'+backend+'/api/search/club',
+          data:{
+            keyword:that.data.tmpsearchname
+          },
+          method:"POST",
+          header :{
+            'content-type': 'application/json'
+          },
+          success:res=>{
+            console.log(res)
+            that.setData({
+              foundlist:res.data['club_list'],
+              listshow:true
+            })
+          }
+        })
+      }
     },
     clubnameinput:function(e){
       this.setData({
@@ -78,7 +117,9 @@ Page({
           'name':that.data.clubname,
           'discription':that.data.clubdescription,
           'containers_id':[],
-          'root_container_id':'lyqtest1'
+          'root_container_id':'lyqtest1',
+          'member_id':app.globalData.userID
+          
         },
         method:"POST",
         header :{
@@ -105,7 +146,15 @@ Page({
         }
       })
     },
-  
+    toClubpage:function(e){
+      let clubid=e.currentTarget.dataset.name
+      wx.navigateTo({
+        url: '../clubpage/clubpage',
+        success(res){
+          res.eventChannel.emit('toclubPage',{data:clubid})
+        }
+      })
+    },
   onLoad: function (options) {
     
   },
