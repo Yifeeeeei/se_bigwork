@@ -1,7 +1,6 @@
 /* pages/user info/user info.wxss */
 
 .avatar-wrapper {
-  background-image: linear-gradient(to bottom right,#8360fa,#cb8dff);
   padding: 25px 0;
 }
  
@@ -10,7 +9,18 @@
   text-align: lefts;
   margin-left: 10%;
 }
- 
+
+.userimage-blur
+{
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 700px;
+  height: 700px;
+  clip: rect(0px,320px,150px,0px);
+  filter: blur(15px);
+}
+
 .avatar .userinfo-avatar {
   width: 100px;
   height: 100px;
