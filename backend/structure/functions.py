@@ -177,28 +177,6 @@ def joinContainer(member_id,container_id):
     DBupdateMember(member)
     DBupdateContainer(container)
     
-    
-#check and delete
-def DBcheckAndDeleteClub(id):
-    res = DBgetClub(id)
-    if res != None:
-        dbop.deleteClub(id)
-        return 0
-    return 1 #error dont exist
-
-def DBcheckAndDeleteContainer(id):
-    res = DBgetContainer(id)
-    if res != None:
-        dbop.deleteContainer(id)
-        return 0
-    return 1 #error dont exist
-def DBcheckAndDeleteMember(id):
-    res = DBgetMember(id)
-    if res != None:
-        dbop.deleteMember(id)
-        return 0
-    return 1 #error dont exist
-    
 #search
 def DBsearchClub(keyword):
     results = dbop.searchClub(keyword)
@@ -212,3 +190,24 @@ def DBsearchClub(keyword):
         club.root_container_id = result[4]
         club_list.append(club)
     return club_list
+
+#delete 
+def DBdeleteContainer(container_id):
+    container = DBgetContainer(container_id)
+    if container == None:
+        return "not exist"
+    if len(container.lower_containers_id) != 0:
+        return "not leaf"
+    upper_container = DBgetContainer(container.upper_container_id)
+    club = DBgetClub(container.belongs_to_club_id)
+    upper_container.lower_containers_id.remove(container_id)
+    club.containers_id.remove(container_id)
+    member_id_list = container.contains
+    for mem_id in member_id_list:
+        mem = DBgetMember(mem_id)
+        mem.belongs_to_container_id.remove(container_id)
+        DBupdateMember(member)
+    DBupdateClub(club)
+    DBupdateContainer(upper_container)
+    return "ok"
+    

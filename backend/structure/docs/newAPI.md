@@ -350,7 +350,20 @@ comment:如果返回的result值为existed，则代表该已经将该用户在�
 
 如果返回result值为new，则代表刚刚在后台为用户新建了member
 
-### /api/delete/club 删除club
+### /api/actions/incontainer 返回member处于club中的container(12.16)
+
+接收
+
+| key       | value_type | a_must? | comment   |
+| --------- | ---------- | ------- | --------- |
+| member_id | string     | y       | user's id |
+| club_id   | string     | y       | club's id |
+
+返回
+
+**member在club中所处的container_json**
+
+### /api/delete/club 删除club  #TODO
 
 接收
 
@@ -374,11 +387,11 @@ comment:如果返回的result值为existed，则代表该已经将该用户在�
 
 返回
 
-| key    | value_type | a_must? | comment                     |
-| ------ | ---------- | ------- | --------------------------- |
-| result | string     | y       | "OK" or "id does not exist" |
+| key    | value_type | a_must? | comment |
+| ------ | ---------- | ------- | ------- |
+| result | string     | y       |         |
 
-### /api/delete/member删除member
+### /api/delete/member删除member #TODO
 
 接收
 

@@ -137,6 +137,7 @@ def apiCreateClub():
     club.generateRandomId()
     container.belongs_to_club_id = club.id
     club.root_container_id = container.id
+    club.containers_id.append(container.id)
     container.upper_container_id = ""
     container.contains.append(creater_id)
     creater = func.DBgetMember(creater_id)
@@ -282,6 +283,23 @@ def apiInclub():
         club_id = func.DBgetContainer(ci).belongs_to_club_id
         dic["club_id"].append(club_id)
     return json.dumps(dic)
+
+@app.route('/api/actions/incontainer',methods=['POST'])
+def apiInContainer():
+    #{member_id,club_id}->container_json
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    member_id = json_data["member_id"]
+    club_id = json_data["club_id"]
+    member = func.DBgetMember(member_id)
+    club = func.DBgetClub(club_id)
+    return_container = None
+    for container_id in member.belongs_to_container_id:
+        container = func.DBgetContainer(container_id)
+        if container.belongs_to_club_id == club_id:
+            return_container = container
+            break
+    return json.dumps(return_container.toJson)
     
     
 
@@ -300,6 +318,20 @@ def apiSearchClub():
     for club in club_list:
         return_data['club_list'].append(club.toDic())
     return json.dumps(return_data)
+#delete
+@app.route('/api/delete/container',methods=['POST'])
+def apiDeleteContainer():
+    #{container_id}
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    container_id = json_data["container_id"]
+    dic = {}
+    dic["result"] = func.DBdeleteContainer(container_id)
+    return json.dumps(dic)
+
+
+
+
 @app.route('/shutdown', methods=['POST'])
 def shutdown():
     shutdown_server()
