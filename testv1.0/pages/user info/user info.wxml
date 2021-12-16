@@ -5,7 +5,7 @@
     <view class="avatar">
       <block wx:if="{{canIUseOpenData}}">
         <view class="userinfo-avatar" bindtap="bindViewTap">
-          <open-data type="userAvatarUrl"></open-data>
+          <open-data type="userAvatarUrl" id="userimage"></open-data>
         </view>
       </block>
       <block wx:elif="{{!hasUserInfo}}">
@@ -15,7 +15,6 @@
       </block>
       <block wx:else>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
       </block>
     </view>
   </view>

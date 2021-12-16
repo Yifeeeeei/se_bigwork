@@ -48,6 +48,7 @@
   height: 100%;
   width: 100%;
   margin-bottom: 30px;
+  background-color: rgb(243, 243, 243);  /* 整体背景 */
 }
 .clubBlock{
   position: absolute;
