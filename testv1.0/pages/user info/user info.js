@@ -1,9 +1,7 @@
 // pages/user info/user info.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
+
   data: {
 
     menuitems: [{

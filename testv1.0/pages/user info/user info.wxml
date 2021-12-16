@@ -1,7 +1,9 @@
 <!--user info.wxml-->
 
+<wxs src="user info.wxs" module="tools"/>
 <view class="mine-wrapper">
   <view class="avatar-wrapper">
+    <open-data type="userAvatarUrl" class="userimage-blur"></open-data>
     <view class="avatar">
       <block wx:if="{{canIUseOpenData}}">
         <view class="userinfo-avatar" bindtap="bindViewTap">
