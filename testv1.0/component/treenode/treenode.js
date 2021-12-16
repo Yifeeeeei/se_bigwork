@@ -16,7 +16,7 @@ Component({
         child:{
             type:Array,
             value:[]
-        }
+        },
     },
 
     /**
@@ -25,7 +25,8 @@ Component({
     data: {
         childdata:[],
         membersdata:[],
-        showflag:false
+        showflag:true,
+        belowmember:[]
     },
     observers:{
         'members':function(members){
@@ -47,7 +48,8 @@ Component({
                           console.log(res1.data)
                           tmpmembers.push({
                             "name":res1.data.name,
-                            "id":res1.data.id
+                            "id":res1.data.id,
+                            "checked":false
                         })
                         that.setData({
                             membersdata:tmpmembers
@@ -76,7 +78,8 @@ Component({
                       tmpchild.push({
                         "name":res1.data.name,
                         "members":res1.data.contains,
-                        "child":res1.data.lower_containers_id
+                        "child":res1.data.lower_containers_id,
+                        "index":i
                     })
                     that.setData({
                         childdata:tmpchild
@@ -85,6 +88,9 @@ Component({
         })
         }
         }
+    },
+    attached:function(){
+        this.properties.pad=this.properties.pad+50
     },
     /**
      * 组件的方法列表
@@ -103,6 +109,34 @@ Component({
                 showflag:false
              })
          }
+     },
+     checkboxChange:function(e){
+         console.log(e)
+         for(let i=0;i<this.data.membersdata.length;i++)
+         {
+             this.data.membersdata[i].checked=false
+             for(let j=0;j<e.detail.value.length;j++)
+             {
+                 if(this.data.membersdata[i].id==e.detail.value[j])
+                 {
+                    this.data.membersdata[i].checked=true
+                 }
+             }
+         }
+         console.log(this.data.membersdata)
+         
+     },
+     merge:function(){
+         this.data.belowmember=this.data.belowmember.concat(this.data.membersdata)
+        for(let i=0;i<this.data.childdata.length;i++)
+        {
+        let string='#treenode'+String(i)
+           let myComponent = this.selectComponent(string) // 页面获取自定义组件实例
+           console.log(myComponent.properties.name)
+           myComponent.merge()
+           this.data.belowmember=this.data.belowmember.concat(myComponent.data.belowmember)
+        }
+        console.log(this.data.belowmember)
      }
     }
 }
