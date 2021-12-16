@@ -7,8 +7,6 @@ from structure.member import Member
 from structure.notice import Notice
 from structure.ddl import DDL
 
-def generateRandomId(start="", end=""):
-    return str(start) + str(random.randint(0, 99999999))+str(end)
 def stringToList(target_str):
     # [12,3434,3434]
     inner_string = target_str[1:-1]
@@ -17,6 +15,9 @@ def stringToList(target_str):
     return inner_string.split(",")
 
 def DBgetContainer(container_id):
+    print("container id:",container_id)
+    if container_id == "":
+        return
     result = dbop.fetchContainer(container_id)
     container = Container()
     container.id = result[0]
@@ -29,6 +30,8 @@ def DBgetContainer(container_id):
 
 
 def DBgetClub(club_id):
+    if club_id == "":
+        return
     result = dbop.fetchClub(club_id)
     club = Club()
     club.id = result[0]
@@ -40,20 +43,28 @@ def DBgetClub(club_id):
 
 
 def DBgetMember(member_id):
+    if member_id == "":
+        return None
     result = dbop.fetchMember(member_id)
-    member = Member()
-    member.id = result[0]
-    member.name = result[1]
-    member.belongs_to_container_id = stringToList(result[2])
-    member.ddls_received_id = stringToList(result[3])
-    member.ddls_sent_id = stringToList(result[4])
-    member.ddls_checked_id = stringToList(result[5])
-    member.notices_received_id = stringToList(result[6])
-    member.notices_checked_id = stringToList(result[7])
-    member.notices_sent_id = stringToList(result[8])
-    return member
+    try:    
+        member = Member()
+        member.id = result[0]
+        member.name = result[1]
+        member.belongs_to_container_id = stringToList(result[2])
+        member.ddls_received_id = stringToList(result[3])
+        member.ddls_sent_id = stringToList(result[4])
+        member.ddls_checked_id = stringToList(result[5])
+        member.notices_received_id = stringToList(result[6])
+        member.notices_checked_id = stringToList(result[7])
+        member.notices_sent_id = stringToList(result[8])
+        return member
+    except:
+        print("unable to find memberid:",member_id)
+        return None
 
 def DBgetNotice(notice_id):
+    if notice_id == "":
+        return
     result = dbop.fetchNotice(notice_id)
     notice = Notice()
     notice.id = result[0]
@@ -67,6 +78,9 @@ def DBgetNotice(notice_id):
 
 
 def DBgetDDL(ddl_id):
+    if ddl_id == "":
+        return
+    # print("try to get:",ddl_id)
     result = dbop.fetchDDL(ddl_id)
     ddl = DDL()
     ddl.id = result[0]
@@ -101,12 +115,13 @@ def DBnewClub(club:Club):
     
 def DBnewContainer(container:Container):
     #会影响上一级，和club
-    upper_container = DBgetContainer(container.upper_container_id)
-    upper_container.lower_containers_id.append(container.id)
-    DBupdateContainer(upper_container)
-    club = DBgetClub(container.belongs_to_club_id)
-    club.containers_id.append(container.id)
-    DBupdateClub(club)
+    if container.upper_container_id != "":
+        upper_container = DBgetContainer(container.upper_container_id)
+        upper_container.lower_containers_id.append(container.id)
+        DBupdateContainer(upper_container)
+        club = DBgetClub(container.belongs_to_club_id)
+        club.containers_id.append(container.id)
+        DBupdateClub(club)
     dbop.insertContainer(container.id,container.name,container.belongs_to_club_id,container.upper_container_id,container.contains,container.lower_containers_id)
 
 def DBnewDDL(ddl:DDL):
@@ -162,28 +177,6 @@ def joinContainer(member_id,container_id):
     DBupdateMember(member)
     DBupdateContainer(container)
     
-    
-#check and delete
-def DBcheckAndDeleteClub(id):
-    res = DBgetClub(id)
-    if res != None:
-        dbop.deleteClub(id)
-        return 0
-    return 1 #error dont exist
-
-def DBcheckAndDeleteContainer(id):
-    res = DBgetContainer(id)
-    if res != None:
-        dbop.deleteContainer(id)
-        return 0
-    return 1 #error dont exist
-def DBcheckAndDeleteMember(id):
-    res = DBgetMember(id)
-    if res != None:
-        dbop.deleteMember(id)
-        return 0
-    return 1 #error dont exist
-    
 #search
 def DBsearchClub(keyword):
     results = dbop.searchClub(keyword)
@@ -197,3 +190,24 @@ def DBsearchClub(keyword):
         club.root_container_id = result[4]
         club_list.append(club)
     return club_list
+
+#delete 
+def DBdeleteContainer(container_id):
+    container = DBgetContainer(container_id)
+    if container == None:
+        return "not exist"
+    if len(container.lower_containers_id) != 0:
+        return "not leaf"
+    upper_container = DBgetContainer(container.upper_container_id)
+    club = DBgetClub(container.belongs_to_club_id)
+    upper_container.lower_containers_id.remove(container_id)
+    club.containers_id.remove(container_id)
+    member_id_list = container.contains
+    for mem_id in member_id_list:
+        mem = DBgetMember(mem_id)
+        mem.belongs_to_container_id.remove(container_id)
+        DBupdateMember(member)
+    DBupdateClub(club)
+    DBupdateContainer(upper_container)
+    return "ok"
+    
