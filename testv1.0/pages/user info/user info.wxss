@@ -1,7 +1,7 @@
 /* pages/user info/user info.wxss */
 
 .avatar-wrapper {
-  background: #1b82d1;
+  background-image: linear-gradient(to bottom right,#8360fa,#cb8dff);
   padding: 25px 0;
 }
  

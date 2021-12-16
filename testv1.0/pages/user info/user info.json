@@ -1,3 +1,6 @@
 {
+  "navigationBarTitleText": "个人主页",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEEEEE",
   "usingComponents": {}
 }
