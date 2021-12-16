@@ -25,7 +25,13 @@
   width: 100px;
   height: 100px;
 }
- 
+
+.lists
+{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .avatar-wrapper .text {
   text-align: center;
   color: #fff;
@@ -47,7 +53,8 @@
  
 /*分割线样式*/
 .divLine{
- background: #E0E3DA;
- width: 100%;
- height: 5rpx;
+  background: #aaaaaa;
+  height: 2rpx;
+  margin-left: 10px;
+  margin-right: 10px;
 }
