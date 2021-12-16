@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/club info/club info",
+    "pages/club info admin/club info admin",
     "pages/clubpage admin/clubpage admin",
     "pages/clubpage/clubpage",
-    "pages/club info admin/club info admin",
-    "pages/club info/club info",
     "pages/user info/user info",
     "pages/clubhome/clubhome",
     "pages/logs/logs",
