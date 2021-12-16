@@ -15,5 +15,4 @@
       </view>
       </view>
   </view>
-  <treenode id="treenode"name="{{tree.name}}" members="{{tree.members}}" child="{{tree.child}}"></treenode>
   <button bindtap="sendinform" type="primary"class="sendinform">发送</button>

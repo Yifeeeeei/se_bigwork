@@ -1,4 +1,1 @@
 /* component/treenode/treenode.wxss */
-.pag{
-    margin-left: 10px;
-}

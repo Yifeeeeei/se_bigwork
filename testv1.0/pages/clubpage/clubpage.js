@@ -23,7 +23,7 @@ Page({
       currentTab: e.detail.current 
     });
   }, 
-  
+
   /*点击tab切换*/
   swichNav: function (e) {
     var that = this;
