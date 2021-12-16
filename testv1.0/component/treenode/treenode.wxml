@@ -1,14 +1,24 @@
 <!--component/treenode/treenode.wxml-->
 <view class="pag">
 <text bindtap="setflag">name:{{name}}</text>
+<button wx:if="{{applyflag}}" catchtap="tapapplyBtn" data-id="{{container_id}}"
+data-name="{{name}}">发送申请</button>
 <view wx:if="{{membersdata||childdata}}" hidden="{{showflag}}">
-<checkbox-group bindchange="checkboxChange">
+<checkbox-group bindchange="checkboxChange" wx:if="{{!applyflag}}">
 <view wx:for="{{membersdata}}">
 <checkbox value="{{item.id}}"/>{{item.name}}
 </view>
 </checkbox-group>
 <view wx:for="{{childdata}}">
-<childnode id="treenode{{item.index}}" name="{{item.name}}" members="{{item.members}}" child="{{item.child}}"></childnode>
+<childnode id="treenode{{item.index}}" 
+          name="{{item.name}}" 
+          members="{{item.members}}" 
+          child="{{item.child}}" 
+          applyflag="{{applyflag}}" 
+          container_id="{{item.container_id}}"
+          club_id="{{club_id}}"
+          club_name="{{club_name}}"
+          rooter_id="{{rooter_id}}"></childnode>
 </view>
 </view>
 </view>

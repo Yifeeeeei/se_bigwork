@@ -1,5 +1,6 @@
 // component/treenode/treenode.js
 const app=getApp()
+const util = require('../../utils/util.js')
 Component({
     /**
      * 组件的属性列表
@@ -17,6 +18,26 @@ Component({
             type:Array,
             value:[]
         },
+        applyflag:{
+            type:Number,
+            value:0
+        },
+        container_id:{
+            type:String,
+            value:""
+        },
+        club_id:{
+            type:String,
+            value:""
+        },
+        club_name:{
+            type:String,
+            value:""
+        },
+        rooter_id:{
+            type:String,
+            value:""
+        }
     },
 
     /**
@@ -79,6 +100,7 @@ Component({
                         "name":res1.data.name,
                         "members":res1.data.contains,
                         "child":res1.data.lower_containers_id,
+                        "container_id":res1.data.id,
                         "index":i
                     })
                     that.setData({
@@ -96,7 +118,52 @@ Component({
      * 组件的方法列表
      */
     methods: {
-        
+    tapapplyBtn(e){
+        let that=this
+        let backend=app.globalData.backendip
+        console.log(e.currentTarget.dataset.id)
+        wx.showModal({
+            title:"请填写申请人姓名",
+            editable:true,
+            placeholderText:"如：张三",
+            confirmText:"确定申请",
+            cancelText:"取消",
+            success:res=>{
+                console.log(res)
+                let tmp=res
+                if(res.confirm){
+                    var tmp_content={
+                        'container_id':e.currentTarget.dataset.id,
+                        'container_name':e.currentTarget.dataset.name,
+                        'member_name':res.content,
+                        'state':"apply"
+                    }
+                    
+                    var tmp_string=JSON.stringify(tmp_content)
+                    console.log(tmp_string)
+                    wx.request({
+                        url: 'http://'+backend+'/api/create/notice',
+                        data:{
+                          'id':53252,
+                          'name':"加入申请",
+                          'club_id':"club86217487",
+                          'post_date':util.formatTime(new Date()),
+                          'content':tmp_string,
+                          'from_member_id':app.globalData.userID,
+                          'to_members_id':["oBQMk5B3Qyyp3gWF2mwA7Gs49scs"],
+                        },
+                        method:"POST",
+                        header :{
+                          'content-type': 'application/json'
+                        },
+                        success(res){
+                          console.log(res.data)
+                        }
+                    })
+                }
+            }
+        })
+    },
      setflag:function(event){
          if(this.data.showflag==false)
          {
