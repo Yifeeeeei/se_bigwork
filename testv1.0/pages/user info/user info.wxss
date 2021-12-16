@@ -2,6 +2,7 @@
 
 .avatar-wrapper {
   padding: 25px 0;
+  margin-bottom: 25px;
 }
  
 .avatar-wrapper .avatar {
@@ -28,8 +29,8 @@
 
 .lists
 {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .avatar-wrapper .text {
@@ -55,6 +56,6 @@
 .divLine{
   background: #aaaaaa;
   height: 2rpx;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 25px;
+  margin-right: 25px;
 }
