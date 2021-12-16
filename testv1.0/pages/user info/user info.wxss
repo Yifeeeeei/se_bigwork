@@ -18,7 +18,7 @@
   z-index: -1;
   width: 800px;
   height: 800px;
-  clip: rect(0px,500px,150px,0px);
+  clip: rect(0px,800px,150px,0px);
   filter: blur(15px);
 }
 
