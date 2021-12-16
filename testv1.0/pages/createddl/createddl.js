@@ -61,8 +61,8 @@ Page({
         'end_date': this.data.date + " " + this.data.time,
         'content': this.data.content,
         'from_member_id': app.globalData.userID,
-        'to_members_id': ["oBQMk5L6HtAtU5uEIrDGXxZPnE8E"],
-        'not_done_members_id': ["oBQMk5L6HtAtU5uEIrDGXxZPnE8E"]
+        'to_members_id': myComponent.data.belowmember,
+        'not_done_members_id': myComponent.data.belowmember
       },
       method: "POST",
       header: {

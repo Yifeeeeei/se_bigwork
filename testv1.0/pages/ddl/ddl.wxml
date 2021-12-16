@@ -25,7 +25,7 @@
 </view>
 <view  hidden="{{menuTapCurrent!='1'}}">
     <block wx:for="{{inform}}">
-        <button class="outddl" bindtap="toinform" data-clubid="{{item.club_id}}"data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-content="{{item.content}}">
+        <button class="outddl" bindtap="toinform" data-clubid="{{item.club_id}}"data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-content="{{item.content}}"data-information="{{item.information}}"data-member_id="{{item.from_member_id}}">
             <view class="title">{{item.name}}</view>
         </button>
     </block>
