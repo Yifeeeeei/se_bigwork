@@ -38,7 +38,7 @@ Page({
           'post_date':util.formatTime(new Date()),
           'content':this.data.content,
           'from_member_id':app.globalData.userID,
-          'to_members_id':[app.globalData.userID],
+          'to_members_id':myComponent.data.belowmember,
         },
         method:"POST",
         header :{
