@@ -1,4 +1,6 @@
 // pages/createinform/createinform.js
+const app = getApp()
+const util = require('../../utils/util.js')
 Page({
 
     /**
