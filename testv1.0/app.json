@@ -1,5 +1,7 @@
 {
     "pages": [
+        "pages/createClub/createClub",
+        "pages/clubpage/clubpage",
         "pages/login/login",
         "pages/club info admin/club info admin",
         "pages/clubstructure/clubstructure",
@@ -11,8 +13,6 @@
         "pages/ddl/ddl",
         "pages/informdetail/informdetail",
         "pages/notice/notice",
-        "pages/clubpage/clubpage",
-        "pages/createClub/createClub",
         "pages/createddl/createddl",
         "pages/createinform/createinform",
         "pages/joinclub/joinclub"
