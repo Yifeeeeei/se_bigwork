@@ -1,17 +1,20 @@
 .menu_box{
-  display: flex;
-  height: 40px;
-  border: black;
+  width: 100%;
+  border-bottom: 2rpx solid #777;
+  text-align: center;
+  line-height: 80 rpx;
  }
  .menu1,.menu2{
-  flex: 1;
-  font-size:30rpx;
-  line-height: 80rpx;
-  text-align: center;
+   margin-top: 5px;
+   margin-bottom: 5px;
+   font-size:38 rpx;
+   display:inline-block;
+   width:50%;
+   color:#777;
  }
  .borders{
-  border-bottom: 4rpx solid #f00;
-  color: #f00;
+  color: #3385ff;
+  border-bottom: 5 rpx solid #3385ff;
  }
  .tab1,.tab2{
   height: 100%;
@@ -59,9 +62,56 @@
   left: 10px;
 }
 .listarea{
-  
   overflow: scroll;
   height: 100%;
   width: 100%;
   margin-bottom: 30px;
+}
+
+.inputarea{
+  margin-top: 25px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.please-input{
+  margin-left: 5px;
+  font-size: 36rpx;
+}
+
+.input{
+  margin-top: 10px;
+  height: 34px; 
+  padding: 1px 5px; 
+  font-size: 14px; 
+  line-height: 1.428571429; 
+  color: #555555; 
+  border: 1px solid #cccccc; 
+  border-radius: 4px; 
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+}
+
+.buttonarea{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+.searchBtn{
+  height: 30px;
+  background: linear-gradient(to top,#4762f3,#5cc3ff);
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.loginBtn{
+  margin-top: 30px;
+  height: 30px;
+  background: linear-gradient(to top,#4762f3,#5cc3ff);
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
 }

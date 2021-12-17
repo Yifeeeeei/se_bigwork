@@ -4,7 +4,8 @@
   <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">创建社团</text>
 </view>
 <view class="tab1" hidden="{{menuTapCurrent!='0'}}">
-  <view class="inputarea">请输入要查找的社团关键字：
+  <view class="inputarea">
+    <text class="please-input">请输入要查找的社团关键字:</text>
     <input type="text" class="input" name="clubname" placeholder="请输入关键字" bindinput="searchinput" value="{{searchinput}}"/>
   </view>
   <view class="buttonarea" style="background-color:#fbf9fe">
