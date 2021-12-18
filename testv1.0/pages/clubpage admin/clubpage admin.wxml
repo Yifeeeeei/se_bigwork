@@ -14,18 +14,38 @@
 
 <view wx:if="{{currentTab==0}}" class="swiper-box">
     <view class="swiper-box_items">
-        <text>DDL</text>
+        <block wx:for="{{notcheckedddl}}">
+    <button  class="notcheckddl" bindtap="todetail" data-id="{{item.id}}" data-flag="1" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+    <view class="title">{{item.name}}</view>
+<view class="time">截止日期:{{item.end_date}}</view></button>
+</block>
+<block wx:for="{{outddl}}">
+    <button  class="outddl" bindtap="todetail" data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+    <view class="title">{{item.name}}</view>
+<view class="time">截止日期:{{item.end_date}}</view></button>
+</block>
+<block wx:for="{{checkedddl}}">
+    <button  class="checkddl" bindtap="todetail" data-id="{{item.id}}" data-flag="2" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-end_date="{{item.end_date}}"data-content="{{item.content}}">
+        <view class="title">{{item.name}}</view>
+<view class="time">截止日期:{{item.end_date}}</view></button>
+</block>
     </view>
 </view>
 
 <view wx:if="{{currentTab==1}}" class="swiper-box">
     <view class="swiper-box_items">
-        <text>公告</text>
+        <block wx:for="{{inform}}">
+            <button class="outddl" bindtap="toinform" data-clubid="{{item.club_id}}"data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-content="{{item.content}}">
+                <view class="title">{{item.name}}</view>
+            </button>
+        </block>
     </view>
 </view>
 
 <view wx:if="{{currentTab==2}}" class="swiper-box">
     <view class="swiper-box_items">
-        <text>社团管理</text>
+        <button class="ddlbtn" bindtap="createddl" data-id="current_club_id">发布ddl</button>
+        <button class="informbtn" bindtap="createinform" data-id="current_club_id">发布通知</button>
+        <button class="managebtn" bindtap="tomanage" data-id="current_club_id">管理社团</button>
     </view>
 </view>
