@@ -12,10 +12,36 @@ Page({
   },
   toClubpage:function(e){
     let clubname=e.currentTarget.dataset.name
-    wx.navigateTo({
-      url: '../clubpage/clubpage',
-      success(res){
-        res.eventChannel.emit('toclubPage',{data:clubname})
+    let userid=app.globalData.userID
+    let backend=app.globalData.backendip
+    let that=this
+    wx.request({
+      url: 'http://'+backend+'/api/actions/incontainer',
+      data:{
+        member_id:userid,
+        club_id:clubname
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success:res=>{
+        console.log(res)
+        if(res.data['lower_containers_id'].length()!=0){
+          wx.navigateTo({
+            url: '../clubpage admin/clubpage admin',
+            success(res){
+              res.eventChannel.emit('toclubPage1',{data:clubname})
+            }
+          })
+        }else{
+          wx.navigateTo({
+            url: '../clubpage/clubpage',
+            success(res){
+              res.eventChannel.emit('toclubPage2',{data:clubname})
+            }
+          })
+        }
       }
     })
   },
