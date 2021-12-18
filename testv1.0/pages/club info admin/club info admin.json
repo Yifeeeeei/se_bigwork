@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "treenode":"../../component/treenode/treenode"
+  },
   "navigationBarTitleText": "社团信息",
   "navigationBarTextStyle": "black",
   "navigationBarBackgroundColor": "#EEEEEE"
