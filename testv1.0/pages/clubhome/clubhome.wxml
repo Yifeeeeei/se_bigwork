@@ -21,9 +21,8 @@
         </view>
       </view>
     </view>
-    <view class="clubSpace" bindtap="jumptocreate">
-      <image src="/images/greyplus.png" alt="plus_img" class="plus"></image>
-      <view class="img_text">创建或加入</view>
-    </view>
+  <view class="clubSpace" bindtap="jumptocreate">
+    <image src="/images/plus.png" alt="plus_img" class="plus"></image>
+    <view class="plus_text">创建或加入</view></view>
   </view>
 </view>
