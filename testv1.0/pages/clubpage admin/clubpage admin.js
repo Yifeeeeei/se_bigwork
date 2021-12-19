@@ -35,7 +35,7 @@ Page({
       that.setData({
         currentTab: e.target.dataset.current
       })
-      that.onShow()
+      
     }
   },
   createddl:function(e){
