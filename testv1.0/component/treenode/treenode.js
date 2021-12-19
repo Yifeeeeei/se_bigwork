@@ -121,7 +121,7 @@ Component({
     tapapplyBtn(e){
         let that=this
         let backend=app.globalData.backendip
-        console.log(e.currentTarget.dataset.id)
+        console.log(that.properties)
         wx.showModal({
             title:"请填写申请人姓名",
             editable:true,
@@ -157,8 +157,8 @@ Component({
                           'content-type': 'application/json'
                         },
                         success(res){
-                          wx.navigateTo({
-                            url: '../../pages/createClub/createClub',
+                          wx.navigateBack({
+                            delta: 1,
                           })
                         }
                     })
