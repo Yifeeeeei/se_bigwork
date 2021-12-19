@@ -26,9 +26,8 @@ Page({
         'content-type': 'application/json'
       },
       success:res=>{
-        console.log(res.data)
-        var len=res.data.lower_containers_id.length
-        if(len!=0){
+        console.log(res)
+        if(res.data['lower_containers_id'].length()!=0){
           wx.navigateTo({
             url: '../clubpage admin/clubpage admin',
             success(res){
