@@ -23,6 +23,10 @@ Page({
           })
     },
     sendinform:function(e){
+      let myComponent = this.selectComponent('#treenode') // 页面获取自定义组件实例
+
+      myComponent.merge()
+      console.log(myComponent.data) // 通过实例调用组件事件
         let backend=app.globalData.backendip
         let that=this
         console.log(1)
