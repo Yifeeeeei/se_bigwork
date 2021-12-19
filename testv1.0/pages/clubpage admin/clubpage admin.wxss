@@ -17,7 +17,7 @@
     display:
         inline-block;
     width:
-        50%;
+        33%;
     color:
         #777;
 }

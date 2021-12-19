@@ -1,23 +1,23 @@
 {
-    "description": "项目配置文件",
-    "packOptions": {
-        "ignore": [
-            {
-                "type": "file",
-                "value": ".eslintrc.js"
-            }
-        ]
-    },
-    "enableEngineNative": false,
-    "useIsolateContext": true,
-    "userConfirmedBundleSwitch": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "disableUseStrict": false,
-    "minifyWXML": true,
-    "showES6CompileOption": false,
-    "useCompilerPlugins": false,
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": [
+      {
+        "type": "file",
+        "value": ".eslintrc.js"
+      }
+    ]
+  },
+  "enableEngineNative": false,
+  "useIsolateContext": true,
+  "userConfirmedBundleSwitch": false,
+  "packNpmManually": false,
+  "packNpmRelationList": [],
+  "minifyWXSS": true,
+  "disableUseStrict": false,
+  "minifyWXML": true,
+  "showES6CompileOption": false,
+  "useCompilerPlugins": false,
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
   "appid": "wx8f6433359ab40480",
@@ -31,54 +31,88 @@
     "servePath": ""
   },
   "isGameTourist": false,
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "lazyloadPlaceholderEnable": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "enableEngineNative": false,
+    "useIsolateContext": true,
+    "userConfirmedBundleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "disableUseStrict": false,
+    "showES6CompileOption": false,
+    "useCompilerPlugins": false,
+    "minifyWXML": true
+  },
   "condition": {
     "search": {
       "list": []
     },
     "cloudfunctionTemplateRoot": "",
     "watchOptions": {
-        "ignore": []
+      "ignore": []
     },
     "compileType": "miniprogram",
     "libVersion": "2.19.4",
     "appid": "wx3b9a040f9030636e",
     "projectname": "%E5%8F%A3%E8%A2%8B%E7%A4%BE%E5%B7%A5v1.0",
-    "cloudfunctionTemplateRoot": "",
-    "watchOptions": {
-        "ignore": []
-    },
     "debugOptions": {
-        "hidedInDevtools": []
+      "hidedInDevtools": []
     },
     "scripts": {},
     "staticServerOptions": {
-        "baseURL": "",
-        "servePath": ""
+      "baseURL": "",
+      "servePath": ""
     },
     "isGameTourist": false,
     "condition": {
-        "search": {
-            "list": []
-        },
-        "compileType": "miniprogram",
-        "libVersion": "2.19.4",
-        "appid": "wx3b9a040f9030636e",
-        "projectname": "%E5%8F%A3%E8%A2%8B%E7%A4%BE%E5%B7%A5v1.0",
-        "debugOptions": {
-            "hidedInDevtools": []
-        },
-        "game": {
-            "list": []
-        },
-        "plugin": {
-            "list": []
-        },
-        "gamePlugin": {
-            "list": []
-        },
-        "miniprogram": {
-            "list": []
-        }
+      "search": {
+        "list": []
+      },
+      "compileType": "miniprogram",
+      "libVersion": "2.19.4",
+      "appid": "wx3b9a040f9030636e",
+      "projectname": "%E5%8F%A3%E8%A2%8B%E7%A4%BE%E5%B7%A5v1.0",
+      "debugOptions": {
+        "hidedInDevtools": []
+      },
+      "game": {
+        "list": []
+      },
+      "plugin": {
+        "list": []
+      },
+      "gamePlugin": {
+        "list": []
+      },
+      "miniprogram": {
+        "list": []
+      }
     }
-}
+  }
 }
