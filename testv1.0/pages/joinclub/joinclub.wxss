@@ -1,0 +1,47 @@
+/* pages/clubpage/clubpage.wxss */
+
+.swiper-tab {
+    width:
+        100%;
+    border-bottom:
+        2rpx solid #777;
+    text-align:
+        center;
+    line-height:
+        80 rpx;
+}
+
+.swiper-tab-list {
+    font-size:
+        38 rpx;
+    display:
+        inline-block;
+    width:
+        50%;
+    color:
+        #777;
+}
+
+.on {
+    color:
+        #3385ff;
+    border-bottom:
+        5 rpx solid #3385ff;
+}
+
+.swiper-box {
+    position:
+        absolute;
+    top:
+        30px;
+    left:
+        20px;
+    width:
+        75%;
+    height:
+        600px;
+    padding:
+        10px;
+    box-sizing:
+        border-box;
+}

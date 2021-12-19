@@ -1,2 +1,50 @@
 <!--pages/createClub/createClub.wxml-->
-<text>pages/createClub/createClub.wxml</text>
+<view class="menu_box">
+  <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">加入社团</text>
+  <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">创建社团</text>
+</view>
+<view class="tab1" hidden="{{menuTapCurrent!='0'}}">
+  <view class="inputarea">
+    <text class="please-input">请输入要查找的社团关键字:</text>
+    <input type="text" class="input" name="clubname" placeholder="请输入关键字" bindinput="searchinput" value="{{searchinput}}"/>
+  </view>
+  <view class="buttonarea" style="background-color:#fbf9fe">
+    <button class="searchBtn" bindtap="searchBtnClick">搜索</button>
+  </view>
+  <view class="listarea" wx:if="{{listshow}}">
+    <view class="clublist" wx:for="{{foundlist}}">
+      <view wx:if="{{index%3==0}}">
+        <view bindtap="toClubjoin" class="clubarea1" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
+        </view>
+      </view>
+      <view wx:if="{{index%3==1}}">
+        <view bindtap="toClubjoin" class="clubarea2" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
+        </view>
+      </view>
+      <view wx:if="{{index%3==2}}">
+        <view bindtap="toClubjoin" class="clubarea3" type="primary" data-name="{{item.id}}">
+          <text class="clubName">{{item.name}}</text>
+          <text class="clubInfo">{{item.discription}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="radioarea">
+
+  </view>
+</view>
+<view class="tab2" hidden="{{menuTapCurrent!='1'}}">
+  <view class="inputarea">社团名称：
+    <input type="text" class="input" name="clubname" placeholder="请输入社团名称" bindinput="clubnameinput" value="{{clubinput}}"/>
+  </view>
+  <view class="inputarea">社团简介：
+    <input type="text" class="input" name="clubdescription" placeholder="请输入社团描述" bindinput="descriptioninput" value="{{disinput}}"/>
+  </view>
+  <view class="buttonarea" style="background-color:#fbf9fe">
+    <button class="loginBtn" bindtap="loginBtnClick">申请创建</button>
+  </view>
+</view>

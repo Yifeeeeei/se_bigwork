@@ -17,7 +17,7 @@
     display:
         inline-block;
     width:
-        33%;
+        50%;
     color:
         #777;
 }
@@ -45,3 +45,66 @@
     box-sizing:
         border-box;
 }
+.borders{
+    border-bottom: 4rpx solid #f00;
+    color: #f00;
+}
+/* pages/ddl.wxss */
+.outddl{
+    margin: 10px;
+  border-radius: 3%;
+  height: 100px;
+  width: 90% !important;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#fc6348,#fca9a4);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+  text-align: left;
+  line-height: 50px;
+}
+.title{
+  font-size: 30px;
+  font-weight:bold;
+  height: min-content;
+}
+.time{
+  position: relative;
+}
+.notcheckddl{
+    margin: 10px;
+  border-radius: 3%;
+  height: 100px;
+  width: 90% !important;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#4df85b,#92ffb3);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+  text-align: left;
+  line-height: 50px;
+}
+.checkddl{
+    margin: 10px;
+  border-radius: 3%;
+  height: 100px;
+  width: 90% !important;
+  position: relative;
+  background-image: linear-gradient(to bottom right,#92a097,#d6e6db);
+  box-shadow: 0 4px 4px 0 rgba(0,0,0,.1) !important;
+  border: 0 !important;
+  text-align: left;
+  line-height: 50px;
+}
+.menu_box{
+  display: flex;
+  height: 80rpx;
+ }
+ .menu1,.menu2,.menu3{
+  flex: 1;
+  font-size:30rpx;
+  line-height: 80rpx;
+  text-align: center;
+ }
+ .borders{
+  border-bottom: 4rpx solid #f00;
+  color: #f00;
+ }

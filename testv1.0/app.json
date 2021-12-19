@@ -1,36 +1,43 @@
 {
-  "pages": [
-    "pages/user info/user info",
-    "pages/club info/club info",
-    "pages/club info admin/club info admin",
-    "pages/index/index",
-    "pages/clubpage admin/clubpage admin",
-    "pages/clubpage/clubpage",
-    "pages/clubhome/clubhome",
-    "pages/logs/logs",
-    "pages/createClub/createClub"
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle": "black"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "首页"
-      },
-      {
-        "pagePath": "pages/clubhome/clubhome",
-        "text": "社团首页"
-      },
-      {
-        "pagePath": "pages/user info/user info",
-        "text": "用户首页"
-      }
-    ]
-  },
-  "sitemapLocation": "sitemap.json"
+    "pages": [
+        "pages/login/login",
+        "pages/createddl/createddl",
+        "pages/ddl/ddl",
+        "pages/clubhome/clubhome",
+        "pages/createClub/createClub",
+        "pages/clubpage/clubpage",
+        "pages/club info admin/club info admin",
+        "pages/clubstructure/clubstructure",
+        "pages/club info/club info",
+        "pages/user info/user info",
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/informdetail/informdetail",
+        "pages/notice/notice",
+        "pages/createinform/createinform",
+        "pages/joinclub/joinclub"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "list": [
+            {
+                "pagePath": "pages/ddl/ddl",
+                "text": "首页"
+            },
+            {
+                "pagePath": "pages/clubhome/clubhome",
+                "text": "社团首页"
+            },
+            {
+                "pagePath": "pages/user info/user info",
+                "text": "用户首页"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
 }

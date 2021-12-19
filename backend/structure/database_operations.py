@@ -24,7 +24,7 @@ def listToString(target_list):
 def createDataBase():
     mydb = PyMySQL.connect(host="localhost", user="root", passwd="root",charset="utf8")
     mycursor = mydb.cursor()
-    mycursor.execute("CREATE DATABASE mydatabase;")
+    mycursor.execute("CREATE DATABASE mydatabase CHARACTER SET utf8 COLLATE utf8_general_ci;")
     mydb.close()
 
 def joinList(li):
@@ -61,7 +61,7 @@ def createDataSheet(name):
             NAME TEXT(64),
             DISCRIPTION TEXT(256),
             CONTAINERS TEXT(1024),
-            ROOT_CONTAINER TEXT(64));"""
+            ROOT_CONTAINER TEXT(64)) DEFAULT CHARSET=utf8;"""
     elif name == "CONTAINER":
         sql = """CREATE TABLE CONTAINER(
             ID TEXT(64) NOT NULL,
@@ -69,7 +69,7 @@ def createDataSheet(name):
             BELONGS_TO_CLUB TEXT(64),
             UPPER_CONTAINER TEXT(64),
             CONTAINS TEXT(2048),
-            LOWER_CONTAINERS TEXT(1024))
+            LOWER_CONTAINERS TEXT(1024))DEFAULT CHARSET=utf8;
                 """
     elif name == "DDL":
         sql="""CREATE TABLE DDL(
@@ -81,8 +81,8 @@ def createDataSheet(name):
             CONTENT TEXT(1024),
             FROM_MEMBER TEXT(64),
             TO_MEMBERS TEXT(2048),
-            NOT_DONE_MEMBERS TEXT(2048)
-            )"""
+            NOT_DONE_MEMBERS TEXT(2048) 
+            ) DEFAULT CHARSET=utf8;"""
     elif name == "NOTICE":
         sql = """CREATE TABLE NOTICE(
             ID TEXT(64) NOT NULL,
@@ -92,7 +92,7 @@ def createDataSheet(name):
             CONTENT TEXT(1024),
             FROM_MEMBER TEXT(64),
             TO_MEMBERS TEXT(2048)
-            )"""
+            )DEFAULT CHARSET=utf8;"""
     elif name == "MEMBER":
         sql = """CREATE TABLE MEMBER(
             ID TEXT(64) NOT NULL,
@@ -104,7 +104,7 @@ def createDataSheet(name):
             NOTICES_RECEIVED TEXT(2048),
             NOTICES_CHECKED TEXT(2048),
             NOTICES_SENT TEXT(2048)
-            )"""
+            )DEFAULT CHARSET=utf8;"""
         
     cursor.execute(sql)
     db.close()
@@ -118,10 +118,9 @@ def insertClub(id,name,discription,containerid_list,root_container_id):
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     containerid_str = listToString(containerid_list)
-
     # SQL 插入语句
     sql = "INSERT INTO CLUB ( ID,NAME,DISCRIPTION,CONTAINERS,ROOT_CONTAINER) \
-        VALUES ('%s', '%s', '%s', '%s', '%s','%s' )" % \
+        VALUES ('%s', '%s', '%s', '%s', '%s' )" % \
         (id, name, discription, containerid_str, root_container_id)
     try:
     # 执行sql语句
@@ -155,7 +154,7 @@ def insertMember(id,name,belongs_to_container_id,ddls_received_id_list,ddls_sent
     sql = "INSERT INTO MEMBER ( ID,NAME,BELONGS_TO_CONTAINER,DDLS_RECEIVED,DDLS_SENT,DDLS_CHECKED,NOTICES_RECEIVED,NOTICES_CHECKED,NOTICES_SENT) \
         VALUES ('%s', '%s', '%s', '%s', '%s','%s' ,'%s','%s','%s')" % \
         (id, name, belongs_to_container_id,ddls_received_id_str, ddls_sent_id_str,ddls_checked_id_str,notice_received_id_str,notices_checked_id_str,notice_sent_id_str)
-    print(sql)
+    # print(sql)
 #     try:
 #     # 执行sql语句
 #         cursor.execute(sql)
@@ -186,16 +185,19 @@ def insertContainer(id,name,belongs_to_club_id,upper_container_id,contains_idlis
     sql = "INSERT INTO CONTAINER (ID,NAME,BELONGS_TO_CLUB,UPPER_CONTAINER,CONTAINS,LOWER_CONTAINERS) \
         VALUES ('%s', '%s', '%s', '%s', '%s','%s' )" % \
         (id,name,belongs_to_club_id,upper_container_id,containerid_str,lower_containers_idstr)
-    try:
-    # 执行sql语句
-        cursor.execute(sql)
-        # 提交到数据库执行
-        db.commit()
-    except:
-   # 发生错误时回滚
-        db.rollback()
-        print("insert container went wrong")
+#     try:
+#     # 执行sql语句
+#         cursor.execute(sql)
+#         # 提交到数据库执行
+#         db.commit()
+#     except:
+#    # 发生错误时回滚
+#         db.rollback()
+#         print("insert container went wrong")
 # 关闭数据库连接
+    cursor.execute(sql)
+#         # 提交到数据库执行
+    db.commit()
     db.close()
     
 def insertDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_members_id_list,not_done_members_id_list):
@@ -207,10 +209,10 @@ def insertDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_membe
     cursor = db.cursor()
     to_members_id_str = listToString(to_members_id_list)
     not_done_members_id_str = listToString(not_done_members_id_list)
-
+    # print(id,name,club_id,post_date,end_date,content,from_member_id,to_members_id_str,not_done_members_id_str)
     # SQL 插入语句
     sql = "INSERT INTO DDL (ID,NAME,CLUB,POST_DATE,END_DATE,CONTENT,FROM_MEMBER,TO_MEMBERS,NOT_DONE_MEMBERS) \
-        VALUES ('%s', '%s', '%s', '%s', '%s','%s','%s','%s' )" % \
+        VALUES ('%s', '%s', '%s', '%s', '%s','%s','%s','%s','%s' )" % \
         (id,name,club_id,post_date,end_date,content,from_member_id,to_members_id_str,not_done_members_id_str)
     try:
     # 执行sql语句
@@ -226,23 +228,26 @@ def insertDDL(id,name,club_id,post_date,end_date,content,from_member_id,to_membe
     
 def insertNotice(id,name,club_id,post_date,content,from_member_id,to_members_id_list):
     # 打开数据库连接
+    print("inserting:",id)
     db = PyMySQL.connect(host="localhost", user="root",
                          passwd="root", database="mydatabase",charset="utf8")
     to_members_id_str = listToString(to_members_id_list)
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     # SQL 插入语句
-    sql = "INSERT INTO DDL (ID,NAME,CLUB,POST_DATE,CONTENT,FROM_MEMBER,TO_MEMBERS) VALUES ('%s', '%s', '%s', '%s', '%s','%s','%s')" %  (id,name,club_id,post_date,content,from_member_id,to_members_id_str)
-    try:
-    # 执行sql语句
-        cursor.execute(sql)
-        # 提交到数据库执行
-        db.commit()
-    except:
-   # 发生错误时回滚
-        db.rollback()
-        print("insert notice went wrong")
+    sql = "INSERT INTO NOTICE (ID,NAME,CLUB,POST_DATE,CONTENT,FROM_MEMBER,TO_MEMBERS) VALUES ('%s', '%s', '%s', '%s', '%s','%s','%s')" %  (id,name,club_id,post_date,content,from_member_id,to_members_id_str)
+#     try:
+#     # 执行sql语句
+#         cursor.execute(sql)
+#         # 提交到数据库执行
+#         db.commit()
+#     except:
+#    # 发生错误时回滚
+#         db.rollback()
+#         print("insert notice went wrong")
 # 关闭数据库连接
+    cursor.execute(sql)
+    db.commit()
     db.close()
 
 def saveContainer(id,name,belongs_to_club_id,upper_container_id,contains_idlist,lower_containers_idlist):
@@ -361,7 +366,7 @@ def fetchClub(id):
     # 执行sql语句
         cursor.execute(sql)
         # 提交到数据库执行
-        result = cursor.fechone()
+        result = cursor.fetchone()
     except:
    # 发生错误时回滚
         db.rollback()
@@ -374,17 +379,20 @@ def fetchMember(id):
                          passwd="root", database="mydatabase",charset="utf8")
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
-    sql="SELECT * FROM Member WHERE ID='%s'"%(id)
+    sql="SELECT * FROM MEMBER WHERE ID='%s'"%(id)
     result = None
     try:
     # 执行sql语句
         cursor.execute(sql)
         # 提交到数据库执行
-        result = cursor.fechone()
+        result = cursor.fetchone()
     except:
    # 发生错误时回滚
         db.rollback()
         print("fetch member went wrong")
+#     cursor.execute(sql)
+# #         # 提交到数据库执行
+#     result = cursor.fetchone()
     db.close()
     return result
 
@@ -399,7 +407,7 @@ def fetchContainer(id):
     # 执行sql语句
         cursor.execute(sql)
         # 提交到数据库执行
-        result = cursor.fechone()
+        result = cursor.fetchone()
     except:
    # 发生错误时回滚
         db.rollback()
@@ -414,34 +422,41 @@ def fetchDDL(id):
     cursor = db.cursor()
     sql="SELECT * FROM DDL WHERE ID='%s'"%(id)
     result = None
-    try:
-    # 执行sql语句
-        cursor.execute(sql)
+#     try:
+#     # 执行sql语句
+#         cursor.execute(sql)
+#         # 提交到数据库执行
+#         result = cursor.fetchone()
+#     except:
+#    # 发生错误时回滚
+#         db.rollback()
+#         print("fetch ddl went wrong")
+    cursor.execute(sql)
         # 提交到数据库执行
-        result = cursor.fechone()
-    except:
-   # 发生错误时回滚
-        db.rollback()
-        print("fetch ddl went wrong")
+    result = cursor.fetchone()
     db.close()
     return result
 
 def fetchNotice(id):
+    print("fetching:",id)
     db = PyMySQL.connect(host="localhost", user="root",
                          passwd="root", database="mydatabase",charset="utf8")
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
     sql="SELECT * FROM NOTICE WHERE ID='%s'"%(id)
     result = None
-    try:
-    # 执行sql语句
-        cursor.execute(sql)
-        # 提交到数据库执行
-        result = cursor.fechone()
-    except:
-   # 发生错误时回滚
-        db.rollback()
-        print("fetch notice went wrong")
+#     try:
+#     # 执行sql语句
+#         cursor.execute(sql)
+#         # 提交到数据库执行
+#         result = cursor.fetchone()
+#     except:
+#    # 发生错误时回滚
+#         db.rollback()
+#         print("fetch notice went wrong")
+    cursor.execute(sql)
+    # 提交到数据库执行
+    result = cursor.fetchone()
     db.close()
     return result
 
@@ -457,6 +472,18 @@ def searchClub(keyword):
     # 获取所有记录列表
     results = cursor.fetchall()
     return results
+
+#delete container
+def deleteContainer(container_id):
+    db = PyMySQL.connect(host="localhost", user="root",
+                         passwd="root", database="mydatabase",charset="utf8")
+    # 使用cursor()方法获取操作游标 
+    cursor = db.cursor()
+    sql="DELETE FROM CONTAINER WHERE ID = %s" % (container_id)
+    cursor.execute(sql)
+    # 获取所有记录列表
+    
+
 
 
 ###############

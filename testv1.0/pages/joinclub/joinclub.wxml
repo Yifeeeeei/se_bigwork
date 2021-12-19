@@ -1,0 +1,17 @@
+<!--pages/clubpage/clubpage.wxml-->
+<view class="container">
+  <view class="club_info">
+    <text>{{current_club_name}}\n</text>
+    <text>{{current_club_discription}}</text>
+  </view>
+  <treenode id="treenode"
+            name="{{tree.name}}" 
+            members="{{tree.members}}" 
+            child="{{tree.child}}"
+            container_id="{{tree.container_id}}"
+            club_id="{{current_club_id}}"
+            club_name="{{current_club_name}}"
+            rooter_id="{{tree.rooter_id}}"
+            applyflag="1"
+  ></treenode>
+</view>
