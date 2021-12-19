@@ -1,8 +1,8 @@
 {
     "pages": [
+        "pages/ddl/ddl",
         "pages/login/login",
         "pages/createddl/createddl",
-        "pages/ddl/ddl",
         "pages/clubhome/clubhome",
         "pages/createClub/createClub",
         "pages/clubpage/clubpage",

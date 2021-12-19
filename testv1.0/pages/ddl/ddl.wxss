@@ -20,7 +20,7 @@
   position: relative;
 }
 .notcheckddl{
-    margin: 10px;
+  margin: 10px;
   border-radius: 3%;
   height: 100px;
   width: 90% !important;

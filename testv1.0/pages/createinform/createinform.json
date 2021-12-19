@@ -1,4 +1,7 @@
 {
+  "navigationBarTitleText": "创建通知",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEEEEE",
   "usingComponents": {
     "treenode":"../../component/treenode/treenode"
   }
