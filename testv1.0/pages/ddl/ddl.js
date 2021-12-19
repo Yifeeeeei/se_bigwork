@@ -62,105 +62,48 @@ Page({
     wx.navigateTo({
       url: '../informdetail/informdetail?id='+a,
     })*/
-    let nowshow=e.currentTarget.dataset
-    console.log(nowshow.information)
-      if(nowshow.clubid=="club86217487")
+      if(e.currentTarget.dataset.clubid=="")
       {
-        if(nowshow.information.state=="apply")
-        {
-          wx.showModal({
-            title: nowshow.name,
-            content: '内容:' + nowshow.content +
-            '\n'+'发布日期:'+nowshow.post_date,
-            confirmText:'接受',
-            cancelText:'拒绝',
-            success: function (res) {
-              if (res.confirm) {
-                console.log('que')
-                let backend=app.globalData.backendip
-                let that=this
-                wx.request({
-                  url: 'http://'+backend+'/api/actions/join_container',
-                  data:{
-                    'member_id':nowshow.member_id,
-                    'container_id':nowshow.information.container_id
-                  },
-                  method:"POST",
-                  header :{
-                    'content-type': 'application/json'
-                  },
-                  success(res1){
-                    console.log(res1)
-                    wx.request({
-                      url: 'http://'+backend+'/api/create/notice',
-                      data:{
-                        'id':4125,
-                        'name':'接受申请',
-                        'club_id':'club86217487',
-                        'post_date':util.formatTime(new Date()),
-                        'content':'您对'+nowshow.information.container_name+'的申请已被通过',
-                        'from_member_id':app.globalData.userID,
-                        'to_members_id':[nowshow.member_id]
-                      },
-                      method:"POST",
-                      header :{
-                        'content-type': 'application/json'
-                      },
-                      success(res2){
-                        console.log(res2.data)
-                      }
-                    })
-                  }
-                })
-              } else {
-                console.log('取消')
-                let backend=app.globalData.backendip
-                wx.request({
-                  url: 'http://'+backend+'/api/create/notice',
-                  data:{
-                    'id':4125,
-                    'name':'拒绝申请',
-                    'club_id':'club86217487',
-                    'post_date':util.formatTime(new Date()),
-                    'content':'您对'+nowshow.information.container_name+'的申请已被拒绝',
-                    'from_member_id':app.globalData.userID,
-                    'to_members_id':[nowshow.member_id]
-                  },
-                  method:"POST",
-                  header :{
-                    'content-type': 'application/json'
-                  },
-                  success(res2){
-                    console.log(res2.data)
-                  }
-                })
-              }
+        wx.showModal({
+          title: e.currentTarget.dataset.name,
+          content: '内容:' + e.currentTarget.dataset.content +
+          '\n'+'发布日期:'+e.currentTarget.dataset.post_date,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('确')
+              let backend=app.globalData.backendip
+              let that=this
+              wx.request({
+                url: 'http://'+backend+'/api/create/notice',
+                data:{
+                  'id':53252,
+                  'name':"加入申请",
+                  'club_id':"",
+                  'post_date':util.formatTime(new Date()),
+                  'content':"加入申请",
+                  'from_member_id':app.globalData.userID,
+                  'to_members_id':[app.globalData.userID],
+                },
+                method:"POST",
+                header :{
+                  'content-type': 'application/json'
+                },
+                success(res){
+                  console.log(res.data)
+                }
+              })
+            } else {
+              console.log('取消')
             }
-          })
-        }
-        else
-        {
-          wx.showModal({
-            title: nowshow.name,
-            content: '内容:' + nowshow.content +
-            '\n'+'发布日期:'+nowshow.post_date,
-            success: function (res) {
-              if (res.confirm) {
-                console.log('确定')
-              } else {
-                console.log('取消')
-              }
-            }
-          })
-        }
-        
+          }
+        })
       }
       else
       {
         wx.showModal({
-          title: nowshow.name,
-          content: '内容:' + nowshow.content +
-          '\n'+'发布日期:'+nowshow.post_date,
+          title: e.currentTarget.dataset.name,
+          content: '内容:' + e.currentTarget.dataset.content +
+          '\n'+'发布日期:'+e.currentTarget.dataset.post_date,
           success: function (res) {
             if (res.confirm) {
               console.log('确')
@@ -298,21 +241,11 @@ Page({
               'content-type': 'application/json'
             },
             success:res1=> {
-              if(res1.data.club_id=="club86217487"){
-                res1.data.information=JSON.parse(res1.data.content)
-                res1.data.content=res1.data.information.member_name+"申请加入社团"+res1.data.information.container_name
-                inform.push(res1.data)
-                _that.setData({
-                  inform:inform
-                })
-              }
-              else{
-                console.log(res1.data)
-                inform.push(res1.data)
-                _that.setData({
-                  inform:inform
-                })
-              }
+              console.log(res1.data)
+              inform.push(res1.data)
+              _that.setData({
+                inform:inform
+              })
             }
           })
             
@@ -336,7 +269,6 @@ Page({
           let checkedddllist = []
           let notcheckedddllist = []
           let outddllist=[]
-          
           for (let i=0;i<checkedddl.length ; i++) {
             let backend = app.globalData.backendip
             let _that = that
@@ -352,14 +284,10 @@ Page({
               success:res1=> {
                 console.log(res1.data)
                 checkedddllist.push(res1.data)
-                if(i==checkedddl.length-1){
-                  _that.setData({
-                    checkedddl: checkedddllist,
-                    notcheckedddl: notcheckedddllist,
-                  })
-
-                }
-                
+                _that.setData({
+                  checkedddl: checkedddllist,
+                  notcheckedddl: notcheckedddllist,
+                })
               }
             })
           }
@@ -388,13 +316,11 @@ Page({
                 {
                   outddllist.push(res1.data)
                 }
-                if(i==checkedddl.length-1){
-                  _that.setData({
-                    checkedddl: checkedddllist,
-                    notcheckedddl: notcheckedddllist,
-                  })
-
-                }
+                _that.setData({
+                  checkedddl: checkedddllist,
+                  notcheckedddl: notcheckedddllist,
+                  outddl:outddllist
+                })
               }
             })
           }

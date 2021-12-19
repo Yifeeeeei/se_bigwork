@@ -28,9 +28,7 @@ Page({
       success:res=>{
         console.log(res.data)
         var len=res.data.lower_containers_id.length
-        console.log(len)
         if(len!=0){
-          
           wx.navigateTo({
             url: '../clubpage admin/clubpage admin',
             success(res){
@@ -93,6 +91,7 @@ Page({
                 tmpnamelist.push(res2.data)
                 that.setData({
                   clublist:tmpnamelist
+                  
                 })
               }
             })
