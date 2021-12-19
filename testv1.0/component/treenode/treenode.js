@@ -157,7 +157,9 @@ Component({
                           'content-type': 'application/json'
                         },
                         success(res){
-                          console.log(res.data)
+                          wx.navigateTo({
+                            url: '../../pages/createClub/createClub',
+                          })
                         }
                     })
                 }
