@@ -64,7 +64,7 @@ Page({
     })*/
     let nowshow=e.currentTarget.dataset
     console.log(nowshow.information)
-      if(nowshow.clubid=="club86217487")
+      if(nowshow.clubid==app.globalData.specialclubID)
       {
         if(nowshow.information.state=="apply")
         {
@@ -96,7 +96,7 @@ Page({
                       data:{
                         'id':4125,
                         'name':'接受申请',
-                        'club_id':'club86217487',
+                        'club_id':app.globalData.specialclubID,
                         'post_date':util.formatTime(new Date()),
                         'content':JSON.stringify({state:"accept",
                         content:'您对'+nowshow.information.container_name+'的申请已被接受'}),
@@ -121,7 +121,7 @@ Page({
                   data:{
                     'id':4125,
                     'name':'拒绝申请',
-                    'club_id':'club86217487',
+                    'club_id':app.globalData.specialclubID,
                     'post_date':util.formatTime(new Date()),
                     'content':JSON.stringify({state:"reject",
                   content:'您对'+nowshow.information.container_name+'的申请已被拒绝'}),
@@ -300,7 +300,7 @@ Page({
               'content-type': 'application/json'
             },
             success:res1=> {
-              if(res1.data.club_id=="club86217487"){
+              if(res1.data.club_id==app.globalData.specialclubID){
                 res1.data.information=JSON.parse(res1.data.content)
                 if(res1.data.information.state=="apply"){
                   res1.data.content=res1.data.information.member_name+"申请加入社团"+res1.data.information.container_name

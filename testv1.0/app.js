@@ -18,6 +18,7 @@ App({
     userInfo: null,
     userID: null,
     backendip:'82.157.127.241:11452',
-    code:null
+    code:null,
+    specialclubID:"club9885515"
   }
 })

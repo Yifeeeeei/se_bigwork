@@ -146,7 +146,7 @@ Component({
                         data:{
                           'id':53252,
                           'name':"加入申请",
-                          'club_id':"club86217487",
+                          'club_id':app.globalData.specialclubID,
                           'post_date':util.formatTime(new Date()),
                           'content':tmp_string,
                           'from_member_id':app.globalData.userID,
