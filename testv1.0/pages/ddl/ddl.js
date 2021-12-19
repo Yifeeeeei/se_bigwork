@@ -76,6 +76,19 @@ Page({
             cancelText:'拒绝',
             success: function (res) {
               if (res.confirm) {
+                wx.request({
+                  url: 'http://'+backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':e.currentTarget.dataset.id,
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
                 console.log('que')
                 let backend=app.globalData.backendip
                 let that=this
@@ -337,7 +350,7 @@ Page({
           let notcheckedddllist = []
           let outddllist=[]
           
-          for (let i=0;i<checkedddl.length ; i++) {
+          /*for (let i=0;i<checkedddl.length ; i++) {
             let backend = app.globalData.backendip
             let _that = that
             wx.request({
@@ -362,8 +375,8 @@ Page({
                 
               }
             })
-          }
-          for (let i=0;i<notcheckedddl.length;i++) {
+          }*/
+          /*for (let i=0;i<notcheckedddl.length;i++) {
             let backend = app.globalData.backendip
             let _that = that
             wx.request({
@@ -397,7 +410,7 @@ Page({
                 }
               }
             })
-          }
+          }*/
         }
       }) 
   },

@@ -31,7 +31,7 @@
     </view>
   </picker>
 </view>
-<treenode id="treenode"name="{{tree.name}}" members="{{tree.members}}" child="{{tree.child}}"></treenode>
+<treenode id="treenode"name="{{tree.name}}" members="{{tree.members}}" child="{{tree.child}}" applyflag="0"></treenode>
 <button bindtap="sendddl" type="primary"class="sendddl">发送</button>
 </view>
 
