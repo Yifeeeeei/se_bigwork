@@ -16,7 +16,6 @@ Page({
     checkedddl: [],
     notcheckedddl: [],
     outddl:[],
-    inform:[]
   },
   bindChange: function (e) {
     var that = this;
@@ -45,7 +44,7 @@ Page({
     let backend=app.globalData.backendip
     let that=this
     const eventChannel = this.getOpenerEventChannel();
-    eventChannel.on('toclubPage2',(res)=>{
+    eventChannel.on('toclubPage',(res)=>{
       console.log(res.data)
       wx.request({
         url: 'http://'+backend+'/api/get/club',
@@ -114,9 +113,7 @@ Page({
           },
           success:res1=> {
             console.log(res1.data)
-            if(res1.data['club_id']==_that.data.current_club_id){
-              inform.push(res1.data)
-            }
+            inform.push(res1.data)
             _that.setData({
               inform:inform
             })

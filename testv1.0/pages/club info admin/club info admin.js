@@ -1,16 +1,11 @@
-const app=getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    current_club_name:"",
-    current_club_discription:"",
-    current_club_structure:[],
-    current_club_rootid:"",
-    current_club_id:"",
-    tree:{},
+
     menuitems: [{
         text: '社团名称',
         url: '#',
@@ -46,52 +41,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad() {
-    const eventChannel = this.getOpenerEventChannel();
-    let backend = app.globalData.backendip
-    let that = this
-    eventChannel.on('tomanagePage',(res)=>{
-      console.log(res.data)
-      wx.request({
-        url: 'http://'+backend+'/api/get/club',
-        data:{
-          id:res.data
-        },
-        method:"POST",
-        header :{
-          'content-type': 'application/json'
-        },
-        success:res2=>{
-          that.setData({
-            current_club_name:res2.data['name'],
-            current_club_discription:res2.data['discription'],
-            current_club_rootid:res2.data['root_container_id'],
-            current_club_id:res2.data.id
-          })
-          wx.request({
-            url: 'http://'+backend+'/api/get/container',
-            data:{
-              id:res2.data['root_container_id']
-            },
-            method:"POST",
-            header :{
-              'content-type': 'application/json'
-            },
-            success:res3=>{
-              console.log(res3)
-              that.setData({
-                tree:{
-                  name:res3.data['name'],
-                  members: res3.data.contains,
-                  child: res3.data.lower_containers_id,
-                  container_id:res3.data.id,
-                  rooter_id:res3.data.contains[0]
-                }
-              })
-            }
-          })
-        }
-      })
-    })
+
   },
 
   /**

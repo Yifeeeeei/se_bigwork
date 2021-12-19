@@ -36,13 +36,3 @@
     </view>
   </view>
 </view>
-<treenode id="treenode"
-            name="{{tree.name}}" 
-            members="{{tree.members}}" 
-            child="{{tree.child}}"
-            container_id="{{tree.container_id}}"
-            club_id="{{current_club_id}}"
-            club_name="{{current_club_name}}"
-            rooter_id="{{tree.rooter_id}}"
-            applyflag="0"
-  ></treenode>
