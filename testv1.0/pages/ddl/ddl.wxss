@@ -66,5 +66,5 @@
   position: relative;
   border:black solid 1px;
   justify-content: center;
-  background: linear-gradient(to bottom,#f5f5f5,#c2c2c2);
+  background: linear-gradient(to bottom,#e2adff,#bf50ff);
 }
