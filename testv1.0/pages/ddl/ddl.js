@@ -98,7 +98,8 @@ Page({
                         'name':'接受申请',
                         'club_id':'club86217487',
                         'post_date':util.formatTime(new Date()),
-                        'content':'您对'+nowshow.information.container_name+'的申请已被通过',
+                        'content':JSON.stringify({state:"accept",
+                        content:'您对'+nowshow.information.container_name+'的申请已被接受'}),
                         'from_member_id':app.globalData.userID,
                         'to_members_id':[nowshow.member_id]
                       },
@@ -122,7 +123,8 @@ Page({
                     'name':'拒绝申请',
                     'club_id':'club86217487',
                     'post_date':util.formatTime(new Date()),
-                    'content':'您对'+nowshow.information.container_name+'的申请已被拒绝',
+                    'content':JSON.stringify({state:"reject",
+                  content:'您对'+nowshow.information.container_name+'的申请已被拒绝'}),
                     'from_member_id':app.globalData.userID,
                     'to_members_id':[nowshow.member_id]
                   },
@@ -300,11 +302,20 @@ Page({
             success:res1=> {
               if(res1.data.club_id=="club86217487"){
                 res1.data.information=JSON.parse(res1.data.content)
-                res1.data.content=res1.data.information.member_name+"申请加入社团"+res1.data.information.container_name
-                inform.push(res1.data)
-                _that.setData({
-                  inform:inform
-                })
+                if(res1.data.information.state=="apply"){
+                  res1.data.content=res1.data.information.member_name+"申请加入社团"+res1.data.information.container_name
+                  inform.push(res1.data)
+                  _that.setData({
+                    inform:inform
+                  })
+                }
+                else if(res1.data.information.state=="reject"||res1.data.information.state=="accept"){
+                  res1.data.content=res1.data.information.content
+                  inform.push(res1.data)
+                  _that.setData({
+                    inform:inform
+                  })
+                }
               }
               else{
                 console.log(res1.data)
