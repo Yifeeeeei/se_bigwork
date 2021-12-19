@@ -46,6 +46,7 @@
 .menu_box{
   display: flex;
   height: 80rpx;
+  margin-top: 2%;
  }
  .menu1,.menu2{
   flex: 1;
@@ -54,6 +55,16 @@
   text-align: center;
  }
  .borders{
-  border-bottom: 4rpx solid #f00;
-  color: #f00;
+  border-bottom: 4rpx solid #a407ff;
+  color: #a407ff;
  }
+ .create{
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-top: 2%;
+  height: 10%;
+  position: relative;
+  border:black solid 1px;
+  justify-content: center;
+  background: linear-gradient(to bottom,#f5f5f5,#c2c2c2);
+}

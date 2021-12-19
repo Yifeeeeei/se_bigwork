@@ -60,7 +60,7 @@
     margin-left: 10%;
     margin-right: 10%;
     height: 30px;
-    background: linear-gradient(to top,#4762f3,#5cc3ff);
+    background: linear-gradient(to bottom,#d896ff,#a407ff);
     text-align: center;
     font-size: 14px;
     line-height: 30px;
