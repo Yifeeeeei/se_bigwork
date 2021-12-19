@@ -162,7 +162,6 @@ Page({
               }
               _that.setData({
                 checkedddl: checkedddllist,
-                notcheckedddl: notcheckedddllist,
               })
             }
           })

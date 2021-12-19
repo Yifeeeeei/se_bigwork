@@ -398,7 +398,7 @@ Page({
                 {
                   outddllist.push(res1.data)
                 }
-                if(i==checkedddl.length-1){
+                if(i==notcheckedddl.length-1){
                   _that.setData({
                     outddl:outddllist,
                     notcheckedddl: notcheckedddllist,
