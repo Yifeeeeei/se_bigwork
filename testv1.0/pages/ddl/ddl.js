@@ -366,7 +366,6 @@ Page({
                 if(i==checkedddl.length-1){
                   _that.setData({
                     checkedddl: checkedddllist,
-                    notcheckedddl: notcheckedddllist,
                   })
 
                 }
@@ -401,7 +400,7 @@ Page({
                 }
                 if(i==checkedddl.length-1){
                   _that.setData({
-                    checkedddl: checkedddllist,
+                    outddl:outddllist,
                     notcheckedddl: notcheckedddllist,
                   })
 

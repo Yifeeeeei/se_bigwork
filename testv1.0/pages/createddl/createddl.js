@@ -50,19 +50,28 @@ Page({
     console.log(myComponent.data) // 通过实例调用组件事件
     let backend = app.globalData.backendip
     let that = this
+    let tosendmember=[]
+    for(let i=0;i<myComponent.data.belowmember.length;i++)
+    {
+      if(myComponent.data.belowmember[i].checked==true)
+      {
+        tosendmember.push(myComponent.data.belowmember[i].id)
+      }
+    }
+    console.log(tosendmember)
     console.log(1)
     wx.request({
       url: 'http://' + backend + '/api/create/ddl',
       data: {
         'id': 53252,
         'name': this.data.name,
-        'club_id': "club52355582",
+        'club_id': this.data.current_club_id,
         'post_date': util.formatTime(new Date()),
         'end_date': this.data.date + " " + this.data.time,
         'content': this.data.content,
         'from_member_id': app.globalData.userID,
-        'to_members_id': myComponent.data.belowmember,
-        'not_done_members_id': myComponent.data.belowmember
+        'to_members_id': tosendmember,
+        'not_done_members_id': tosendmember
       },
       method: "POST",
       header: {

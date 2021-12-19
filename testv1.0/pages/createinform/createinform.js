@@ -27,6 +27,14 @@ Page({
 
       myComponent.merge()
       console.log(myComponent.data) // 通过实例调用组件事件
+      let tosendmember=[]
+    for(let i=0;i<myComponent.data.belowmember.length;i++)
+    {
+      if(myComponent.data.belowmember[i].checked==true)
+      {
+        tosendmember.push(myComponent.data.belowmember[i].id)
+      }
+    }
         let backend=app.globalData.backendip
         let that=this
         console.log(1)
@@ -35,11 +43,11 @@ Page({
         data:{
           'id':53252,
           'name':this.data.name,
-          'club_id':41241,
+          'club_id':this.data.current_club_id,
           'post_date':util.formatTime(new Date()),
           'content':this.data.content,
           'from_member_id':app.globalData.userID,
-          'to_members_id':myComponent.data.belowmember,
+          'to_members_id':tosendmember,
         },
         method:"POST",
         header :{
