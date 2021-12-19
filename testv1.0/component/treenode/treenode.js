@@ -150,7 +150,7 @@ Component({
                           'post_date':util.formatTime(new Date()),
                           'content':tmp_string,
                           'from_member_id':app.globalData.userID,
-                          'to_members_id':["oBQMk5B3Qyyp3gWF2mwA7Gs49scs"],
+                          'to_members_id':[that.properties.rooter_id],
                         },
                         method:"POST",
                         header :{
