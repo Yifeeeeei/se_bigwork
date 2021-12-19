@@ -1,6 +1,6 @@
 {
     "pages": [
-        "pages/ddl/ddl",
+        
         "pages/login/login",
         "pages/createddl/createddl",
         "pages/clubhome/clubhome",
@@ -11,6 +11,7 @@
         "pages/club info/club info",
         "pages/user info/user info",
         "pages/clubpage admin/clubpage admin",
+        "pages/ddl/ddl",
         "pages/index/index",
         "pages/logs/logs",
         "pages/informdetail/informdetail",
