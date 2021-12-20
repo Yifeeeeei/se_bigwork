@@ -63,7 +63,7 @@ Page({
       url: '../informdetail/informdetail?id='+a,
     })*/
     let nowshow=e.currentTarget.dataset
-    console.log(nowshow.information)
+    console.log(nowshow)
       if(nowshow.clubid==app.globalData.specialclubID)
       {
         if(nowshow.information.state=="apply")
@@ -79,6 +79,19 @@ Page({
                 console.log('que')
                 let backend=app.globalData.backendip
                 let that=this
+                wx.request({
+                  url: 'http://'+backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':nowshow.id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
                 wx.request({
                   url: 'http://'+backend+'/api/actions/join_container',
                   data:{
@@ -116,6 +129,19 @@ Page({
               } else {
                 console.log('取消')
                 let backend=app.globalData.backendip
+                wx.request({
+                  url: 'http://'+backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':nowshow.id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
                 wx.request({
                   url: 'http://'+backend+'/api/create/notice',
                   data:{
@@ -305,6 +331,7 @@ Page({
                 if(res1.data.information.state=="apply"){
                   res1.data.content=res1.data.information.member_name+"申请加入社团"+res1.data.information.container_name
                   inform.push(res1.data)
+                  console.log(inform)
                   _that.setData({
                     inform:inform
                   })
@@ -323,11 +350,13 @@ Page({
                 _that.setData({
                   inform:inform
                 })
+
               }
             }
           })
             
           }
+          console.log(inform)
           let checkedddl = []
           let notcheckedddl = []
           for (let i=0;i<res.data.ddls_received_id.length;i++) {
