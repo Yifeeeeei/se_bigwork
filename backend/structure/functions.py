@@ -73,7 +73,7 @@ def DBgetNotice(notice_id):
     notice.post_date = result[3]
     notice.content = result[4]
     notice.from_member_id = result[5]
-    notice.to_member_id = result[6]
+    notice.to_members_id = stringToList(result[6])
     return notice
 
 
@@ -142,6 +142,7 @@ def DBnewMember(member:Member):
 def DBnewNotice(notice:Notice):
     #影响发送者接受者
     dbop.insertNotice(notice.id,notice.name,notice.club_id,notice.post_date,notice.content,notice.from_member_id,notice.to_members_id)
+    # print("DB NEW NOTICE", notice.to_members_id)
     sent_member = DBgetMember(notice.from_member_id)
     sent_member.notices_sent_id.append(notice.id)
     DBupdateMember(sent_member)
@@ -196,18 +197,47 @@ def DBdeleteContainer(container_id):
     container = DBgetContainer(container_id)
     if container == None:
         return "not exist"
-    if len(container.lower_containers_id) != 0:
-        return "not leaf"
-    upper_container = DBgetContainer(container.upper_container_id)
+    # if len(container.lower_containers_id) != 0:
+    #     return "not leaf"
+    upper_container = None
+    if container.upper_container_id != "":
+        upper_container = DBgetContainer(container.upper_container_id)
     club = DBgetClub(container.belongs_to_club_id)
-    upper_container.lower_containers_id.remove(container_id)
+    if upper_container != None:
+        upper_container.lower_containers_id.remove(container_id)
     club.containers_id.remove(container_id)
     member_id_list = container.contains
     for mem_id in member_id_list:
         mem = DBgetMember(mem_id)
-        mem.belongs_to_container_id.remove(container_id)
-        DBupdateMember(member)
+        if container_id in mem.belongs_to_container_id:
+            mem.belongs_to_container_id.remove(container_id)
+        DBupdateMember(mem)
     DBupdateClub(club)
-    DBupdateContainer(upper_container)
-    return "ok"
+    if upper_container != None:
+        DBupdateContainer(upper_container)
+    dbop.deleteContainer(container_id)
+    return "OK"
+
+def DBdeleteClub(club_id):
+    club = DBgetClub(club_id)
+    for container_id in club.containers_id:
+        DBdeleteContainer(container_id)
+    dbop.deleteClub(club_id)
+    return 'OK'
+
+def DBdeleteNotice(notice_id):
+    notice = DBgetNotice(notice_id)
+    sender = DBgetMember(notice.from_member_id)
+    if notice_id in sender.notices_sent_id:
+        sender.notices_sent_id.remove(notice_id)
+    DBupdateMember(sender)
+    for member_id in notice.to_members_id:
+        member = DBgetMember(member_id)
+        if notice_id in member.notices_received_id:
+            member.notices_received_id.remove(notice_id)
+        if notice_id in member.notices_checked_id:
+            member.notices_checked_id.remove(notice_id)
+        DBupdateMember(member)
+    dbop.deleteNotice(notice_id)
+    
     

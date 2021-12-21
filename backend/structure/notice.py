@@ -34,6 +34,7 @@ class Notice:
         notice_dic['from_member_id'] = self.from_member_id
         notice_dic['to_members_id'] = self.to_members_id
         notice_json = json.dumps(notice_dic)
+        print(notice_dic)
         return notice_json
 
     def fromDic(self, notice_dic):

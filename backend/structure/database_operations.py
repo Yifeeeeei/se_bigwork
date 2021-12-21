@@ -479,10 +479,28 @@ def deleteContainer(container_id):
                          passwd="root", database="mydatabase",charset="utf8")
     # 使用cursor()方法获取操作游标 
     cursor = db.cursor()
-    sql="DELETE FROM CONTAINER WHERE ID = %s" % (container_id)
+    sql="DELETE FROM CONTAINER WHERE ID = '%s'" % (container_id)
     cursor.execute(sql)
+    db.commit()
     # 获取所有记录列表
-    
+
+def deleteNotice(notice_id):
+    db = PyMySQL.connect(host="localhost", user="root",
+                         passwd="root", database="mydatabase",charset="utf8")
+    # 使用cursor()方法获取操作游标 
+    cursor = db.cursor()
+    sql="DELETE FROM NOTICE WHERE ID = '%s'" % (notice_id)
+    cursor.execute(sql)
+    db.commit()
+    # 获取所有记录列表  
+def deleteClub(club_id):
+    db = PyMySQL.connect(host="localhost", user="root",
+                         passwd="root", database="mydatabase",charset="utf8")
+    # 使用cursor()方法获取操作游标 
+    cursor = db.cursor()
+    sql="DELETE FROM CLUB WHERE ID = '%s'" % (club_id)
+    cursor.execute(sql)
+    db.commit()
 
 
 

@@ -9,7 +9,17 @@ from structure.club import Club
 from structure.container import Container
 from structure.ddl import DDL
 from structure.notice import Notice
+import traceback
 app = Flask(__name__)
+
+KEY = ''
+def checkKEY():
+    global KEY
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    if KEY != json_data['KEY']:
+        raise Exception("KEY invalid")
+
 
 
 @app.route('/')
@@ -22,6 +32,7 @@ def hello_word():
 def apiGetContainer():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
+    print(json_data)
     container_id = json_data['id']
     container = func.DBgetContainer(container_id)
     return container.toJson()
@@ -136,6 +147,7 @@ def apiCreateClub():
     creater_id = json_data["member_id"]
     club.generateRandomId()
     container.belongs_to_club_id = club.id
+    container.name = "主席"
     club.root_container_id = container.id
     club.containers_id.append(container.id)
     container.upper_container_id = ""
@@ -196,6 +208,7 @@ def apiCreateMember():
 def apiCreateNotice():
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
+    print(json_data)
     notice = Notice()
     notice.fromDic(json_data)
     notice.generateRandomId()
@@ -251,6 +264,7 @@ def apiActionsJoinContainer():
 
 @app.route('/api/actions/login',methods=['POST'])
 def apiLogin():
+    checkKEY()
     data = request.get_data()
     json_data = json.loads(data.decode("utf-8"))
     member_id = json_data["id"]
@@ -281,7 +295,8 @@ def apiInclub():
     container_id = member.belongs_to_container_id
     for ci in container_id:
         club_id = func.DBgetContainer(ci).belongs_to_club_id
-        dic["club_id"].append(club_id)
+        if club_id not in dic["club_id"]:
+            dic["club_id"].append(club_id)
     return json.dumps(dic)
 
 @app.route('/api/actions/incontainer',methods=['POST'])
@@ -299,7 +314,7 @@ def apiInContainer():
         if container.belongs_to_club_id == club_id:
             return_container = container
             break
-    return json.dumps(return_container.toJson)
+    return return_container.toJson()
     
     
 
@@ -328,8 +343,53 @@ def apiDeleteContainer():
     dic = {}
     dic["result"] = func.DBdeleteContainer(container_id)
     return json.dumps(dic)
+#remove
+@app.route('/api/remove/member',methods=['POST'])
+def apiRemoveMember ():
+    #{members_id,club_id}->{}
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    members_id = json_data["members_id"]
+    clubid = json_data["club_id"]
+    club = func.DBgetClub(clubid)
+    club_containers_id = club.containers_id
+    for container_id in club_containers_id:
+        for member_id in members_id:
+            member = func.DBgetMember(member_id)
+            for in_container_id in member.belongs_to_container_id:
+                if container_id == in_container_id:
+                    # a match, remove member = member in x  ... container contains x
+                    container = func.DBgetContainer(container_id)
+                    container.contains.remove(member_id)
+                    member.belongs_to_container_id.remove(container_id)
+                    func.DBupdateContainer(container)
+                    func.DBupdateMember(member)
+                    break
+    dic["result"] = 'OK'
+    return json.dumps(dic)
 
+    
+@app.route('/api/delete/notice',methods=['POST'])
+def apiDeleteNotice():
+    #{notice_id}->{result:'OK'}
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    notice_id = json_data["notice_id"]
+    func.DBdeleteNotice(notice_id)
+    dic = {}
+    dic['result']='OK'
+    return json.dumps(dic)
 
+@app.route('/api/delete/club',methods = ['POST'])
+def apiDeleteClub():
+    #{club_id}->{result}
+    data = request.get_data()
+    json_data = json.loads(data.decode("utf-8"))
+    club_id = json_data["club_id"]
+    # func.DBdeleteClub(club_id)
+    dic = {}
+    dic['result'] = func.DBdeleteClub(club_id)
+    return json.dumps(dic)
 
 
 @app.route('/shutdown', methods=['POST'])
@@ -340,4 +400,8 @@ def shutdown():
 
 
 if __name__ == "__main__":
+    # from werkzeug.contrib.fixers import ProxyFix
     app.run(host='0.0.0.0',port=11452)
+    # app.wsgi_app = ProxyFix(app.wsgi_app)
+    # app.run(host='0.0.0.0',port=11452)
+    # app.run(host='0.0.0.0')
