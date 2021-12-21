@@ -33,10 +33,6 @@ Component({
       type: String,
       value: '选择'
     },
-    btnshowTxt:{
-      type:String,
-      value:'查看成员'
-    },
     btnrenameTxt:{
       type:String,
       value:'更改名称'
@@ -166,9 +162,6 @@ Component({
     },
     tapcreateBtn(e) {
       this.triggerEvent('tapBtn', e.currentTarget.dataset.item);
-    },
-    tapshowBtn(){
-
     },
     taprenameBtn(e){
       this.triggerEvent('taprenameBtn', e.currentTarget.dataset.item);

@@ -1,3 +1,5 @@
 {
-  "navigationBarTitleText": "我的ddl"
+  "navigationBarTitleText": "我的ddl",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEEEEE"
 }

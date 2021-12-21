@@ -1,9 +1,67 @@
 /* pages/createddl/createddl.wxss */
-@import "../../lib/weui.wxss";
-.sendddl{
-    margin-top: 50px;
+
+.title{
+    margin-left: 5px;
+    font-size: 36rpx;
 }
+
+.page-section{
+    margin-top: 8%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
 .textinput{
     color:black;
     text-align: left;
+}
+
+.inputarea-title{
+    margin-top: 10px;
+    height: 34px; 
+    padding: 1px 5px; 
+    font-size: 14px; 
+    line-height: 1.428571429; 
+    color: #555555; 
+    border: 1px solid #cccccc; 
+    border-radius: 4px; 
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+}
+
+.inputarea-content{
+    margin-top: 10px;
+    height: 100px;
+    width: inherit;
+    padding: 10px 5px; 
+    font-size: 14px; 
+    color: #555555; 
+    border: 1px solid #cccccc; 
+    border-radius: 4px; 
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); 
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s; 
+}
+
+.section{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 36rpx;
+}
+
+.picker{
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 2px; 
+}
+
+.sendddl{
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 30px;
+    background: linear-gradient(to bottom,#d896ff,#a407ff);
+    text-align: center;
+    font-size: 14px;
+    line-height: 30px;
 }

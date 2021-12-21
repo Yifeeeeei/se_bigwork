@@ -1,8 +1,8 @@
 /* pages/user info/user info.wxss */
 
 .avatar-wrapper {
-  background: #1b82d1;
   padding: 25px 0;
+  margin-bottom: 25px;
 }
  
 .avatar-wrapper .avatar {
@@ -10,12 +10,29 @@
   text-align: lefts;
   margin-left: 10%;
 }
- 
+
+.userimage-blur
+{
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 800px;
+  height: 800px;
+  clip: rect(0px,800px,150px,0px);
+  filter: blur(15px);
+}
+
 .avatar .userinfo-avatar {
   width: 100px;
   height: 100px;
 }
- 
+
+.lists
+{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .avatar-wrapper .text {
   text-align: center;
   color: #fff;
@@ -37,7 +54,8 @@
  
 /*分割线样式*/
 .divLine{
- background: #E0E3DA;
- width: 100%;
- height: 5rpx;
+  background: #aaaaaa;
+  height: 2rpx;
+  margin-left: 25px;
+  margin-right: 25px;
 }

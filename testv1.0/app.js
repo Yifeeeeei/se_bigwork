@@ -13,11 +13,22 @@ App({
         console.log(res.code)
       }
     })
+    wx.getSetting({
+      success(res) {
+        wx.authorize({
+          scope:'scope.address',
+          success() {
+
+          }
+        })
+      }
+    })
   },
   globalData: {
     userInfo: null,
     userID: null,
-    backendip:'82.157.127.241:11452',
-    code:null
+    backendip:'82.157.127.241',
+    code:null,
+    specialclubID:"club38935964"
   }
 })

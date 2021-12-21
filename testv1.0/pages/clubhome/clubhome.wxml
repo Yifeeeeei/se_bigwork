@@ -5,25 +5,21 @@
       <view wx:if="{{index%3==0}}">
         <view bindtap="toClubpage" class="clubarea1" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
-          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==1}}">
         <view bindtap="toClubpage" class="clubarea2" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
-          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">
         <view bindtap="toClubpage" class="clubarea3" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
-          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
     </view>
-    <view class="clubSpace" bindtap="jumptocreate">
-      <image src="/images/greyplus.png" alt="plus_img" class="plus"></image>
-      <view class="img_text">创建或加入</view>
-    </view>
+  <view class="clubSpace" bindtap="jumptocreate">
+    <image src="/images/plus.png" alt="plus_img" class="plus"></image>
+    <view class="plus_text">创建或加入</view></view>
   </view>
 </view>

@@ -1,18 +1,19 @@
 <!--pages/createinform/createinform.wxml-->
   <view class="page-section">
-    <view class="weui-cells__title">通知标题:</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <input class="weui-input"bindinput="nameinput"placeholder="请输入标题"></input>
+    <view class="title">通知标题:</view>
+    <view class="after-title">
+      <view class="input">
+        <input class="inputarea-title" bindinput="nameinput" placeholder="请输入标题"></input>
       </view>
     </view>
   </view>
   <view class="page-section">
-    <view class="weui-cells__title">通知内容:</view>
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_input">
-        <textarea class="textinput"bindinput="contentinput"placeholder="请输入内容"></textarea>
+    <view class="title">通知内容:</view>
+    <view class="after-title">
+      <view class="input">
+        <textarea class="inputarea-content" bindinput="contentinput" placeholder="请输入内容"></textarea>
       </view>
       </view>
   </view>
+  <treenode id="treenode"name="{{tree.name}}" members="{{tree.members}}" child="{{tree.child}}"></treenode>
   <button bindtap="sendinform" type="primary"class="sendinform">发送</button>

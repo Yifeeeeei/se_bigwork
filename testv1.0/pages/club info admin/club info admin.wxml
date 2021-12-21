@@ -36,3 +36,16 @@
     </view>
   </view>
 </view>
+<treenode id="treenode"
+            name="{{tree.name}}" 
+            members="{{tree.members}}" 
+            child="{{tree.child}}"
+            container_id="{{tree.container_id}}"
+            club_id="{{current_club_id}}"
+            club_name="{{current_club_name}}"
+            rooter_id="{{tree.rooter_id}}"
+            applyflag="0"
+            renameflag="1"
+></treenode>
+<button class="deleteBtn" bindtap="deleteBtn">删除所选成员</button>
+<button wx:if="{{deleteflag}}" class="deleteclub" bindtap="deleteclub">解散社团</button>

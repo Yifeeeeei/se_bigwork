@@ -1,9 +1,7 @@
 <!--pages/ddl.wxml-->
-<button  class="notcheckddl" bindtap="tocreateddl">创建ddl</button>
-<button  class="notcheckddl" bindtap="tocreateinform">创建通知</button>
 <view class="menu_box">
- <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">menu1</text>
- <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">menu2</text>
+ <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">ddl</text>
+ <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">通知</text>
 </view>
 <view  hidden="{{menuTapCurrent!='0'}}">
 
@@ -25,7 +23,7 @@
 </view>
 <view  hidden="{{menuTapCurrent!='1'}}">
     <block wx:for="{{inform}}">
-        <button class="outddl" bindtap="toinform" data-clubid="{{item.club_id}}"data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-content="{{item.content}}">
+        <button class="outddl" bindtap="toinform" data-clubid="{{item.club_id}}"data-id="{{item.id}}" data-flag="0" data-name="{{item.name}}"data-post_date="{{item.post_date}}"data-content="{{item.content}}"data-information="{{item.information}}"data-member_id="{{item.from_member_id}}">
             <view class="title">{{item.name}}</view>
         </button>
     </block>

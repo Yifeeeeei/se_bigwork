@@ -1,8 +1,9 @@
 
 
 .avatar-wrapper {
-  background: #1b82d1;
+  background-image: linear-gradient(to bottom right,#4762f3,#5cc3ff);
   padding: 25px 0;
+  margin-bottom: 25px;
 }
  
 .avatar-wrapper .avatar {
@@ -42,10 +43,17 @@
   text-align: center;
   margin-bottom: 10px;
 }
+
+.lists
+{
+  margin-left: 15px;
+  margin-right: 15px;
+}
  
 /*分割线样式*/
 .divLine{
- background: #E0E3DA;
- width: 100%;
- height: 5rpx;
+  background: #aaaaaa;
+  height: 2rpx;
+  margin-left: 25px;
+  margin-right: 25px;
 }

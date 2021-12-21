@@ -62,48 +62,133 @@ Page({
     wx.navigateTo({
       url: '../informdetail/informdetail?id='+a,
     })*/
-      if(e.currentTarget.dataset.clubid=="")
+    let nowshow=e.currentTarget.dataset
+    console.log(nowshow)
+      if(nowshow.clubid==app.globalData.specialclubID)
       {
-        wx.showModal({
-          title: e.currentTarget.dataset.name,
-          content: '内容:' + e.currentTarget.dataset.content +
-          '\n'+'发布日期:'+e.currentTarget.dataset.post_date,
-          success: function (res) {
-            if (res.confirm) {
-              console.log('确')
-              let backend=app.globalData.backendip
-              let that=this
-              wx.request({
-                url: 'http://'+backend+'/api/create/notice',
-                data:{
-                  'id':53252,
-                  'name':"加入申请",
-                  'club_id':"",
-                  'post_date':util.formatTime(new Date()),
-                  'content':"加入申请",
-                  'from_member_id':app.globalData.userID,
-                  'to_members_id':[app.globalData.userID],
-                },
-                method:"POST",
-                header :{
-                  'content-type': 'application/json'
-                },
-                success(res){
-                  console.log(res.data)
-                }
-              })
-            } else {
-              console.log('取消')
+        if(nowshow.information.state=="apply")
+        {
+          wx.showModal({
+            title: nowshow.name,
+            content: '内容:' + nowshow.content +
+            '\n'+'发布日期:'+nowshow.post_date,
+            confirmText:'接受',
+            cancelText:'拒绝',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('que')
+                let backend=app.globalData.backendip
+                let that=this
+                wx.request({
+                  url: 'http://'+backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':nowshow.id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
+                wx.request({
+                  url: 'http://'+backend+'/api/actions/join_container',
+                  data:{
+                    'member_id':nowshow.member_id,
+                    'container_id':nowshow.information.container_id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res1){
+                    console.log(res1)
+                    wx.request({
+                      url: 'http://'+backend+'/api/create/notice',
+                      data:{
+                        'id':4125,
+                        'name':'接受申请',
+                        'club_id':app.globalData.specialclubID,
+                        'post_date':util.formatTime(new Date()),
+                        'content':JSON.stringify({state:"accept",
+                        content:'您对'+nowshow.information.container_name+'的申请已被接受'}),
+                        'from_member_id':app.globalData.userID,
+                        'to_members_id':[nowshow.member_id]
+                      },
+                      method:"POST",
+                      header :{
+                        'content-type': 'application/json'
+                      },
+                      success(res2){
+                        console.log(res2.data)
+                      }
+                    })
+                  }
+                })
+              } else {
+                console.log('取消')
+                let backend=app.globalData.backendip
+                wx.request({
+                  url: 'http://'+backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':nowshow.id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
+                wx.request({
+                  url: 'http://'+backend+'/api/create/notice',
+                  data:{
+                    'id':4125,
+                    'name':'拒绝申请',
+                    'club_id':app.globalData.specialclubID,
+                    'post_date':util.formatTime(new Date()),
+                    'content':JSON.stringify({state:"reject",
+                  content:'您对'+nowshow.information.container_name+'的申请已被拒绝'}),
+                    'from_member_id':app.globalData.userID,
+                    'to_members_id':[nowshow.member_id]
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
+              }
             }
-          }
-        })
+          })
+        }
+        else
+        {
+          wx.showModal({
+            title: nowshow.name,
+            content: '内容:' + nowshow.content +
+            '\n'+'发布日期:'+nowshow.post_date,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('确定')
+              } else {
+                console.log('取消')
+              }
+            }
+          })
+        }
+        
       }
       else
       {
         wx.showModal({
-          title: e.currentTarget.dataset.name,
-          content: '内容:' + e.currentTarget.dataset.content +
-          '\n'+'发布日期:'+e.currentTarget.dataset.post_date,
+          title: nowshow.name,
+          content: '内容:' + nowshow.content +
+          '\n'+'发布日期:'+nowshow.post_date,
           success: function (res) {
             if (res.confirm) {
               console.log('确')
@@ -241,15 +326,37 @@ Page({
               'content-type': 'application/json'
             },
             success:res1=> {
-              console.log(res1.data)
-              inform.push(res1.data)
-              _that.setData({
-                inform:inform
-              })
+              if(res1.data.club_id==app.globalData.specialclubID){
+                res1.data.information=JSON.parse(res1.data.content)
+                if(res1.data.information.state=="apply"){
+                  res1.data.content=res1.data.information.member_name+"申请加入社团"+res1.data.information.container_name
+                  inform.push(res1.data)
+                  console.log(inform)
+                  _that.setData({
+                    inform:inform
+                  })
+                }
+                else if(res1.data.information.state=="reject"||res1.data.information.state=="accept"){
+                  res1.data.content=res1.data.information.content
+                  inform.push(res1.data)
+                  _that.setData({
+                    inform:inform
+                  })
+                }
+              }
+              else{
+                console.log(res1.data)
+                inform.push(res1.data)
+                _that.setData({
+                  inform:inform
+                })
+
+              }
             }
           })
             
           }
+          console.log(inform)
           let checkedddl = []
           let notcheckedddl = []
           for (let i=0;i<res.data.ddls_received_id.length;i++) {
@@ -269,6 +376,7 @@ Page({
           let checkedddllist = []
           let notcheckedddllist = []
           let outddllist=[]
+          
           for (let i=0;i<checkedddl.length ; i++) {
             let backend = app.globalData.backendip
             let _that = that
@@ -284,10 +392,13 @@ Page({
               success:res1=> {
                 console.log(res1.data)
                 checkedddllist.push(res1.data)
-                _that.setData({
-                  checkedddl: checkedddllist,
-                  notcheckedddl: notcheckedddllist,
-                })
+                if(i==checkedddl.length-1){
+                  _that.setData({
+                    checkedddl: checkedddllist,
+                  })
+
+                }
+                
               }
             })
           }
@@ -316,11 +427,13 @@ Page({
                 {
                   outddllist.push(res1.data)
                 }
-                _that.setData({
-                  checkedddl: checkedddllist,
-                  notcheckedddl: notcheckedddllist,
-                  outddl:outddllist
-                })
+                if(i==notcheckedddl.length-1){
+                  _that.setData({
+                    outddl:outddllist,
+                    notcheckedddl: notcheckedddllist,
+                  })
+
+                }
               }
             })
           }
