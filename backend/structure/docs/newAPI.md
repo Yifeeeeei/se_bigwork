@@ -391,19 +391,36 @@ comment:如果返回的result值为existed，则代表该已经将该用户在�
 | ------ | ---------- | ------- | ------- |
 | result | string     | y       |         |
 
-### /api/delete/member删除member #TODO
+### /api/delete/club 删除club
 
 接收
 
-| key       | value_type | a_must? | comment   |
-| --------- | ---------- | ------- | --------- |
-| member_id | string     | y       | member id |
+| key     | value_type | a_must? | comment |
+| ------- | ---------- | ------- | ------- |
+| club_id | string     | y       | club id |
 
 返回
 
-| key    | value_type | a_must? | comment                     |
-| ------ | ---------- | ------- | --------------------------- |
-| result | string     | y       | "OK" or "id does not exist" |
+| key    | value_type | a_must? | comment |
+| ------ | ---------- | ------- | ------- |
+| result | string     | y       |         |
+
+note: 相应的member会自动更改，container会自动删除
+
+### /api/remove/member 删除member
+
+接收
+
+| key        | value_type   | a_must? | comment                        |
+| ---------- | ------------ | ------- | ------------------------------ |
+| members_id | list<string> | y       | members id                     |
+| club_id    | string       | y       | delete members from which club |
+
+返回
+
+| key    | value_type | a_must? | comment |
+| ------ | ---------- | ------- | ------- |
+| result | string     | y       | "OK"    |
 
 
 
