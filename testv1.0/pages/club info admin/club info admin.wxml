@@ -45,6 +45,7 @@
             club_name="{{current_club_name}}"
             rooter_id="{{tree.rooter_id}}"
             applyflag="0"
+            renameflag="1"
 ></treenode>
 <button class="deleteBtn" bindtap="deleteBtn">删除所选成员</button>
 <button wx:if="{{deleteflag}}" class="deleteclub" bindtap="deleteclub">解散社团</button>

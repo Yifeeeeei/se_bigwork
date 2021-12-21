@@ -35,7 +35,8 @@ Page({
                   wx.request({
                     url: 'http://'+backend+'/api/actions/login',
                     data:{
-                      id:res2.data.openid
+                      id:res2.data.openid,
+                      KEY:""
                     },
                     method:"POST",
                     header :{

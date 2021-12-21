@@ -22,6 +22,10 @@ Component({
             type:Number,
             value:0
         },
+        renameflag:{
+            type:Number,
+            value:0
+        },
         container_id:{
             type:String,
             value:""
@@ -166,6 +170,61 @@ Component({
             }
         })
     },
+    taprenameBtn(e){
+        let backend=app.globalData.backendip
+        let that=this
+        console.log(e.detail)
+        wx.showModal({
+          title:"请输入要更改的名称",
+          editable:true,
+          placeholderText:"如：内联部部长或文艺部部员",
+          confirmText:"确定提交",
+          cancelText:"取消",
+          success(res){
+            let tmp=res
+            if(res.confirm){
+              wx.request({
+                url: 'http://'+backend+'/api/get/container',
+                data:{
+                  'id':e.currentTarget.dataset.id,
+                },
+                method:"POST",
+                header :{
+                  'content-type': 'application/json'
+                },
+                success:res2=>{
+                  console.log(res2)
+                  wx.request({
+                    url: 'http://'+backend+'/api/update/container',
+                    data:{
+                      'id':e.currentTarget.dataset.id,
+                      'name':res.content,
+                      'belongs_to_club_id':res2.data['belongs_to_club_id'],
+                      'upper_container_id':res2.data['upper_container_id'],
+                      'contains':res2.data['contains'],
+                      'lower_containers_id':res2.data['lower_containers_id']
+                    },
+                    method:"POST",
+                    header :{
+                      'content-type': 'application/json'
+                    },
+                    success:resu=>{
+                      console.log(resu)
+                      wx.showModal({
+                        title:"",
+                        showCancel:false,
+                        content:"更改成功，退出重进即可查看"
+                      })
+                    }
+                  })
+                }
+              })
+            }else if(res.cancel){
+              console.log("...")
+            }
+          }
+        })
+      },
      setflag:function(event){
          if(this.data.showflag==false)
          {

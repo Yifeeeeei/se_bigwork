@@ -87,8 +87,19 @@ Page({
         console.log(this.data.clubdescription)
         wx.showModal({
           title:'提示',
-          content:'创建成功！',
-          showCancel:false
+          content:'是否确定创建社团',
+          confirmText:'确定',
+          cancelText:'取消',
+          success:res=>{
+            wx.showModal({
+              title:'提示',
+              content:'创建成功！',
+              showCancel:false,
+              success:res=>{
+                that.createclub()
+              }
+            })
+          }
         })
       }else{
         this.setData({
@@ -99,10 +110,18 @@ Page({
         console.log(this.data.clubdescription)
         wx.showModal({
           title:'提示',
-          content:'创建成功！',
-          showCancel:false,
-          success(){
-            that.createclub()
+          content:'是否确定创建社团',
+          confirmText:'确定',
+          cancelText:'取消',
+          success:res=>{
+            wx.showModal({
+              title:'提示',
+              content:'创建成功！',
+              showCancel:false,
+              success:res=>{
+                that.createclub()
+              }
+            })
           }
         })
       }

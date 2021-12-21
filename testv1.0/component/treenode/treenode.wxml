@@ -3,6 +3,8 @@
 <text bindtap="setflag">name:{{name}}</text>
 <button wx:if="{{applyflag}}" catchtap="tapapplyBtn" data-id="{{container_id}}"
 data-name="{{name}}">发送申请</button>
+<button wx:if="{{renameflag}}" catchtap="taprenameBtn" data-id="{{container_id}}"
+data-name="{{name}}">更改名称</button>
 <view wx:if="{{membersdata||childdata}}" hidden="{{showflag}}">
 <checkbox-group bindchange="checkboxChange" wx:if="{{!applyflag}}">
 <view wx:for="{{membersdata}}">
@@ -15,6 +17,7 @@ data-name="{{name}}">发送申请</button>
           members="{{item.members}}" 
           child="{{item.child}}" 
           applyflag="{{applyflag}}" 
+          renameflag="{{renameflag}}"
           container_id="{{item.container_id}}"
           club_id="{{club_id}}"
           club_name="{{club_name}}"
