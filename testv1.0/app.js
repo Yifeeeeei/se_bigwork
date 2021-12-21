@@ -17,7 +17,7 @@ App({
   globalData: {
     userInfo: null,
     userID: null,
-    backendip:'82.157.127.241:11452',
+    backendip:'82.157.127.241',
     code:null,
     specialclubID:"club9885515"
   }

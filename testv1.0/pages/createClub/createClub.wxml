@@ -16,19 +16,16 @@
       <view wx:if="{{index%3==0}}">
         <view bindtap="toClubjoin" class="clubarea1" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
-          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==1}}">
         <view bindtap="toClubjoin" class="clubarea2" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
-          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
       <view wx:if="{{index%3==2}}">
         <view bindtap="toClubjoin" class="clubarea3" type="primary" data-name="{{item.id}}">
           <text class="clubName">{{item.name}}</text>
-          <text class="clubInfo">{{item.discription}}</text>
         </view>
       </view>
     </view>

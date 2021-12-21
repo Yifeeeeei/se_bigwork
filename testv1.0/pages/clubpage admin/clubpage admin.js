@@ -58,9 +58,11 @@ Page({
   },
   tomanage:function(e){
     let club_id=e.currentTarget.dataset.id
+    console.log(e)
     wx.navigateTo({
-      url: '../club info admain/club info admain',
+      url: '../club info admin/club info admin',
       success(res){
+        console.log(res)
         res.eventChannel.emit('tomanagePage',{data:club_id})
       }
     })
