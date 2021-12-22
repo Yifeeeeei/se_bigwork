@@ -18,7 +18,7 @@ Page({
         let backend = app.globalData.backendip
             let that = this
           wx.request({
-            url: 'http://' + backend + '/api/get/notice',
+            url: 'https://' + backend + '/api/get/notice',
             data: {
               'id': options.id,
             },

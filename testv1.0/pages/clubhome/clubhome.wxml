@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<image src="/images/clubhome_background.png" class="background"></image>
 <view class="container">
   <view class="clubBlock">
     <view class="clublist" wx:for="{{clublist}}">

@@ -68,3 +68,12 @@
   justify-content: center;
   background: linear-gradient(to bottom,#e2adff,#bf50ff);
 }
+
+.background{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 2300px;
+  opacity: 0.15;
+  z-index: -1;
+}

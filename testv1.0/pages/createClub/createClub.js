@@ -43,7 +43,7 @@ Page({
         })
       }else{
         wx.request({
-          url: 'http://'+backend+'/api/search/club',
+          url: 'https://'+backend+'/api/search/club',
           data:{
             keyword:that.data.tmpsearchname
           },
@@ -130,7 +130,7 @@ Page({
       let backend=app.globalData.backendip
       let that=this
       wx.request({
-        url: 'http://'+backend+'/api/create/club',
+        url: 'https://'+backend+'/api/create/club',
         data:{
           'id':'1',
           'name':that.data.clubname,

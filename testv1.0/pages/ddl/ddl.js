@@ -80,7 +80,7 @@ Page({
                 let backend=app.globalData.backendip
                 let that=this
                 wx.request({
-                  url: 'http://'+backend+'/api/delete/notice',
+                  url: 'https://'+backend+'/api/delete/notice',
                   data:{
                     'notice_id':nowshow.id
                   },
@@ -93,7 +93,7 @@ Page({
                   }
                 })
                 wx.request({
-                  url: 'http://'+backend+'/api/actions/join_container',
+                  url: 'https://'+backend+'/api/actions/join_container',
                   data:{
                     'member_id':nowshow.member_id,
                     'container_id':nowshow.information.container_id
@@ -105,7 +105,7 @@ Page({
                   success(res1){
                     console.log(res1)
                     wx.request({
-                      url: 'http://'+backend+'/api/create/notice',
+                      url: 'https://'+backend+'/api/create/notice',
                       data:{
                         'id':4125,
                         'name':'接受申请',
@@ -130,7 +130,7 @@ Page({
                 console.log('取消')
                 let backend=app.globalData.backendip
                 wx.request({
-                  url: 'http://'+backend+'/api/delete/notice',
+                  url: 'https://'+backend+'/api/delete/notice',
                   data:{
                     'notice_id':nowshow.id
                   },
@@ -143,7 +143,7 @@ Page({
                   }
                 })
                 wx.request({
-                  url: 'http://'+backend+'/api/create/notice',
+                  url: 'https://'+backend+'/api/create/notice',
                   data:{
                     'id':4125,
                     'name':'拒绝申请',
@@ -230,7 +230,7 @@ Page({
           if (res.confirm) {
             console.log('确')
             wx.request({
-              url: 'http://'+backend+'/api/check/ddl',
+              url: 'https://'+backend+'/api/check/ddl',
               data:{
                 'ddl_id':a,
                 'checker_id':app.globalData.userID
@@ -301,7 +301,7 @@ Page({
       console.log(1)
       console.log(app.globalData.userID)
       wx.request({
-        url: 'http://' + backend + '/api/get/member',
+        url: 'https://' + backend + '/api/get/member',
         data: {
           'id': app.globalData.userID,
         },
@@ -317,7 +317,7 @@ Page({
             let backend = app.globalData.backendip
             let _that = that
           wx.request({
-            url: 'http://' + backend + '/api/get/notice',
+            url: 'https://' + backend + '/api/get/notice',
             data: {
               'id': res.data.notices_received_id[i],
             },
@@ -381,7 +381,7 @@ Page({
             let backend = app.globalData.backendip
             let _that = that
             wx.request({
-              url: 'http://' + backend + '/api/get/ddl',
+              url: 'https://' + backend + '/api/get/ddl',
               data: {
                 'id': checkedddl[i],
               },
@@ -406,7 +406,7 @@ Page({
             let backend = app.globalData.backendip
             let _that = that
             wx.request({
-              url: 'http://' + backend + '/api/get/ddl',
+              url: 'https://' + backend + '/api/get/ddl',
               data: {
                 'id': notcheckedddl[i],
               },

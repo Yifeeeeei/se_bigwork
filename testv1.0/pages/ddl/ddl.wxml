@@ -1,4 +1,5 @@
 <!--pages/ddl.wxml-->
+<image src="/images/clubhome_background.png" class="background"></image>
 <view class="menu_box">
  <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">ddl</text>
  <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">通知</text>

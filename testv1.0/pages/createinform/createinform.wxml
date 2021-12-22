@@ -1,4 +1,5 @@
 <!--pages/createinform/createinform.wxml-->
+<image src="/images/clubhome_background.png" class="background"></image>
   <view class="page-section">
     <view class="title">通知标题:</view>
     <view class="after-title">
