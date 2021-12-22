@@ -1,9 +1,48 @@
 <!--pages/clubpage/clubpage.wxml-->
-<view class="container">
-  <view class="club_info">
-    <text>{{current_club_name}}\n</text>
-    <text>{{current_club_discription}}</text>
+<view class="mine-wrapper">
+  <view class="avatar-wrapper">
+    <view class="avatar">
+      <block>
+      </block>
+    </view>
   </view>
+  <view class="list-wrapper">
+    <view class="alllists">
+      <block wx:for="{{menuitems}}" wx:key="menu_for">
+        <navigator url="{{item.url}}" class="lists">
+          <view class='content'>
+            <view class="listimg">
+              <image src="{{item.icon}}"></image>
+            </view>
+            <view class="listtext">{{item.text}}
+            
+            </view>
+            <view class="listicon">{{item.tips}}</view>
+            <view> ： </view>
+            <view wx:if="{{item.flag==0}}">
+              <text >{{current_club_name}}</text>
+            </view>
+            <view wx:if="{{item.flag==1}}">
+              <text >{{current_club_discription}}</text>
+            </view>
+            
+            <view class="listinfo">{{item.info}}</view>
+            <view class="editname" wx:if="{{item.text == '修改名称'}}">
+                <input class="editname-input"></input>
+            </view>
+          </view>
+          <button class="cu-btn round lg line-blue margin-tb-sm" id="editname-button" bindtap="buttonclick" wx:if="{{item.text == '修改名称'}}">
+            确定
+          </button>
+        </navigator>
+        <!-- 分割线 -->
+        <view class="divLine"></view>
+      </block>
+      <block> </block>
+    </view>
+  </view>
+  </view>
+<view class="container">
   <treenode id="treenode"
             name="{{tree.name}}" 
             members="{{tree.members}}" 

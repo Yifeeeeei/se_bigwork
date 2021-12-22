@@ -45,3 +45,67 @@
     box-sizing:
         border-box;
 }
+
+
+.avatar-wrapper {
+    background-image: linear-gradient(to bottom right,#4762f3,#5cc3ff);
+    padding: 25px 0;
+    margin-bottom: 25px;
+  }
+  .functionarea{
+    align-items: center;
+  }
+  .buttonarea{
+    margin-top: 50px;
+  }
+  .avatar-wrapper .avatar {
+    margin: 0 auto;
+    text-align: lefts;
+    margin-left: 10%;
+  }
+   
+  .avatar .clubinfo-avatar {
+    width: 100px;
+    height: 100px;
+  }
+   
+  .avatar-wrapper .text {
+    text-align: center;
+    color: #fff;
+  }
+   
+  .listimg image {
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+  }
+  
+  .content{
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  #editname-button {
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .lists
+  {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+   
+  /*分割线样式*/
+  .divLine{
+    background: #aaaaaa;
+    height: 2rpx;
+    margin-left: 25px;
+    margin-right: 25px;
+  }

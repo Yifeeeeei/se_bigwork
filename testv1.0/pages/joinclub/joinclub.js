@@ -12,7 +12,22 @@ Page({
     current_club_structure:[],
     current_club_rootid:"",
     current_club_id:"",
-    tree:{}
+    tree:{},
+    menuitems: [{
+      text: '社团名称',
+      url: '#',
+      icon: '/images/club/1.png',
+      info: '',
+      flag:0
+    },
+    {
+      text: '社团简介',
+      url: '#',
+      icon: '/images/club/4.png',
+      info: '',
+      flag:1
+    },
+  ],
   },
   /**
    * 生命周期函数--监听页面加载
