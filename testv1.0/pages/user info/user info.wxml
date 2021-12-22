@@ -1,6 +1,5 @@
 <!--user info.wxml-->
 
-
 <view class="mine-wrapper">
   <view class="avatar-wrapper">
     <open-data type="userAvatarUrl" class="userimage-blur"></open-data>
@@ -39,5 +38,5 @@
       </block>
     </view>
   </view>
-  <button bindtap="rename">修改用户信息</button>
+  <button class="renameBtn" bindtap="rename">修改用户信息</button>
 </view>

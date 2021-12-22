@@ -59,3 +59,16 @@
   margin-left: 25px;
   margin-right: 25px;
 }
+
+.renameBtn{
+  margin-left: 30%;
+  margin-right: 30%;
+  margin-top: 10%;
+  height: 40px;
+  background: linear-gradient(to bottom,#fafafa,#e4e4e4);
+  text-align: center;
+  font-size: 14px;
+  line-height: 40px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+}
