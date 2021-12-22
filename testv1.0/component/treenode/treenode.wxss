@@ -2,3 +2,15 @@
 .pag{
     margin-left: 10px;
 }
+.arrow{
+    width: 14px;
+    height: 14px;
+    position: relative !important;
+    left: 0px;
+}
+.pos{
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    text-align: left;
+}

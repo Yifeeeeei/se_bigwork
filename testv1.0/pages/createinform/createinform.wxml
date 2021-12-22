@@ -15,5 +15,10 @@
       </view>
       </view>
   </view>
+
+  <view class="section">
+  请选择发送对象:
+  (点击结构名可展示或收起其中的人和子结构)
+</view>
   <treenode id="treenode"name="{{tree.name}}" members="{{tree.members}}" child="{{tree.child}}"></treenode>
   <button bindtap="sendinform" type="primary"class="sendinform">发送</button>

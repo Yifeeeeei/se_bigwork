@@ -1,16 +1,31 @@
 <!--component/treenode/treenode.wxml-->
-<view class="pag">
-<text bindtap="setflag">name:{{name}}</text>
+
+
+
+<button bindtap="setflag"class="pos">
+    <image class="arrow"src="/images/icon-down.png" hidden="{{showflag}}"></image>
+<image class="arrow"src="/images/icon-up.png" hidden="{{!showflag}}"></image>
+{{name}}
+
+</button>
 <button wx:if="{{applyflag}}" catchtap="tapapplyBtn" data-id="{{container_id}}"
 data-name="{{name}}">发送申请</button>
 <button wx:if="{{renameflag}}" catchtap="taprenameBtn" data-id="{{container_id}}"
 data-name="{{name}}">更改名称</button>
+
 <view wx:if="{{membersdata||childdata}}" hidden="{{showflag}}">
-<checkbox-group bindchange="checkboxChange" wx:if="{{!applyflag}}">
-<view wx:for="{{membersdata}}">
-<checkbox value="{{item.id}}"/>{{item.name}}
-</view>
-</checkbox-group>
+
+<view class="weui-cells weui-cells_after-title">
+        <checkbox-group bindchange="checkboxChange">
+          <label class="weui-cell weui-check__label" wx:for="{{membersdata}}">
+            <view class="weui-cell__hd">
+              <checkbox class="checkbox"wx:key="value" value="{{item.id}}"/>
+            </view>
+            <view class="weui-cell__bd">{{item.name}}</view>
+          </label>
+        </checkbox-group>
+      </view>
+
 <view wx:for="{{childdata}}">
 <childnode id="treenode{{item.index}}" 
           name="{{item.name}}" 
@@ -22,6 +37,6 @@ data-name="{{name}}">更改名称</button>
           club_id="{{club_id}}"
           club_name="{{club_name}}"
           rooter_id="{{rooter_id}}"></childnode>
+        </view>
 </view>
-</view>
-</view>
+
