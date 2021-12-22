@@ -44,8 +44,8 @@
 
 <view wx:if="{{currentTab==2}}" class="swiper-box">
     <view class="swiper-box_items">
-        <button class="ddlbtn" bindtap="createddl" data-id="{{current_club_id}}">发布ddl</button>
-        <button class="informbtn" bindtap="createinform" data-id="{{current_club_id}}">发布通知</button>
-        <button class="managebtn" bindtap="tomanage" data-id="{{current_club_id}}">管理社团</button>
+        <button class="btn" bindtap="createddl" data-id="{{current_club_id}}">发布ddl</button>
+        <button class="btn" bindtap="createinform" data-id="{{current_club_id}}">发布通知</button>
+        <button class="btn" bindtap="tomanage" data-id="{{current_club_id}}">管理社团</button>
     </view>
 </view>
