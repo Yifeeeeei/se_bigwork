@@ -73,7 +73,220 @@ Page({
   onReady: function () {
 
   },
+  todetail: function (e) {
+    let a = e.currentTarget.dataset.id;
+    console.log(a)
+    let backend = app.globalData.backendip
+    let that = this
+    
+    
+    if (e.currentTarget.dataset.flag == 1) {
+      wx.showModal({
+        title: e.currentTarget.dataset.name,
+        content: '内容:' + e.currentTarget.dataset.content + '\n' + '状态:未完成'+
+        '\n'+'发布日期:'+e.currentTarget.dataset.post_date+
+        '\n'+'截止日期:'+e.currentTarget.dataset.end_date,
+        confirmText: '已完成',
+        success: res=> {
+          let _that=that
+          if (res.confirm) {
+            console.log('确')
+            wx.request({
+              url:   backend+'/api/check/ddl',
+              data:{
+                'ddl_id':a,
+                'checker_id':app.globalData.userID
+              },
+              method:"POST",
+              header :{
+                'content-type': 'application/json'
+              },
+              success(res1){
+                console.log(res1.data)
+                _that.onShow()
+              }
+            })
+          } else {
+            console.log('取消')
+          }
+        }
+      })
+    } else if (e.currentTarget.dataset.flag == 0) {
+      wx.showModal({
+        title: e.currentTarget.dataset.name,
+        content: '内容:' + e.currentTarget.dataset.content + '\n' + '状态:过期'+
+        '\n'+'发布日期:'+e.currentTarget.dataset.post_date+
+        '\n'+'截止日期:'+e.currentTarget.dataset.end_date,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('确')
+          } else {
+            console.log('取消')
+          }
+        }
+      })
+    } else {
+      wx.showModal({
+        title: e.currentTarget.dataset.name,
+        content: '内容:' + e.currentTarget.dataset.content + '\n' + '状态:已完成'+
+        '\n'+'发布日期:'+e.currentTarget.dataset.post_date+
+        '\n'+'截止日期:'+e.currentTarget.dataset.end_date,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('确')
+          } else {
+            console.log('取消')
+          }
+        }
+      })
+    }
 
+  },
+  toinform: function (e) {
+    /*
+    let a=e.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: '../informdetail/informdetail?id='+a,
+    })*/
+    let nowshow=e.currentTarget.dataset
+    console.log(nowshow)
+      if(nowshow.clubid==app.globalData.specialclubID)
+      {
+        if(nowshow.information.state=="apply")
+        {
+          wx.showModal({
+            title: nowshow.name,
+            content: '内容:' + nowshow.content +
+            '\n'+'发布日期:'+nowshow.post_date,
+            confirmText:'接受',
+            cancelText:'拒绝',
+            success: function (res) {
+              if (res.confirm) {
+                console.log('que')
+                let backend=app.globalData.backendip
+                let that=this
+                wx.request({
+                  url:   backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':nowshow.id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
+                wx.request({
+                  url:   backend+'/api/actions/join_container',
+                  data:{
+                    'member_id':nowshow.member_id,
+                    'container_id':nowshow.information.container_id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res1){
+                    console.log(res1)
+                    wx.request({
+                      url:   backend+'/api/create/notice',
+                      data:{
+                        'id':4125,
+                        'name':'接受申请',
+                        'club_id':app.globalData.specialclubID,
+                        'post_date':util.formatTime(new Date()),
+                        'content':JSON.stringify({state:"accept",
+                        content:'您对'+nowshow.information.container_name+'的申请已被接受'}),
+                        'from_member_id':app.globalData.userID,
+                        'to_members_id':[nowshow.member_id]
+                      },
+                      method:"POST",
+                      header :{
+                        'content-type': 'application/json'
+                      },
+                      success(res2){
+                        console.log(res2.data)
+                      }
+                    })
+                  }
+                })
+              } else {
+                console.log('取消')
+                let backend=app.globalData.backendip
+                wx.request({
+                  url:   backend+'/api/delete/notice',
+                  data:{
+                    'notice_id':nowshow.id
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
+                wx.request({
+                  url:   backend+'/api/create/notice',
+                  data:{
+                    'id':4125,
+                    'name':'拒绝申请',
+                    'club_id':app.globalData.specialclubID,
+                    'post_date':util.formatTime(new Date()),
+                    'content':JSON.stringify({state:"reject",
+                  content:'您对'+nowshow.information.container_name+'的申请已被拒绝'}),
+                    'from_member_id':app.globalData.userID,
+                    'to_members_id':[nowshow.member_id]
+                  },
+                  method:"POST",
+                  header :{
+                    'content-type': 'application/json'
+                  },
+                  success(res2){
+                    console.log(res2.data)
+                  }
+                })
+              }
+            }
+          })
+        }
+        else
+        {
+          wx.showModal({
+            title: nowshow.name,
+            content: '内容:' + nowshow.content +
+            '\n'+'发布日期:'+nowshow.post_date,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('确定')
+              } else {
+                console.log('取消')
+              }
+            }
+          })
+        }
+        
+      }
+      else
+      {
+        wx.showModal({
+          title: nowshow.name,
+          content: '内容:' + nowshow.content +
+          '\n'+'发布日期:'+nowshow.post_date,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('确')
+            } else {
+              console.log('取消')
+            }
+          }
+        })
+      }
+      
+    
+  },
   /**
    * 生命周期函数--监听页面显示
    */
