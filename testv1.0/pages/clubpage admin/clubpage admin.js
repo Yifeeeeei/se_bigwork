@@ -77,7 +77,7 @@ Page({
     eventChannel.on('toclubPage1',(res)=>{
       console.log(res.data)
       wx.request({
-        url: 'http://'+backend+'/api/get/club',
+        url: 'https://'+backend+'/api/get/club',
         data:{
           id:res.data
         },
@@ -117,7 +117,7 @@ Page({
     console.log(1)
     console.log(app.globalData.userID)
     wx.request({
-      url: 'http://' + backend + '/api/get/member',
+      url: 'https://' + backend + '/api/get/member',
       data: {
         'id': app.globalData.userID,
       },
@@ -133,7 +133,7 @@ Page({
           let backend = app.globalData.backendip
           let _that = that
         wx.request({
-          url: 'http://' + backend + '/api/get/notice',
+          url: 'https://' + backend + '/api/get/notice',
           data: {
             'id': res.data.notices_received_id[i],
           },
@@ -176,7 +176,7 @@ Page({
           let backend = app.globalData.backendip
           let _that = that
           wx.request({
-            url: 'http://' + backend + '/api/get/ddl',
+            url: 'https://' + backend + '/api/get/ddl',
             data: {
               'id': checkedddl[i],
             },
@@ -200,7 +200,7 @@ Page({
           let backend = app.globalData.backendip
           let _that = that
           wx.request({
-            url: 'http://' + backend + '/api/get/ddl',
+            url: 'https://' + backend + '/api/get/ddl',
             data: {
               'id': notcheckedddl[i],
             },

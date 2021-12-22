@@ -54,15 +54,15 @@
   font-size: 14px;
   line-height: 25px;
 }
-.showbtn{
-  margin-top: 7px;
-  margin-right: 20px;
-  margin-bottom: 6px;
-  padding: 5px 5px;
-  height: 15px;
-  border-radius: 2px;
+.list-view-item .renamebtn{
+  position: absolute;
+  top: 7px;
+  right: 40rpx;
+  padding: 0 5px;
+  height: 25px;
+  border-radius: 3px;
   background: #4b0;
   color: #fff;
-  font-size: 10px;
-  line-height: 20px; 
+  font-size: 14px;
+  line-height: 25px; 
 }
