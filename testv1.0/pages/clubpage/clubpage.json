@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {},
+  "navigationBarTitleText": "社团主页",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEEEEE"
 }

@@ -129,7 +129,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that=this
+    let backend=app.globalData.backendip
+    wx.request({
+      url:   backend+'/api/get/member',
+      data:{
+        id:app.globalData.userID,
+      },
+      method:"POST",
+      header :{
+        'content-type': 'application/json'
+      },
+      success:res3=>{
+        console.log(res3)
+        let tmpmenu=[{
+          text: '昵称',
+          url: '#',
+          icon: '/images/user/1.png',
+          info: res3.data.name
+        },{
+          text: '所在社团数量',
+          url: '#',
+          icon: '/images/user/3.png',
+          info: res3.data.belongs_to_container_id.length
+        }]
+        this.setData({
+          canIUseGetUserProfile: true,
+          menuitems:tmpmenu
+        })
+      }
+    })
   },
 
   /**

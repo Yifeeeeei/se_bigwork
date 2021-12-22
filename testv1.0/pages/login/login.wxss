@@ -1,1 +1,23 @@
 /* pages/login/login.wxss */
+.cu-btn{
+  position: relative;
+  top: 90%;
+}
+.icon{
+  width: 150px;
+  height: 150px;
+}
+.container{
+  align-items: center;
+}
+.textarea{
+  margin-top: 50px;
+}
+.introduction{
+  font-style: italic;
+  font-size: 20px;
+  font-weight: bold;
+}
+.buttonarea{
+  margin-top: 20px;
+}

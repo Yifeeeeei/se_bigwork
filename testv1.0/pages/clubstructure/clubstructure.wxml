@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <image src="/images/clubhome_background.jpg" class="background"></image>
+<text class="lg text-gray cuIcon-infofill" bindtap="showhelp" id="question"></text>
 <view class="container">
-  <text></text>
   <path-view unnormalizedValue="{{value}}"
              btnTxt='创建子结构'
              btnshowTxt='查看成员'

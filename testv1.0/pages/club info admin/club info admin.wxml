@@ -35,7 +35,7 @@
                 <input class="editname-input"></input>
             </view>
           </view>
-          <button class="editname-button" bindtap="buttonclick" wx:if="{{item.text == '修改名称'}}">
+          <button class="cu-btn round lg line-blue margin-tb-sm" id="editname-button" bindtap="buttonclick" wx:if="{{item.text == '修改名称'}}">
             确定
           </button>
         </navigator>
@@ -45,7 +45,8 @@
     </view>
   </view>
 </view>
-<treenode id="treenode"
+<view class="functionarea">
+  <treenode id="treenode"
             name="{{tree.name}}" 
             members="{{tree.members}}" 
             child="{{tree.child}}"
@@ -55,6 +56,10 @@
             rooter_id="{{tree.rooter_id}}"
             applyflag="0"
             renameflag="1"
-></treenode>
-<button class="deleteBtn" bindtap="deleteBtn">删除所选成员</button>
-<button wx:if="{{deleteflag}}" class="deleteclub" bindtap="deleteclub">解散社团</button>
+  ></treenode>
+</view>
+<view class="buttonarea">
+  <button class="cu-btn round lg line-red margin-tb-sm" bindtap="deleteBtn" id="deletemember">删除所选成员</button>
+  <button wx:if="{{deleteflag}}" class="cu-btn round lg line-red margin-tb-sm" bindtap="deleteclub" id="deleteclub">解散社团</button>
+</view>
+

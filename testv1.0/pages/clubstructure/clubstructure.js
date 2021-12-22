@@ -76,6 +76,13 @@ Page({
       }
     })
   },
+  showhelp(e){
+    wx.showModal({
+      title:"帮助",
+      content:"您可以在本页面创建属于您的社团。\n点击创建子结构按钮可以新建当前职位的下属部门\n点击更改名称可以改变当前职位的名称\n上方的按钮可以帮助您快速回到上一层\n由于目前没有删除部门的功能，请您慎重创建",
+      showCancel:false
+    })
+  },
   createchild(e){
     let backend=app.globalData.backendip
     let that=this

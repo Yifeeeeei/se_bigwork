@@ -83,3 +83,7 @@
   position: relative;
   right: 0px;
 }
+#question{
+  font-size: 30px;
+  margin-left: 20px;
+}

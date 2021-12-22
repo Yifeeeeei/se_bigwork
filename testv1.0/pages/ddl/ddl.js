@@ -215,12 +215,8 @@ Page({
     wx.showModal({
       title: '帮助',
       content: '每个卡片代表一个ddl或者通知，其中ddl卡片灰色代表已完成，绿色代表待完成，红色代表已过期；点击可查看ddl或通知详情。',
+      showCancel:false,
       success: function (res) {
-        if (res.confirm) {
-          console.log('确')
-        } else {
-          console.log('取消')
-        }
       }
     })
   },

@@ -1,5 +1,8 @@
 {
   "usingComponents": {
     "path-view": "/components/mytree"
-  }
+  },
+  "navigationBarTitleText": "设计社团",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEEEEE"
 }

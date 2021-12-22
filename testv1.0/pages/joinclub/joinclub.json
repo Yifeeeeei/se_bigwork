@@ -1,5 +1,8 @@
 {
   "usingComponents": {
     "treenode":"../../component/treenode/treenode"
-  }
+  },
+  "navigationBarTitleText": "加入社团",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#EEEEEE"
 }

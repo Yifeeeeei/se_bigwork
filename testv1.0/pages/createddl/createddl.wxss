@@ -79,3 +79,7 @@
     opacity: 0.15;
     z-index: -1;
   }
+  #question{
+    font-size: 30px;
+    margin-left: 20px;
+  }

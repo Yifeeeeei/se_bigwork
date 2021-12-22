@@ -5,7 +5,12 @@
   padding: 25px 0;
   margin-bottom: 25px;
 }
- 
+.functionarea{
+  align-items: center;
+}
+.buttonarea{
+  margin-top: 50px;
+}
 .avatar-wrapper .avatar {
   margin: 0 auto;
   text-align: lefts;
@@ -36,7 +41,7 @@
   margin-bottom: 10px;
 }
 
-.editname-button {
+#editname-button {
   width: 80px;
   height: 40px;
   line-height: 40px;

@@ -1,4 +1,6 @@
 /* component/treenode/treenode.wxss */
+@import "../../colorui/main.wxss";
+@import "../../colorui/icon.wxss";
 .pag{
     margin-left: 10px;
 }

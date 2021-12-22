@@ -1,6 +1,6 @@
 <!--pages/createddl/createddl.wxml-->
 <image src="/images/clubhome_background.jpg" class="background"></image>
-<image class="help"src="/images/help.png" bindtap="showhelp"></image>
+<text class="lg text-gray cuIcon-infofill" bindtap="showhelp" id="question"></text>
 <view class="page-body">
   <view class="page-section">
     <view class="title">ddl标题:</view>

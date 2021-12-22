@@ -34,12 +34,8 @@ Page({
     wx.showModal({
       title: '帮助',
       content: '在输入框内输入标题和内容，点击日期和时间可以选择截止日期和时间；选择发送对象时，点击结构可以展开或收起其中包含的人员以及子结构，勾选人员后点击发送即可发送ddl和通知到指定人员处。',
+      showCancel:false,
       success: function (res) {
-        if (res.confirm) {
-          console.log('确')
-        } else {
-          console.log('取消')
-        }
       }
     })
   },

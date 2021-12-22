@@ -1,2 +1,10 @@
 <!--pages/login/login.wxml-->
-<button bindtap="login" type="primary">登录</button>
+<view class="container">
+  <image src="/images/homeimage.png" class="icon"></image>
+<view class="textarea">
+  <text class="introduction">欢迎使用“口袋社工”小程序！</text>
+</view>
+<view class="buttonarea">
+  <button class="cu-btn round lg line-blue margin-tb-sm" bindtap="login" id="loginbutton" >登录</button>
+</view>
+</view>

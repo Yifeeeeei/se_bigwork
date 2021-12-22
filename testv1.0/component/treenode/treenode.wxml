@@ -8,9 +8,9 @@
 {{name}}
 
 </button>
-<button wx:if="{{applyflag}}" catchtap="tapapplyBtn" data-id="{{container_id}}"
+<button class="cu-btn round lg line-blue margin-tb-sm" wx:if="{{applyflag}}" catchtap="tapapplyBtn" data-id="{{container_id}}"
 data-name="{{name}}">发送申请</button>
-<button wx:if="{{renameflag}}" catchtap="taprenameBtn" data-id="{{container_id}}"
+<button class="cu-btn round lg line-blue margin-tb-sm" wx:if="{{renameflag}}" catchtap="taprenameBtn" data-id="{{container_id}}"
 data-name="{{name}}">更改名称</button>
 
 <view wx:if="{{membersdata||childdata}}" hidden="{{showflag}}">
