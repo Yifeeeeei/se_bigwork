@@ -57,6 +57,18 @@ Page({
             },
             success(res){
               console.log(res.data)
+          wx.showModal({
+            title: '',
+            content: '已发送',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
             }
           })
         }
