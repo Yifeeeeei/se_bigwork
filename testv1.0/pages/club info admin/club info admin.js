@@ -50,7 +50,7 @@ Page({
       success:res=>{
         if(res.confirm){
           wx.request({
-            url:'http://' + backend + '/api/delete/club',
+            url:'https://' + backend + '/api/delete/club',
             data:{
               'club_id':that.data.current_club_id
             },
@@ -87,7 +87,7 @@ Page({
     eventChannel.on('tomanagePage',(res)=>{
       console.log(res.data)
       wx.request({
-        url: 'http://'+backend+'/api/get/club',
+        url: 'https://'+backend+'/api/get/club',
         data:{
           id:res.data
         },
@@ -103,7 +103,7 @@ Page({
             current_club_id:res2.data.id
           })
           wx.request({
-            url: 'http://'+backend+'/api/get/container',
+            url: 'https://'+backend+'/api/get/container',
             data:{
               id:res2.data['root_container_id']
             },
@@ -162,7 +162,7 @@ Page({
             })
           }else{
             wx.request({
-              url: 'http://' + backend + '/api/remove/member',
+              url: 'https://' + backend + '/api/remove/member',
               data: {
                 members_id:tosendmember,
                 club_id:that.data.current_club_id
@@ -175,7 +175,7 @@ Page({
                 console.log(res.data)
                 let tmp="您已被"+that.data.current_club_name+"删除"
                 wx.request({
-                  url: 'http://'+backend+'/api/create/notice',
+                  url: 'https://'+backend+'/api/create/notice',
                   data:{
                     'id':53252,
                     'name':"成员删除通知",

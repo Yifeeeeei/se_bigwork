@@ -61,7 +61,7 @@ Component({
                 {
                     let that=this
                     wx.request({
-                        url: 'http://'+backend+'/api/get/member',
+                        url: 'https://'+backend+'/api/get/member',
                         data:{
                           'id':members[i]
                         },
@@ -90,7 +90,7 @@ Component({
             {
                 let that=this
                 wx.request({
-                    url: 'http://'+backend+'/api/get/container',
+                    url: 'https://'+backend+'/api/get/container',
                     data:{
                       'id':child[i]
                     },
@@ -146,7 +146,7 @@ Component({
                     var tmp_string=JSON.stringify(tmp_content)
                     console.log(tmp_string)
                     wx.request({
-                        url: 'http://'+backend+'/api/create/notice',
+                        url: 'https://'+backend+'/api/create/notice',
                         data:{
                           'id':53252,
                           'name':"加入申请",
@@ -184,7 +184,7 @@ Component({
             let tmp=res
             if(res.confirm){
               wx.request({
-                url: 'http://'+backend+'/api/get/container',
+                url: 'https://'+backend+'/api/get/container',
                 data:{
                   'id':e.currentTarget.dataset.id,
                 },
@@ -195,7 +195,7 @@ Component({
                 success:res2=>{
                   console.log(res2)
                   wx.request({
-                    url: 'http://'+backend+'/api/update/container',
+                    url: 'https://'+backend+'/api/update/container',
                     data:{
                       'id':e.currentTarget.dataset.id,
                       'name':res.content,
