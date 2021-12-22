@@ -29,7 +29,7 @@
         "list": [
             {
                 "pagePath": "pages/ddl/ddl",
-                "text": "首页"
+                "text": "DDL首页"
             },
             {
                 "pagePath": "pages/clubhome/clubhome",

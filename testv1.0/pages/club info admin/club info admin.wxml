@@ -18,9 +18,18 @@
             <view class="listimg">
               <image src="{{item.icon}}"></image>
             </view>
-            <view class="listtext">{{item.text}}</view>
+            <view class="listtext">{{item.text}}
+            
+            </view>
             <view class="listicon">{{item.tips}}</view>
             <view> ： </view>
+            <view wx:if="{{item.flag==0}}">
+              <text >{{current_club_name}}</text>
+            </view>
+            <view wx:if="{{item.flag==3}}">
+              <text >{{current_container_name}}</text>
+            </view>
+            
             <view class="listinfo">{{item.info}}</view>
             <view class="editname" wx:if="{{item.text == '修改名称'}}">
                 <input class="editname-input"></input>

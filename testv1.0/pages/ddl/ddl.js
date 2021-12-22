@@ -291,6 +291,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      inform:[],
+      outddl:[],
+      notcheckedddl: [],
+      checkedddl:[]
+    })
       let date = util.formatTime(new Date())
       console.log(date)
       let repTime = date.replace(/-/g, '/')
