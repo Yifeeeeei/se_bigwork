@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<image src="/images/clubhome_background.jpg" class="background"></image>
 <view class="container">
   <text></text>
   <path-view unnormalizedValue="{{value}}"
