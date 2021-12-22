@@ -24,7 +24,7 @@ Page({
     eventChannel.on('toclubjoin',(res)=>{
       console.log(res.data)
       wx.request({
-        url: 'http://'+backend+'/api/get/club',
+        url:   backend+'/api/get/club',
         data:{
           id:res.data
         },
@@ -40,7 +40,7 @@ Page({
             current_club_id:res2.data.id
           })
           wx.request({
-            url: 'http://'+backend+'/api/get/container',
+            url:   backend+'/api/get/container',
             data:{
               id:res2.data['root_container_id']
             },

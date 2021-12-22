@@ -36,7 +36,7 @@ Page({
                   app.globalData.userID=res2.data.openid
                   wx.setStorageSync('sessionKey', sessionkey)
                   wx.request({
-                    url: 'http://'+backend+'/api/actions/login',
+                    url:   backend+'/api/actions/login',
                     data:{
                       id:res2.data.openid,
                       KEY:""
@@ -49,7 +49,7 @@ Page({
                       console.log(res3)
                       if(res3.data.result=="new"){
                         wx.request({
-                          url: 'http://'+backend+'/api/modify/name',
+                          url:   backend+'/api/modify/name',
                           data:{
                             member_id:res2.data.openid,
                             new_name:res.userInfo.nickName

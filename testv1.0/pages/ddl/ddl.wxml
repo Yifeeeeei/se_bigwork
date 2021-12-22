@@ -4,6 +4,7 @@
  <text class='menu1 {{menuTapCurrent=="0"?"borders":""}}' data-current="0" catchtap="menuTap">DDL</text>
  <text class='menu2 {{menuTapCurrent=="1"?"borders":""}}' data-current="1" catchtap="menuTap">通知</text>
 </view>
+<image class="arrow"src="/images/help.png" bindtap="showhelp"></image>
 <view  hidden="{{menuTapCurrent!='0'}}">
 
 <block wx:for="{{notcheckedddl}}">

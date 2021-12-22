@@ -30,6 +30,19 @@ Page({
       name: e.detail.value
     })
   },
+  showhelp:function(){
+    wx.showModal({
+      title: '帮助',
+      content: '在输入框内输入标题和内容，点击日期和时间可以选择截止日期和时间；选择发送对象时，点击结构可以展开或收起其中包含的人员以及子结构，勾选人员后点击发送即可发送ddl和通知到指定人员处。',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('确')
+        } else {
+          console.log('取消')
+        }
+      }
+    })
+  },
   bindTimeChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -63,7 +76,7 @@ Page({
     if(tosendmember.length>0)
     {
       wx.request({
-        url: 'http://' + backend + '/api/create/ddl',
+        url:  backend + '/api/create/ddl',
         data: {
           'id': 53252,
           'name': this.data.name,
@@ -114,7 +127,7 @@ Page({
     eventChannel.on('toddlPage',(tmp_res)=>{
       console.log(tmp_res.data)
       wx.request({
-        url: 'http://' + backend + '/api/get/club',
+        url:  backend + '/api/get/club',
         data: {
           'id': tmp_res.data
         },
@@ -125,7 +138,7 @@ Page({
         success(res) {
           console.log(res.data)
           wx.request({
-            url: 'http://' + backend + '/api/get/container',
+            url:  backend + '/api/get/container',
             data: {
               'id': res.data.root_container_id
             },

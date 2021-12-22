@@ -77,3 +77,9 @@
   opacity: 0.15;
   z-index: -1;
 }
+.arrow{
+  width: 30px;
+  height: 30px;
+  position: relative;
+  right: 0px;
+}

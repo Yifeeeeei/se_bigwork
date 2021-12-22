@@ -80,7 +80,7 @@ Page({
                 let backend=app.globalData.backendip
                 let that=this
                 wx.request({
-                  url: 'http://'+backend+'/api/delete/notice',
+                  url:   backend+'/api/delete/notice',
                   data:{
                     'notice_id':nowshow.id
                   },
@@ -93,7 +93,7 @@ Page({
                   }
                 })
                 wx.request({
-                  url: 'http://'+backend+'/api/actions/join_container',
+                  url:   backend+'/api/actions/join_container',
                   data:{
                     'member_id':nowshow.member_id,
                     'container_id':nowshow.information.container_id
@@ -105,7 +105,7 @@ Page({
                   success(res1){
                     console.log(res1)
                     wx.request({
-                      url: 'http://'+backend+'/api/create/notice',
+                      url:   backend+'/api/create/notice',
                       data:{
                         'id':4125,
                         'name':'接受申请',
@@ -130,7 +130,7 @@ Page({
                 console.log('取消')
                 let backend=app.globalData.backendip
                 wx.request({
-                  url: 'http://'+backend+'/api/delete/notice',
+                  url:   backend+'/api/delete/notice',
                   data:{
                     'notice_id':nowshow.id
                   },
@@ -143,7 +143,7 @@ Page({
                   }
                 })
                 wx.request({
-                  url: 'http://'+backend+'/api/create/notice',
+                  url:   backend+'/api/create/notice',
                   data:{
                     'id':4125,
                     'name':'拒绝申请',
@@ -211,6 +211,19 @@ Page({
       url: '../createinform/createinform'
     })
   },
+  showhelp:function(){
+    wx.showModal({
+      title: '帮助',
+      content: '每个卡片代表一个ddl或者通知，其中ddl卡片灰色代表已完成，绿色代表待完成，红色代表已过期；点击可查看ddl或通知详情。',
+      success: function (res) {
+        if (res.confirm) {
+          console.log('确')
+        } else {
+          console.log('取消')
+        }
+      }
+    })
+  },
   todetail: function (e) {
     let a = e.currentTarget.dataset.id;
     console.log(a)
@@ -230,7 +243,7 @@ Page({
           if (res.confirm) {
             console.log('确')
             wx.request({
-              url: 'http://'+backend+'/api/check/ddl',
+              url:   backend+'/api/check/ddl',
               data:{
                 'ddl_id':a,
                 'checker_id':app.globalData.userID
@@ -307,7 +320,7 @@ Page({
       console.log(1)
       console.log(app.globalData.userID)
       wx.request({
-        url: 'http://' + backend + '/api/get/member',
+        url:  backend + '/api/get/member',
         data: {
           'id': app.globalData.userID,
         },
@@ -323,7 +336,7 @@ Page({
             let backend = app.globalData.backendip
             let _that = that
           wx.request({
-            url: 'http://' + backend + '/api/get/notice',
+            url:  backend + '/api/get/notice',
             data: {
               'id': res.data.notices_received_id[i],
             },
@@ -387,7 +400,7 @@ Page({
             let backend = app.globalData.backendip
             let _that = that
             wx.request({
-              url: 'http://' + backend + '/api/get/ddl',
+              url:  backend + '/api/get/ddl',
               data: {
                 'id': checkedddl[i],
               },
@@ -412,7 +425,7 @@ Page({
             let backend = app.globalData.backendip
             let _that = that
             wx.request({
-              url: 'http://' + backend + '/api/get/ddl',
+              url:  backend + '/api/get/ddl',
               data: {
                 'id': notcheckedddl[i],
               },

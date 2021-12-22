@@ -4,7 +4,12 @@
     margin-left: 5px;
     font-size: 36rpx;
 }
-
+.help{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 0px;
+  }
 .page-section{
     margin-top: 8%;
     margin-left: 10%;
