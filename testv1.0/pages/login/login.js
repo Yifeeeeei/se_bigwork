@@ -27,16 +27,16 @@ Page({
               let code = app.globalData.code
               let appid='wx8f6433359ab40480'
               let secret = 'a513154024c735fdf2d242469069c0c8'
-              let tmp_url='https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code'
+              let tmp_url='http://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code'
               wx.request({
-                url: 'https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code',
+                url: 'http://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code',
                 success :(res2) =>{
                   console.log(res2.data)
                   let sessionkey=res2.data.session_key
                   app.globalData.userID=res2.data.openid
                   wx.setStorageSync('sessionKey', sessionkey)
                   wx.request({
-                    url: 'https://'+backend+'/api/actions/login',
+                    url: 'http://'+backend+'/api/actions/login',
                     data:{
                       id:res2.data.openid,
                       KEY:""
@@ -49,7 +49,7 @@ Page({
                       console.log(res3)
                       if(res3.data.result=="new"){
                         wx.request({
-                          url: 'https://'+backend+'/api/modify/name',
+                          url: 'http://'+backend+'/api/modify/name',
                           data:{
                             member_id:res2.data.openid,
                             new_name:res.userInfo.nickName

@@ -16,7 +16,7 @@ Page({
     let backend=app.globalData.backendip
     let that=this
     wx.request({
-      url: 'https://'+backend+'/api/actions/incontainer',
+      url: 'http://'+backend+'/api/actions/incontainer',
       data:{
         member_id:userid,
         club_id:clubname
@@ -33,8 +33,11 @@ Page({
           
           wx.navigateTo({
             url: '../clubpage admin/clubpage admin',
-            success(res){
-              res.eventChannel.emit('toclubPage1',{data:clubname})
+            success(res2){
+              res2.eventChannel.emit('toclubPage1',{data:{
+                "clubid":clubname,
+                "containername":res.data.name
+              }})
             }
           })
         }else{
@@ -62,7 +65,7 @@ Page({
     let that=this
     console.log(userid)
     wx.request({
-      url: 'https://'+backend+'/api/actions/inclub',
+      url: 'http://'+backend+'/api/actions/inclub',
       data:{
         'member_id':userid
       },
@@ -79,7 +82,7 @@ Page({
         if(res.data['club_id'].length!=0){
           res.data['club_id'].forEach(tmp_club=>{
             wx.request({
-              url: 'https://'+backend+'/api/get/club',
+              url: 'http://'+backend+'/api/get/club',
               data:{
                 'id':tmp_club
               },

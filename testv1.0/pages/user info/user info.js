@@ -49,7 +49,7 @@ Page({
             })
           }else{
             wx.request({
-              url: 'https://'+backend+'/api/modify/name',
+              url: 'http://'+backend+'/api/modify/name',
               data:{
                 member_id:app.globalData.userID,
                 new_name:res.content
@@ -87,7 +87,7 @@ Page({
     let backend=app.globalData.backendip
     if (wx.getUserProfile) {
       wx.request({
-        url: 'https://'+backend+'/api/get/member',
+        url: 'http://'+backend+'/api/get/member',
         data:{
           id:app.globalData.userID,
         },

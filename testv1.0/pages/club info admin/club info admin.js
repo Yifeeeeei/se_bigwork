@@ -11,31 +11,29 @@ Page({
     current_club_structure:[],
     current_club_rootid:"",
     current_club_id:"",
+    current_container_name:"",
     tree:{},
     deleteflag:0,
     menuitems: [{
         text: '社团名称',
         url: '#',
         icon: '/images/club/1.png',
-        info: ''
+        info: '',
+        flag:0
       },
       {
         text: '修改名称',
         url: '#',
         icon: '/images/club/4.png',
-        info: ''
-      },
-      {
-        text: '社团结构',
-        url: '#',
-        icon: '/images/club/2.png',
-        info: ''
+        info: '',
+        flag:1
       },
       {
         text: '我的职务',
         url: '#',
         icon: '/images/club/3.png',
-        info: ''
+        info: '',
+        flag:3
       }
     ],
   },
@@ -50,7 +48,7 @@ Page({
       success:res=>{
         if(res.confirm){
           wx.request({
-            url:'https://' + backend + '/api/delete/club',
+            url:'http://' + backend + '/api/delete/club',
             data:{
               'club_id':that.data.current_club_id
             },
@@ -87,9 +85,9 @@ Page({
     eventChannel.on('tomanagePage',(res)=>{
       console.log(res.data)
       wx.request({
-        url: 'https://'+backend+'/api/get/club',
+        url: 'http://'+backend+'/api/get/club',
         data:{
-          id:res.data
+          id:res.data.club_id
         },
         method:"POST",
         header :{
@@ -100,10 +98,11 @@ Page({
             current_club_name:res2.data['name'],
             current_club_discription:res2.data['discription'],
             current_club_rootid:res2.data['root_container_id'],
-            current_club_id:res2.data.id
+            current_club_id:res2.data.id,
+            current_container_name:res.data.containername
           })
           wx.request({
-            url: 'https://'+backend+'/api/get/container',
+            url: 'http://'+backend+'/api/get/container',
             data:{
               id:res2.data['root_container_id']
             },
@@ -162,7 +161,7 @@ Page({
             })
           }else{
             wx.request({
-              url: 'https://' + backend + '/api/remove/member',
+              url: 'http://' + backend + '/api/remove/member',
               data: {
                 members_id:tosendmember,
                 club_id:that.data.current_club_id
@@ -175,7 +174,7 @@ Page({
                 console.log(res.data)
                 let tmp="您已被"+that.data.current_club_name+"删除"
                 wx.request({
-                  url: 'https://'+backend+'/api/create/notice',
+                  url: 'http://'+backend+'/api/create/notice',
                   data:{
                     'id':53252,
                     'name':"成员删除通知",

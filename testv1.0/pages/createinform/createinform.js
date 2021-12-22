@@ -41,7 +41,7 @@ Page({
         if(tosendmember.length>0)
         {
           wx.request({
-            url: 'https://'+backend+'/api/create/notice',
+            url: 'http://'+backend+'/api/create/notice',
             data:{
               'id':53252,
               'name':this.data.name,
@@ -77,7 +77,7 @@ Page({
       eventChannel.on('toinformPage',(tmp_res)=>{
         console.log(tmp_res.data)
         wx.request({
-          url: 'https://' + backend + '/api/get/club',
+          url: 'http://' + backend + '/api/get/club',
           data: {
             'id': tmp_res.data
           },
@@ -88,7 +88,7 @@ Page({
           success(res) {
             console.log(res.data)
             wx.request({
-              url: 'https://' + backend + '/api/get/container',
+              url: 'http://' + backend + '/api/get/container',
               data: {
                 'id': res.data.root_container_id
               },

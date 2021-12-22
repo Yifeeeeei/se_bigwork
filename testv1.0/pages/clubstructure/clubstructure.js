@@ -30,7 +30,7 @@ Page({
         let tmp=res
         if(res.confirm){
           wx.request({
-            url: 'https://'+backend+'/api/get/container',
+            url: 'http://'+backend+'/api/get/container',
             data:{
               'id':e.detail['constructid'],
             },
@@ -41,7 +41,7 @@ Page({
             success:res2=>{
               console.log(res2)
               wx.request({
-                url: 'https://'+backend+'/api/update/container',
+                url: 'http://'+backend+'/api/update/container',
                 data:{
                   'id':e.detail['constructid'],
                   'name':res.content,
@@ -90,7 +90,7 @@ Page({
         let tmp=res
         if(res.confirm){
           wx.request({
-            url: 'https://'+backend+'/api/create/container',
+            url: 'http://'+backend+'/api/create/container',
             data:{
               'id':'1',
               'name':res.content,

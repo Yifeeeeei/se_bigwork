@@ -12,6 +12,7 @@ Page({
     current_club_structure:[],
     current_club_rootid:"",
     current_club_id:"",
+    current_container_name:"",
     currentTab: 0,
     checkedddl: [],
     notcheckedddl: [],
@@ -58,12 +59,16 @@ Page({
   },
   tomanage:function(e){
     let club_id=e.currentTarget.dataset.id
+    let that=this
     console.log(e)
     wx.navigateTo({
       url: '../club info admin/club info admin',
       success(res){
         console.log(res)
-        res.eventChannel.emit('tomanagePage',{data:club_id})
+        res.eventChannel.emit('tomanagePage',{data:{
+          "club_id":club_id,
+          "containername":that.data.current_container_name
+        }})
       }
     })
   },
@@ -77,9 +82,9 @@ Page({
     eventChannel.on('toclubPage1',(res)=>{
       console.log(res.data)
       wx.request({
-        url: 'https://'+backend+'/api/get/club',
+        url: 'http://'+backend+'/api/get/club',
         data:{
-          id:res.data
+          id:res.data.clubid
         },
         method:"POST",
         header :{
@@ -87,6 +92,7 @@ Page({
         },
         success:res2=>{
           that.setData({
+            current_container_name:res.data.containername,
             current_club_id:res2.data['id'],
             current_club_name:res2.data['name'],
             current_club_discription:res2.data['discription'],
@@ -117,7 +123,7 @@ Page({
     console.log(1)
     console.log(app.globalData.userID)
     wx.request({
-      url: 'https://' + backend + '/api/get/member',
+      url: 'http://' + backend + '/api/get/member',
       data: {
         'id': app.globalData.userID,
       },
@@ -133,7 +139,7 @@ Page({
           let backend = app.globalData.backendip
           let _that = that
         wx.request({
-          url: 'https://' + backend + '/api/get/notice',
+          url: 'http://' + backend + '/api/get/notice',
           data: {
             'id': res.data.notices_received_id[i],
           },
@@ -176,7 +182,7 @@ Page({
           let backend = app.globalData.backendip
           let _that = that
           wx.request({
-            url: 'https://' + backend + '/api/get/ddl',
+            url: 'http://' + backend + '/api/get/ddl',
             data: {
               'id': checkedddl[i],
             },
@@ -200,7 +206,7 @@ Page({
           let backend = app.globalData.backendip
           let _that = that
           wx.request({
-            url: 'https://' + backend + '/api/get/ddl',
+            url: 'http://' + backend + '/api/get/ddl',
             data: {
               'id': notcheckedddl[i],
             },
