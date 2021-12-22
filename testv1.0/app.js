@@ -27,7 +27,7 @@ App({
   globalData: {
     userInfo: null,
     userID: null,
-    backendip:'82.157.127.241',
+    backendip:'sebigwork.whiteffire.cn:11452',
     code:null,
     specialclubID:"club38935964"
   }

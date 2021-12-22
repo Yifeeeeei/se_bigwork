@@ -17,13 +17,17 @@ Page({
     },
     login: function(){
         console.log(app.globalData.code)
+        let backend=app.globalData.backendip
         wx.getUserProfile({
           desc: 'desc',
           success: (res) => {
+            app.globalData.userInfo=res.userInfo
+            console.log(app.globalData.userInfo)
             if(app.globalData.code){
               let code = app.globalData.code
               let appid='wx8f6433359ab40480'
               let secret = 'a513154024c735fdf2d242469069c0c8'
+              let tmp_url='https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code'
               wx.request({
                 url: 'https://api.weixin.qq.com/sns/jscode2session?appid='+appid+'&secret='+secret+'&js_code='+code+'&grant_type=authorization_code',
                 success :(res2) =>{
@@ -31,7 +35,6 @@ Page({
                   let sessionkey=res2.data.session_key
                   app.globalData.userID=res2.data.openid
                   wx.setStorageSync('sessionKey', sessionkey)
-                  let backend=app.globalData.backendip
                   wx.request({
                     url: 'http://'+backend+'/api/actions/login',
                     data:{
@@ -44,14 +47,39 @@ Page({
                     },
                     success:res3=>{
                       console.log(res3)
-                      wx.switchTab({  
-                        url: '../user info/user info',  
-                        success: function (e) {  
-                          var page = getCurrentPages().pop();  
-                          if (page == undefined || page == null) return;  
-                          page.onShow();  
-                        }  
-                      })
+                      if(res3.data.result=="new"){
+                        wx.request({
+                          url: 'http://'+backend+'/api/modify/name',
+                          data:{
+                            member_id:res2.data.openid,
+                            new_name:res.userInfo.nickName
+                          },
+                          method:"POST",
+                          header :{
+                            'content-type': 'application/json'
+                          },
+                          success:res4=>{
+                            console.log(res4)
+                            wx.switchTab({  
+                              url: '../user info/user info',  
+                              success:res5=> {
+                                var page = getCurrentPages().pop();  
+                                if (page == undefined || page == null) return;  
+                                page.onShow();  
+                              }  
+                            })
+                          }
+                        })
+                      }else if(res3.data.result=="existed"){
+                        wx.switchTab({  
+                          url: '../user info/user info',  
+                          success:res5=> {
+                            var page = getCurrentPages().pop();  
+                            if (page == undefined || page == null) return;  
+                            page.onShow();  
+                          }  
+                        })
+                      }
                     }
                   })
                 }
