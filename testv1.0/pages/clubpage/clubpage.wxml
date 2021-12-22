@@ -1,5 +1,5 @@
 <!--pages/clubpage admin/clubpage admin.wxml-->
-
+<image src="/images/clubhome_background.jpg" class="background"></image>
 <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab=='0' ?  'on' : ''}}" data-current="0" bindtap="swichNav">
         DDL

@@ -1,5 +1,5 @@
 <!--pages/createddl/createddl.wxml-->
-<image src="/images/clubhome_background.png" class="background"></image>
+<image src="/images/clubhome_background.jpg" class="background"></image>
 <view class="page-body">
   <view class="page-section">
     <view class="title">ddl标题:</view>

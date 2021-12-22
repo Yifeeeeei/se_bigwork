@@ -108,3 +108,11 @@
   border-bottom: 4rpx solid #f00;
   color: #f00;
  }
+ .background{
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 2300px;
+    opacity: 0.15;
+    z-index: -1;
+  }
